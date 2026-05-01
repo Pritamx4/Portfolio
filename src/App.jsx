@@ -1,13 +1,16 @@
-import React from 'react';
+import Navbar from './components/Navbar';
+import About from './pages/About';
+import Home from './pages/Home';
 
 const App = () => {
   return (
     <>
-      <div id="parent">
-        <h1>Hello, World!</h1>
+      <div>
+        <Navbar/>
       </div>
-      <div id="child">
-        <h1>Hello, Child!</h1>
+      <div className="h-screen w-full bg-black text-white">
+        <Home />
+        <About />
       </div>
     </>
   );
