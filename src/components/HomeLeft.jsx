@@ -6,7 +6,7 @@ const Left = () => {
         <div className="p-8">
           <h6>[Stable Connection]</h6>
           <h1 className="text-7xl font-bold font-[ZeroMaster]">Pritamx4</h1>
-          <p className="text-lg mt-4 font-">
+          <p className="text-lg mt-4">
             Architechting high-performance digital ecosystems witha a focus on immersive UX and hardware-level precision. Bridging ideas to life.
           </p>
         </div>
