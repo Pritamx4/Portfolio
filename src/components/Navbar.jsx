@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Navbar = () => {
   return (
     <div className="fixed top-0 left-0 w-full flex justify-between items-center bg-transparent h-16 text-white p-2 z-50">

@@ -1,5 +1,3 @@
-import React from 'react';
-
 const AboutLeft = () => {
   return (
     <div className="h-screen w-1/2 flex items-center justify-center">
