@@ -1,1 +1,14 @@
 @import 'tailwindcss';
+
+@font-face {
+    font-family: 'ZeroMaster';
+    src: url('./assets/fonts/Zero Master Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+::-webkit-scrollbar{
+    display: none;
+}
+

@@ -3,7 +3,7 @@ import Right from '../components/Right';
 
 const Home = () => {
   return (
-    <div className="h-screen  flex items-center justify-between z-10">
+    <div className="h-screen  flex items-center justify-between">
       <Left />
       <Right />
     </div>
