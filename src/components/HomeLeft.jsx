@@ -6,7 +6,9 @@ const Left = () => {
         <div className="p-8">
           <h6>[Stable Connection]</h6>
           <h1 className="text-7xl font-bold font-[ZeroMaster]">Pritamx4</h1>
-          <p className="text-xl">Lorem ipsum dolor sit amet consectetur <br /> adipisicing elit. Explicabo quasi dolor sed  <br />voluptatem nulla corporis mollitia illum ipsum maiores quidem!</p>
+          <p className="text-lg mt-4 font-">
+            Architechting high-performance digital ecosystems witha a focus on immersive UX and hardware-level precision. Bridging ideas to life.
+          </p>
         </div>
         <div className="flex items-center justify-start gap-25 h-20 w-full py-10 px-8">
           <Button />
