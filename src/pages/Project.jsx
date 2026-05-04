@@ -5,8 +5,7 @@ const Project = () => {
         Project Hub
       </h1>
     </div>
-    
-  )
-}
+  );
+};
 
-export default Project
+export default Project;
