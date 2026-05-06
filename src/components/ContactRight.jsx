@@ -22,7 +22,8 @@ const ContactRight = () => {
         />
         <button
           type="submit"
-          className="bg-white px-4 py-3 font-bold text-black transition active:scale-95 mt-20"
+          className="bg-white px-4 py-3 font-bold text-black transition active:scale-95 mt-20
+          uppercase tracking-wide hover:bg-white/90"
         >
           Submit
         </button>
