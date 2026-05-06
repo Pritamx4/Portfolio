@@ -1,7 +1,12 @@
-const ContactRight = () => {
+import { useState } from "react";
+import React from "react";
+
+
+
+
   return (
     <div className="flex h-122 w-md items-center justify-center border border-white/15 bg-black/40 p-8 shadow-2xl shadow-black/40 backdrop-blur-sm">
-      <form action="" method="post" className="flex w-full flex-col gap-5 text-white">
+      <form action="" method="post" className="flex w-full flex-col gap-5 text-white" onSubmit={handleSubmit}>
         <input
           type="text"
           name="username"
