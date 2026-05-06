@@ -8,7 +8,7 @@ const Contact = () => {
       <h1 className="absolute left-0 top-0 z-20 flex h-20 w-full items-center justify-center font-[ZeroMaster] text-7xl text-white">
         Contact Me
       </h1>
-      <div className="flex items-center justify-between gap-10">
+      <div className="flex items-center justify-between gap-40">
         <ContactLeft />
         <ContactRight />
       </div>
