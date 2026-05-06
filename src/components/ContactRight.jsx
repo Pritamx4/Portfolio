@@ -6,18 +6,21 @@ const ContactRight = () => {
           type="text"
           name="username"
           placeholder="Full Name"
+          required
           className="w-full  border-b border-white/15 bg-black/40 px-4 py-3 outline-none placeholder:text-white/45 focus:border-white/40"
         />
         <input
           type="email"
           name="email"
           placeholder="Email"
+          required
           className="w-full  border-b border-white/15 bg-black/40 px-4 py-3 outline-none placeholder:text-white/45 focus:border-white/40"
         />
         <textarea
           name="message"
           placeholder="Message"
           rows="1"
+          required
           className="w-full resize-none  border-b border-white/15 bg-black/40 px-4 py-3 outline-none placeholder:text-white/45 focus:border-white/40"
         />
         <button
