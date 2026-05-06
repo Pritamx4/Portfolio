@@ -1,9 +1,17 @@
+import ContactLeft from "../components/ContactLeft";
+import ContactRight from "../components/ContactRight";
+
+
 const Contact = () => {
   return (
-    <div className="h-screen w-full bg-black justify-center">
-      <h1 className="h-20 w-full font-[ZeroMaster] text-7xl text-white items-center justify-center flex absolute left-0 z-20">
+    <div className="relative flex h-screen w-full items-center justify-center bg-black">
+      <h1 className="absolute left-0 top-0 z-20 flex h-20 w-full items-center justify-center font-[ZeroMaster] text-7xl text-white">
         Contact Me
       </h1>
+      <div className="flex items-center justify-between gap-10">
+        <ContactLeft />
+        <ContactRight />
+      </div>
     </div>
   );
 };
