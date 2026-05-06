@@ -20,7 +20,10 @@ const ContactRight = () => {
           rows="2"
           className="w-full resize-none  border border-white/15 bg-black/40 px-4 py-3 outline-none placeholder:text-white/45 focus:border-white/40"
         />
-        <button type="submit" className="bg-white px-4 py-3 font-bold text-black transition active:scale-95">
+        <button
+          type="submit"
+          className="bg-white px-4 py-3 font-bold text-black transition active:scale-95"
+        >
           Submit
         </button>
       </form>
