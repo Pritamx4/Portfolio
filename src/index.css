@@ -1,0 +1,166 @@
+/* ============================================
+   NEO-BRUTALIST DESIGN SYSTEM
+   STUDIO_PORTFOLIO — Design Tokens & Base Styles
+   ============================================ */
+
+:root {
+  /* === Colors === */
+  --color-primary: #CCFF00;
+  --color-primary-dark: #506600;
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+  --color-bg: #faf9f9;
+  --color-surface: #eeeeee;
+  --color-surface-high: #e8e8e8;
+  --color-surface-highest: #e3e2e2;
+  --color-text: #1a1c1c;
+  --color-text-secondary: #444933;
+  --color-outline: #747a60;
+  --color-outline-variant: #c4c9ac;
+  --color-error: #ba1a1a;
+
+  /* === Typography === */
+  --font-family: 'Space Grotesk', sans-serif;
+  
+  /* === Spacing (8px base) === */
+  --space-xs: 4px;
+  --space-sm: 12px;
+  --space-md: 24px;
+  --space-lg: 48px;
+  --space-xl: 80px;
+  --space-base: 8px;
+
+  /* === Borders === */
+  --border-thick: 4px;
+  --border-heavy: 8px;
+
+  /* === Shadows === */
+  --shadow-default: 8px 8px 0px var(--color-black);
+  --shadow-hover: 4px 4px 0px var(--color-black);
+  --shadow-pressed: 2px 2px 0px var(--color-black);
+}
+
+/* === Reset & Base === */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  font-weight: 500;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button {
+  font-family: var(--font-family);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* === Typography Classes === */
+.headline-xl {
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.headline-lg {
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.headline-md {
+  font-size: clamp(20px, 2vw, 24px);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.body-lg {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.body-md {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.label-bold {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* === Layout === */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+/* === Scrollbar === */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+  border-left: var(--border-thick) solid var(--color-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border: 2px solid var(--color-black);
+}
+
+/* === Selection === */
+::selection {
+  background: var(--color-primary);
+  color: var(--color-black);
+}
+
+/* === Page Transition === */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}

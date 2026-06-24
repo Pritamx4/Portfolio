@@ -1,0 +1,341 @@
+/* ============================================
+   ABOUT PAGE — Neo-Brutalist About
+   ============================================ */
+
+.about-page {
+  overflow: hidden;
+}
+
+/* === About Hero === */
+.about-hero {
+  padding: var(--space-xl) 0;
+  border-bottom: var(--border-thick) solid var(--color-black);
+}
+
+.about-hero-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+.about-title {
+  margin-bottom: var(--space-lg);
+}
+
+.title-highlight {
+  background: var(--color-primary);
+  padding: 0 12px;
+  display: inline-block;
+}
+
+.about-desc-window {
+  box-shadow: var(--shadow-default);
+  max-width: 600px;
+}
+
+.about-desc {
+  padding: var(--space-md);
+  color: var(--color-text-secondary);
+}
+
+.about-portrait-window {
+  box-shadow: var(--shadow-default);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-portrait-window:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0px var(--color-black);
+}
+
+.about-portrait-body {
+  padding: 0 !important;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+}
+
+.about-portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* === Education === */
+.about-education {
+  padding: var(--space-xl) 0;
+  border-bottom: var(--border-thick) solid var(--color-surface-high);
+}
+
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+}
+
+.education-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.edu-year-badge {
+  display: inline-flex;
+  background: var(--color-black);
+  color: var(--color-primary);
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  align-self: flex-start;
+}
+
+.edu-content-window {
+  box-shadow: var(--shadow-default);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.edu-content-window:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 10px 10px 0px var(--color-black);
+}
+
+.edu-body {
+  padding: var(--space-md) !important;
+}
+
+.edu-title {
+  margin-bottom: var(--space-base);
+}
+
+.edu-school {
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-base);
+}
+
+.edu-desc {
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+/* === Skills === */
+.about-skills {
+  padding: var(--space-xl) 0;
+  border-bottom: var(--border-thick) solid var(--color-surface-high);
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.skill-window {
+  box-shadow: var(--shadow-default);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skill-window:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 10px 10px 0px var(--color-black);
+}
+
+.skill-body {
+  padding: var(--space-md) !important;
+}
+
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 10px 0;
+  border-bottom: 2px solid var(--color-surface-high);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.skill-item:last-child {
+  border-bottom: none;
+}
+
+.skill-item:hover {
+  padding-left: 8px;
+  background: var(--color-primary);
+}
+
+.skill-arrow {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--color-primary-dark);
+}
+
+/* === Achievements === */
+.about-achievements {
+  padding: var(--space-xl) 0;
+  border-bottom: var(--border-thick) solid var(--color-surface-high);
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.achievement-card {
+  border: var(--border-thick) solid var(--color-black);
+  padding: var(--space-lg) var(--space-md);
+  box-shadow: var(--shadow-default);
+  background: var(--color-white);
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.achievement-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0px var(--color-black);
+  background: var(--color-primary);
+}
+
+.achievement-icon-wrapper {
+  width: 64px;
+  height: 64px;
+  background: var(--color-primary);
+  border: var(--border-thick) solid var(--color-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-md);
+}
+
+.achievement-card:hover .achievement-icon-wrapper {
+  background: var(--color-black);
+}
+
+.achievement-icon {
+  font-size: 28px;
+  color: var(--color-black);
+}
+
+.achievement-card:hover .achievement-icon {
+  color: var(--color-primary);
+}
+
+.achievement-title {
+  margin-bottom: var(--space-sm);
+}
+
+.achievement-desc {
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.achievement-card:hover .achievement-desc {
+  color: var(--color-black);
+}
+
+/* === Philosophy === */
+.about-philosophy {
+  padding: var(--space-xl) 0;
+}
+
+.philosophy-window {
+  box-shadow: var(--shadow-default);
+}
+
+.philosophy-body {
+  padding: var(--space-xl) !important;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.philosophy-title {
+  margin-bottom: var(--space-md);
+}
+
+.philosophy-text {
+  max-width: 600px;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-lg);
+}
+
+.philosophy-social {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-base);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 12px 20px;
+  border: var(--border-thick) solid var(--color-black);
+  background: var(--color-white);
+  box-shadow: 4px 4px 0px var(--color-black);
+  transition: all 0.15s ease;
+}
+
+.social-btn .material-icons {
+  font-size: 16px;
+}
+
+.social-btn:hover {
+  background: var(--color-primary);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--color-black);
+}
+
+.social-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--color-black);
+}
+
+/* === Responsive === */
+@media (max-width: 1024px) {
+  .about-hero-inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .skills-grid,
+  .achievements-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .education-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-hero-inner,
+  .section-inner {
+    padding: 0 var(--space-md);
+  }
+
+  .skills-grid,
+  .achievements-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .philosophy-body {
+    padding: var(--space-lg) var(--space-md) !important;
+  }
+
+  .philosophy-social {
+    flex-direction: column;
+  }
+}
