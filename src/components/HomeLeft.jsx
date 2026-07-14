@@ -11,8 +11,8 @@ const Left = () => {
           </p>
         </div>
         <div className="flex items-center justify-start gap-25 h-20 w-full py-10 px-8">
-          <Button />
-          <Button />
+          <Button text="Project Hub" />
+          <Button text="Contact" />
         </div>
       </div>
     </div>
