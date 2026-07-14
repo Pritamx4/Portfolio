@@ -25,9 +25,17 @@ const ContactRight = () => {
         />
         <button
           type="submit"
-          className="font-ui mt-20 border border-(--paper) bg-(--paper) px-4 py-3 font-bold uppercase tracking-wide text-(--ink) transition active:scale-95 hover:bg-transparent hover:text-(--paper)"
+          className="font-ui mt-20 flex items-center justify-center gap-2 border border-(--paper) bg-(--paper) px-4 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-(--ink) transition active:scale-95 hover:bg-transparent hover:text-(--paper)"
         >
-          Submit
+          <lord-icon
+            className="current-color"
+            src="https://cdn.lordicon.com/vpbspaec.json"
+            trigger="in"
+            delay="1500"
+            trigger="hover"
+            state="hover-flying"
+            style={{ width: '18px', height: '18px' }}
+          />
         </button>
       </form>
     </div>

@@ -1,7 +1,26 @@
 const Button = (props) => {
+  const iconSrc =
+    props.text === 'Contact'
+      ? 'https://cdn.lordicon.com/motnbmtz.json'
+      : props.text === 'Projects'
+        ? 'https://cdn.lordicon.com/tsrgicte.json'
+        : props.text === 'Timeline'
+          ? 'https://cdn.lordicon.com/xnusbqxr.json'
+        : null;
+
   return (
-    <button className="h-12 w-48 skew-x-[-20deg] border border-(--paper) bg-(--paper) px-8 py-3 text-(--ink) transition duration-300 ease-in-out hover:bg-(--ink) hover:text-(--paper)">
-      <span className="block skew-x-20 font-medium"> {props.text}</span>
+    <button className="flex h-12 w-48 skew-x-[-20deg] items-center justify-center border border-(--paper) bg-(--paper) px-8 py-3 text-(--ink) transition duration-300 ease-in-out hover:bg-(--ink) hover:text-(--paper)">
+      <span className="font-ui flex items-center gap-3 skew-x-20 text-sm font-semibold uppercase tracking-[0.16em] leading-none">
+        {iconSrc ? (
+          <lord-icon
+            className="current-color"
+            src={iconSrc}
+            trigger="hover"
+            style={{ width: '18px', height: '18px' }}
+          />
+        ) : null}
+        {props.text}
+      </span>
     </button>
   );
 };
