@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import Logo from '../assets/px4 main logo.svg';
 const Navbar = () => {
   return (
@@ -7,10 +6,10 @@ const Navbar = () => {
         <img src={Logo} alt="PX4 logo" className="h-full w-full object-contain" />
       </div>
       <div className="flex justify-between gap-4 px-4 py-2">
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="/project">Project</Link>
-        <Link to="/contact">Contact</Link>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#project">Project</a>
+        <a href="#contact">Contact</a>
       </div>
     </div>
   );

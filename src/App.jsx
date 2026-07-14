@@ -12,12 +12,10 @@ const App = () => {
         <Navbar/>
       </div>
       <div className="h-screen w-full bg-black text-white">
-        <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/project" element={<Project />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
+        <Home />
+        <About />
+        <Project />
+        <Contact />
       </div>
     </>
   );
