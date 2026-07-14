@@ -1,3 +1,4 @@
+import BottomCapsule from './components/BottomCapsule';
 import Navbar from './components/Navbar';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -14,6 +15,7 @@ const App = () => {
         <Project />
         <Contact />
       </div>
+      <BottomCapsule />
     </>
   );
 };
