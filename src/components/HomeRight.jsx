@@ -1,8 +1,9 @@
 const Right = () => {
   return (
-    <div className="text-white h-screen w-1/2 p-40">
-      <div className=" border-2 h-90 w-full p-20">
-        <h1>Right content</h1>
+    <div className="h-screen w-1/2 p-40 text-(--paper)">
+      <div className="h-90 w-full border border-(--paper)/10 p-12">
+        <img src="./src/assets/px4 main logo.svg" alt=""  className="h-fit w-full "/>
+        {/* 3d model lgana hai */}
       </div>
     </div>
   );
