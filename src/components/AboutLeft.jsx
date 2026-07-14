@@ -4,7 +4,9 @@ const AboutLeft = () => {
       <div className="h-110 w-140 border-t-4 border border-[#00FFD1] p-10 shadow-2xl shadow-black/50 backdrop-blur-xl">
         <h6 className="font-ui uppercase tracking-[0.22em]">[ Operator profile ]</h6>
         <h1 className="font-display text-6xl">PRITAM</h1>
-        <h6 className="font-ui mt-4 uppercase tracking-[0.12em]">Frontend Developer & UI Architect</h6>
+        <h6 className="font-ui mt-4 uppercase tracking-[0.12em]">
+          Frontend Developer & UI Architect
+        </h6>
         <p className="mt-2">
           Architechting high-performance digital ecosystems witha a focus on immersive UX and
           hardware-level precision. Bridging the void between brutalist structures and fluid
