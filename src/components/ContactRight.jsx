@@ -5,8 +5,10 @@ const ContactRight = () => {
       <form action="" method="post" className="relative flex w-full flex-col gap-5 text-(--paper)">
         <div className="mb-2 flex items-center justify-between border-b border-(--paper)/10 pb-4">
           <div>
-            <p className="text-[0.65rem] uppercase tracking-[0.35em] text-(--paper)/55">Reach Out</p>
-            <h2 className="font-display mt-2 text-3xl text-(--paper)">Send a Note</h2>
+            <p className="text-[0.65rem] uppercase tracking-[0.35em] text-(--paper)/55">
+              Reach Out
+            </p>
+            <h2 className="font-display mt-2 text-3xl text-(--paper)">Send a Message</h2>
           </div>
           <span className="h-2 w-2 rounded-full bg-(--paper) shadow-[0_0_18px_rgba(244,241,234,0.7)]" />
         </div>
@@ -36,6 +38,7 @@ const ContactRight = () => {
           type="submit"
           className="font-ui mt-20 flex items-center justify-center gap-3 border border-(--paper) bg-(--paper) px-5 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-(--ink) transition active:scale-95 hover:bg-transparent hover:text-(--paper)"
         >
+          Submit
           <lord-icon
             className="current-color"
             src="https://cdn.lordicon.com/vpbspaec.json"
@@ -45,7 +48,6 @@ const ContactRight = () => {
             state="hover-flying"
             style={{ width: '22px', height: '22px' }}
           />
-          Submit
         </button>
       </form>
     </div>

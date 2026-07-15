@@ -4,8 +4,10 @@ const ContactLeft = () => {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(244,241,234,0.08),transparent_40%),radial-gradient(circle_at_bottom_right,rgba(244,241,234,0.05),transparent_38%)]" />
       <div className="relative mb-2 flex items-center justify-between border-b border-(--paper)/10 pb-4">
         <div>
-          <p className="font-ui text-[0.65rem] uppercase tracking-[0.35em] text-(--paper)/55">Social Feed</p>
-          <h2 className="font-display mt-2 text-3xl text-(--paper)">Connect</h2>
+          <p className="font-ui text-[0.65rem] uppercase tracking-[0.35em] text-(--paper)/55">
+            Social Feed
+          </p>
+          <h2 className="font-display mt-2 text-3xl text-(--paper)">Find me online</h2>
         </div>
         <span className="h-2 w-2 rounded-full bg-(--paper) shadow-[0_0_18px_rgba(244,241,234,0.7)]" />
       </div>
