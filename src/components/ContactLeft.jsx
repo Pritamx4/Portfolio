@@ -1,100 +1,124 @@
+const socials = [
+  {
+    name: 'LINKEDIN',
+    tag: 'NETWORK',
+    desc: 'Professional experience and industry connections.',
+    href: 'https://www.linkedin.com/in/pritamx4',
+    icon: 'https://cdn.lordicon.com/qgebwute.json',
+    trigger: 'hover',
+    state: 'hover-draw',
+  },
+  {
+    name: 'GITHUB',
+    tag: 'SOURCE',
+    desc: 'Open source repositories and creative coding.',
+    href: 'https://github.com/pritamx4',
+    icon: 'https://cdn.lordicon.com/jjxzcivr.json',
+    trigger: 'hover',
+    state: 'hover-roll',
+  },
+  {
+    name: 'YOUTUBE',
+    tag: 'STUDIO',
+    desc: 'Process videos and architectural walkthroughs.',
+    href: 'https://www.youtube.com/@pritamx4?sub_confirmation=1',
+    icon: 'https://cdn.lordicon.com/lyjuidpq.json',
+    trigger: 'morph',
+    state: 'morph-logotype',
+  },
+  {
+    name: 'INSTAGRAM',
+    tag: 'VISION',
+    desc: 'Curated aesthetics and daily explorations.',
+    href: 'https://www.instagram.com/pritamx4/',
+    icon: 'https://cdn.lordicon.com/tgyvxauj.json',
+    trigger: 'hover',
+    state: 'hover-rotate',
+  },
+  {
+    name: 'X',
+    tag: 'LOG',
+    desc: 'Brief thoughts on design, tech, and interactions.',
+    href: 'https://twitter.com/pritamx4_',
+    icon: 'https://cdn.lordicon.com/yizwahhw.json',
+    trigger: 'hover',
+    state: 'hover-draw',
+  },
+];
+
 const ContactLeft = () => {
   return (
-    <div className="relative flex h-122 w-md flex-col justify-between overflow-hidden border border-(--paper)/12 bg-(--ink)/55 p-8 shadow-2xl shadow-black/55 backdrop-blur-xl">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(244,241,234,0.08),transparent_40%),radial-gradient(circle_at_bottom_right,rgba(244,241,234,0.05),transparent_38%)]" />
-      <div className="relative mb-2 flex items-center justify-between border-b border-(--paper)/10 pb-4">
+    <div className="flex h-full flex-col">
+      {/* Header */}
+      <div className="mb-6 flex items-center justify-between border-b border-(--paper)/10 pb-4">
         <div>
-          <p className="font-ui text-[0.65rem] uppercase tracking-[0.35em] text-(--paper)/55">
-            Social Feed
+          <p className="font-ui text-[0.65rem] uppercase tracking-[0.35em] text-(--paper)/50">
+            Elsewhere on the Internet
           </p>
-          <h2 className="font-display mt-2 text-3xl text-(--paper)">Find me online</h2>
+          <h2 className="font-display mt-2 text-3xl text-(--paper)">
+            Where I Exist
+          </h2>
         </div>
-        <span className="h-2 w-2 rounded-full bg-(--paper) shadow-[0_0_18px_rgba(244,241,234,0.7)]" />
+        <span className="h-2 w-2 rounded-full bg-(--paper) shadow-[0_0_18px_rgba(244,241,234,0.6)]" />
       </div>
 
-      <div className="relative flex flex-1 flex-col justify-evenly gap-2">
-        <a
-          href="https://www.linkedin.com/in/pritamx4"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-ui flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-(--paper) transition-all duration-300 hover:translate-x-2 hover:tracking-[0.22em]"
-        >
-          <lord-icon
-            src="https://cdn.lordicon.com/qgebwute.json"
-            trigger="in"
-            delay="1500"
-            trigger="hover"
-            state="hover-draw"
-            colors="primary:#f4f1ea,secondary:#ddd7cc"
-            style={{ width: '36px', height: '36px' }}
-          />
-          LINKEDIN // NETWORK
-        </a>
-        <a
-          href="https://github.com/pritamx4"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-ui flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-(--paper) transition-all duration-300 hover:translate-x-2 hover:tracking-[0.22em]"
-        >
-          <lord-icon
-            src="https://cdn.lordicon.com/jjxzcivr.json"
-            trigger="in"
-            delay="1500"
-            trigger="hover"
-            state="hover-roll"
-            colors="primary:#f4f1ea,secondary:#ddd7cc"
-            style={{ width: '36px', height: '36px' }}
-          />
-          GITHUB // PORTFOLIO
-        </a>
-        <a
-          href="https://www.youtube.com/@pritamx4?sub_confirmation=1"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-ui flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-(--paper) transition-all duration-300 hover:translate-x-2 hover:tracking-[0.22em]"
-        >
-          <lord-icon
-            src="https://cdn.lordicon.com/lyjuidpq.json"
-            trigger="morph"
-            state="morph-logotype"
-            colors="primary:#f4f1ea,secondary:#ddd7cc"
-            style={{ width: '36px', height: '36px' }}
-          />
-          YOUTUBE // TUTORIALS
-        </a>
-        <a
-          href="https://www.instagram.com/pritamx4/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-ui flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-(--paper) transition-all duration-300 hover:translate-x-2 hover:tracking-[0.22em]"
-        >
-          <lord-icon
-            src="https://cdn.lordicon.com/tgyvxauj.json"
-            trigger="hover"
-            state="hover-rotate"
-            colors="primary:#f4f1ea,secondary:#ddd7cc"
-            style={{ width: '36px', height: '36px' }}
-          />
-          INSTAGRAM // SOCIAL
-        </a>
-        <a
-          href="https://twitter.com/pritamx4_"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-ui flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-(--paper) transition-all duration-300 hover:translate-x-2 hover:tracking-[0.22em]"
-        >
-          <lord-icon
-            src="https://cdn.lordicon.com/yizwahhw.json"
-            trigger="in"
-            delay="1500"
-            trigger="hover"
-            state="hover-draw"
-            colors="primary:#f4f1ea,secondary:#ddd7cc"
-            style={{ width: '36px', height: '36px' }}
-          />
-          X // SOCIAL
-        </a>
+      {/* Social links */}
+      <div className="flex flex-col">
+        {socials.map((s, i) => (
+          <a
+            key={s.name}
+            href={s.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-4 border-b border-(--paper)/[0.06] py-5 transition-all duration-300 hover:bg-(--paper)/[0.02] hover:pl-2"
+          >
+            {/* Icon */}
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center">
+              <lord-icon
+                src={s.icon}
+                trigger={s.trigger}
+                state={s.state}
+                colors="primary:#f4f1ea,secondary:#ddd7cc"
+                style={{ width: '32px', height: '32px' }}
+              />
+            </div>
+
+            {/* Text */}
+            <div className="flex-1 min-w-0">
+              <p className="font-ui text-sm font-semibold uppercase tracking-[0.18em] text-(--paper)">
+                {s.name} <span className="text-(--paper)/35">// {s.tag}</span>
+              </p>
+              <p className="font-body mt-1 text-xs leading-relaxed text-(--paper)/40">
+                {s.desc}
+              </p>
+            </div>
+
+            {/* Arrow */}
+            <svg
+              className="h-4 w-4 shrink-0 text-(--paper)/25 transition-all duration-300 group-hover:translate-x-1 group-hover:text-(--paper)/60"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+              />
+            </svg>
+          </a>
+        ))}
       </div>
+
+      {/* Decorative quote */}
+      <p className="font-body mt-8 text-sm italic text-(--paper)/30">
+        "Let's build something{' '}
+        <span className="font-semibold not-italic text-(--paper)/50">
+          enduring
+        </span>{' '}
+        together."
+      </p>
     </div>
   );
 };
