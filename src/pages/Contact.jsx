@@ -5,7 +5,7 @@ const Contact = () => {
   return (
     <div
       id="contact"
-      className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-(--ink) pb-32 pt-24"
+      className="relative flex h-screen w-full items-center overflow-hidden bg-(--ink)"
     >
       {/* Dot pattern background */}
       <div
@@ -17,26 +17,41 @@ const Contact = () => {
         }}
       />
 
-      {/* Radial glow overlay — warm amber */}
+      {/* Radial glow overlay */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(212,175,55,0.04),transparent_60%),radial-gradient(ellipse_at_75%_40%,rgba(244,241,234,0.03),transparent_50%)]" />
 
-      {/* Section heading */}
-      <div className="relative z-10 mb-16 flex flex-col items-start px-8 md:px-20 w-full max-w-6xl">
-        <p className="font-ui text-[0.65rem] uppercase tracking-[0.35em] text-(--paper)/50 mb-3">
+      {/* Vertical heading on the left edge */}
+      <div className="relative z-10 flex h-full w-16 shrink-0 flex-col items-center justify-center md:w-20">
+        <p
+          className="font-ui mb-4 text-[0.55rem] uppercase tracking-[0.35em] text-(--paper)/35"
+          style={{ writingMode: 'vertical-lr' }}
+        >
           04 // Say Hello
         </p>
-        <h1 className="font-display text-6xl md:text-7xl text-(--paper)">
+        <h1
+          className="font-display text-5xl md:text-6xl text-(--paper)"
+          style={{ writingMode: 'vertical-lr', transform: 'rotate(180deg)' }}
+        >
           Let's Talk
         </h1>
-        <div className="mt-4 h-[1px] w-16 bg-(--paper)/25" />
+        <div className="mt-4 h-12 w-[1px] bg-(--paper)/15" />
       </div>
 
-      {/* Main content — asymmetric grid */}
-      <div className="relative z-10 flex w-full max-w-6xl flex-col gap-12 px-8 md:px-20 lg:flex-row lg:gap-16">
-        <div className="w-full lg:w-[42%]">
+      {/* Separator after heading */}
+      <div className="z-10 h-3/5 w-[1px] shrink-0 bg-(--paper)/[0.06]" />
+
+      {/* Two symmetric panels taking full remaining width */}
+      <div className="relative z-10 flex h-full flex-1 items-center">
+        {/* Left panel */}
+        <div className="flex h-full flex-1 items-center justify-center px-8 lg:px-12">
           <ContactLeft />
         </div>
-        <div className="w-full lg:w-[58%]">
+
+        {/* Center separator */}
+        <div className="h-3/5 w-[1px] shrink-0 self-center bg-(--paper)/[0.06]" />
+
+        {/* Right panel */}
+        <div className="flex h-full flex-1 items-center justify-center px-8 lg:px-12">
           <ContactRight />
         </div>
       </div>

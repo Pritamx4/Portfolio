@@ -48,54 +48,54 @@ const socials = [
 
 const ContactLeft = () => {
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex w-full flex-col">
       {/* Header */}
-      <div className="mb-6 flex items-center justify-between border-b border-(--paper)/10 pb-4">
+      <div className="mb-4 flex items-center justify-between pb-3">
         <div>
-          <p className="font-ui text-[0.65rem] uppercase tracking-[0.35em] text-(--paper)/50">
+          <p className="font-ui text-[0.6rem] uppercase tracking-[0.35em] text-(--paper)/40">
             Elsewhere on the Internet
           </p>
-          <h2 className="font-display mt-2 text-3xl text-(--paper)">
+          <h2 className="font-display mt-1.5 text-2xl text-(--paper)">
             Where I Exist
           </h2>
         </div>
-        <span className="h-2 w-2 rounded-full bg-(--paper) shadow-[0_0_18px_rgba(244,241,234,0.6)]" />
+        <span className="h-1.5 w-1.5 rounded-full bg-(--paper) shadow-[0_0_14px_rgba(244,241,234,0.5)]" />
       </div>
 
       {/* Social links */}
       <div className="flex flex-col">
-        {socials.map((s, i) => (
+        {socials.map((s) => (
           <a
             key={s.name}
             href={s.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-4 border-b border-(--paper)/[0.06] py-5 transition-all duration-300 hover:bg-(--paper)/[0.02] hover:pl-2"
+            className="group flex items-center gap-3 border-b border-(--paper)/[0.06] py-3.5 transition-all duration-300 hover:bg-(--paper)/[0.02] hover:pl-1.5"
           >
             {/* Icon */}
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center">
               <lord-icon
                 src={s.icon}
                 trigger={s.trigger}
                 state={s.state}
                 colors="primary:#f4f1ea,secondary:#ddd7cc"
-                style={{ width: '32px', height: '32px' }}
+                style={{ width: '28px', height: '28px' }}
               />
             </div>
 
             {/* Text */}
             <div className="flex-1 min-w-0">
-              <p className="font-ui text-sm font-semibold uppercase tracking-[0.18em] text-(--paper)">
-                {s.name} <span className="text-(--paper)/35">// {s.tag}</span>
+              <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-(--paper)">
+                {s.name} <span className="text-(--paper)/30">// {s.tag}</span>
               </p>
-              <p className="font-body mt-1 text-xs leading-relaxed text-(--paper)/40">
+              <p className="font-body mt-0.5 text-[0.65rem] leading-relaxed text-(--paper)/35">
                 {s.desc}
               </p>
             </div>
 
             {/* Arrow */}
             <svg
-              className="h-4 w-4 shrink-0 text-(--paper)/25 transition-all duration-300 group-hover:translate-x-1 group-hover:text-(--paper)/60"
+              className="h-3.5 w-3.5 shrink-0 text-(--paper)/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-(--paper)/50"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -110,15 +110,6 @@ const ContactLeft = () => {
           </a>
         ))}
       </div>
-
-      {/* Decorative quote */}
-      <p className="font-body mt-8 text-sm italic text-(--paper)/30">
-        "Let's build something{' '}
-        <span className="font-semibold not-italic text-(--paper)/50">
-          enduring
-        </span>{' '}
-        together."
-      </p>
     </div>
   );
 };
