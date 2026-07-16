@@ -39,7 +39,7 @@ const socials = [
     name: 'X',
     tag: 'LOG',
     desc: 'Brief thoughts on design, tech, and interactions.',
-    href: 'https://twitter.com/pritamx4_',
+    href: 'https://x.com/pritamx4_',
     icon: 'https://cdn.lordicon.com/yizwahhw.json',
     trigger: 'hover',
     state: 'hover-draw',
