@@ -70,7 +70,7 @@ const ContactLeft = () => {
             href={s.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-3 border-b border-(--paper)/[0.06] py-3.5 transition-all duration-300 hover:bg-(--paper)/[0.02] hover:pl-1.5"
+            className="group flex items-center gap-3 border-b border-(--paper)/6 py-3.5 transition-all duration-300 hover:bg-(--paper)/2 hover:pl-1.5"
           >
             {/* Icon */}
             <div className="flex h-8 w-8 shrink-0 items-center justify-center">

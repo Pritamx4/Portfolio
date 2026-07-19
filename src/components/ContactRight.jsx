@@ -39,7 +39,7 @@ const ContactRight = () => {
         {fields.map((f) => (
           <div
             key={f.name}
-            className="group flex items-center gap-4 border-b border-(--paper)/[0.06] py-3.5 transition-all duration-300 hover:bg-(--paper)/[0.02] hover:pl-1.5"
+            className="group flex items-center gap-4 border-b border-(--paper)/6 py-3.5 transition-all duration-300 hover:bg-(--paper)/2 hover:pl-1.5"
           >
             <p className="font-ui w-20 shrink-0 text-xs font-semibold uppercase tracking-[0.18em] text-(--paper)/45">
               {f.label}
@@ -55,14 +55,14 @@ const ContactRight = () => {
         ))}
 
         {/* Message row */}
-        <div className="group flex items-start gap-4 border-b border-(--paper)/[0.06] py-3.5 transition-all duration-300 hover:bg-(--paper)/[0.02] hover:pl-1.5">
+        <div className="group flex items-start gap-4 border-b border-(--paper)/6 py-3.5 transition-all duration-300 hover:bg-(--paper)/2 hover:pl-1.5">
           <p className="font-ui w-20 shrink-0 pt-0.5 text-xs font-semibold uppercase tracking-[0.18em] text-(--paper)/45">
             Idea
           </p>
           <textarea
             name="message"
             placeholder="Tell me what's on your mind..."
-            rows="3"
+            rows="2"
             required
             className="font-body w-full resize-none bg-transparent text-sm tracking-wide text-(--paper) outline-none placeholder:text-(--paper)/20"
           />
@@ -77,7 +77,7 @@ const ContactRight = () => {
           <lord-icon
             className="current-color"
             src="https://cdn.lordicon.com/vpbspaec.json"
-            trigger="in"
+            trigger="hover"
             delay="1500"
             state="hover-flying"
             colors="primary:#f4f1ea"
