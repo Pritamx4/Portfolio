@@ -12,7 +12,7 @@ const App = () => {
       <div className="min-h-screen w-full bg-(--ink) text-(--paper)">
         <Home />
         <About />
-        {/* <Project /> */}
+        <Project />
         {/* <Contact /> */}
       </div>
       {/* <BottomCapsule /> */}
