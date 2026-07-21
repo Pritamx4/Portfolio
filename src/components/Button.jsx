@@ -6,7 +6,7 @@ const Button = (props) => {
         ? 'https://cdn.lordicon.com/tsrgicte.json'
         : props.text === 'Timeline'
           ? 'https://cdn.lordicon.com/xnusbqxr.json'
-        : null;
+          : null;
 
   return (
     <button className="flex lg:h-12 lg:w-48 h-10 w-38 skew-x-[-20deg] items-center justify-center border border-(--paper) bg-(--paper) px-8 py-3 text-(--ink) transition duration-300 ease-in-out hover:bg-(--ink) hover:text-(--paper)">

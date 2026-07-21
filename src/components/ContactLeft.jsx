@@ -52,18 +52,16 @@ const ContactLeft = () => {
       {/* Header */}
       <div className="mb-4 flex items-center justify-between pb-3">
         <div>
-          <p className="font-ui text-[0.6rem] uppercase tracking-[0.35em] text-(--paper)/40">
+          <p className="font-ui hidden lg:block text-[0.6rem] uppercase tracking-[0.35em] text-(--paper)/40">
             Elsewhere on the Internet
           </p>
-          <h2 className="font-display mt-1.5 text-2xl text-(--paper)">
-            Where I Exist
-          </h2>
+          <h2 className="font-display mt-1.5 text-2xl text-(--paper)">Where I Exist</h2>
         </div>
-        <span className="h-1.5 w-1.5 rounded-full bg-(--paper) shadow-[0_0_14px_rgba(244,241,234,0.5)]" />
+        {/* <span className="h-1.5 w-1.5 rounded-full bg-(--paper) shadow-[0_0_14px_rgba(244,241,234,0.5)]" /> */}
       </div>
 
       {/* Social links */}
-      <div className="flex flex-col">
+      <div className="flex flex-row lg:flex-col">
         {socials.map((s) => (
           <a
             key={s.name}
@@ -85,17 +83,17 @@ const ContactLeft = () => {
 
             {/* Text */}
             <div className="flex-1 min-w-0">
-              <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-(--paper)">
+              <p className="font-ui hidden lg:block text-xs font-semibold uppercase tracking-[0.18em] text-(--paper)">
                 {s.name} <span className="text-(--paper)/30">// {s.tag}</span>
               </p>
-              <p className="font-body mt-0.5 text-[0.65rem] leading-relaxed text-(--paper)/35">
+              <p className="font-body lg:block hidden mt-0.5 text-[0.65rem] leading-relaxed text-(--paper)/35">
                 {s.desc}
               </p>
             </div>
 
             {/* Arrow */}
             <svg
-              className="h-3.5 w-3.5 shrink-0 text-(--paper)/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-(--paper)/50"
+              className="h-3.5 w-3.5 hidden lg:block shrink-0 text-(--paper)/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-(--paper)/50"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

@@ -6,7 +6,7 @@ const Navbar = () => {
       <div className="h-10 w-10 m-2 ">
         <img src={Logo} alt="PX4 logo" className="h-full w-full object-contain" />
       </div>
-      <MenuIcon/>
+      <MenuIcon />
     </div>
   );
 };
