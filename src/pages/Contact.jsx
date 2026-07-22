@@ -34,11 +34,11 @@ const Contact = () => {
         >
           Let's Talk
         </h1>
-        <div className="mt-4 h-12 w-[1px] bg-(--paper)/15" />
+        <div className="mt-4 h-12 w-px bg-(--paper)/15" />
       </div>
 
       {/* Separator after heading */}
-      <div className="z-10 h-3/5 w-[1px] shrink-0 bg-(--paper)/[0.06]" />
+      <div className="z-10 h-3/5 w-px shrink-0 bg-(--paper)/6" />
 
       {/* Two symmetric panels taking full remaining width */}
       <div className="relative z-10 flex h-full flex-1 items-center">
@@ -48,7 +48,7 @@ const Contact = () => {
         </div>
 
         {/* Center separator */}
-        <div className="h-3/5 w-[1px] shrink-0 self-center bg-(--paper)/[0.06]" />
+        <div className="h-3/5 w-px shrink-0 self-center bg-(--paper)/6" />
 
         {/* Right panel */}
         <div className="flex h-full flex-1 items-center justify-center px-8 lg:px-12">
