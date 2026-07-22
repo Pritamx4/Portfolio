@@ -9,7 +9,7 @@ const App = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen w-full bg-(--ink) pt-16 text-(--paper)">
+      <div className="min-h-screen w-full bg-(--ink) text-(--paper)">
         <Home />
         <About />
         <Project />

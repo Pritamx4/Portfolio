@@ -22,19 +22,13 @@ const ContactRight = () => {
           <p className="font-ui text-[0.6rem] uppercase tracking-[0.35em] text-(--paper)/40">
             Start a Conversation
           </p>
-          <h2 className="font-display mt-1.5 text-2xl text-(--paper)">
-            Drop a Line
-          </h2>
+          <h2 className="font-display mt-1.5 text-2xl text-(--paper)">Drop a Line</h2>
         </div>
-        <span className="h-1.5 w-1.5 rounded-full bg-(--paper) shadow-[0_0_14px_rgba(244,241,234,0.5)]" />
+        {/* <span className="h-1.5 w-1.5 rounded-full bg-(--paper) shadow-[0_0_14px_rgba(244,241,234,0.5)]" /> */}
       </div>
 
       {/* Form */}
-      <form
-        action=""
-        method="post"
-        className="flex flex-col text-(--paper)"
-      >
+      <form action="" method="post" className="flex flex-col text-(--paper)">
         {/* Input fields */}
         {fields.map((f) => (
           <div
