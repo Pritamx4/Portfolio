@@ -25,11 +25,11 @@ const Contact = () => {
         <h1 className="font-display text-4xl text-(--paper) lg:text-5xl lg:[writing-mode:vertical-lr] lg:transform-[rotate(180deg)] xl:text-7xl">
           Let's Talk
         </h1>
-        <div className="mt-4 hidden h-12 w-px bg-(--paper)/15 lg:block" />
+        <div className="mt-4 h-12 w-px bg-(--paper)/15" />
       </div>
 
-      {/* Separator after heading (desktop only) */}
-      <div className="z-10 hidden h-3/5 w-px shrink-0 bg-(--paper)/6 lg:block" />
+      {/* Separator after heading */}
+      <div className="z-10 h-3/5 w-px shrink-0 bg-(--paper)/6" />
 
       {/* Two symmetric panels taking full remaining width */}
       <div className="relative z-10 flex w-full flex-1 flex-col items-stretch lg:h-full lg:flex-row lg:items-center">
@@ -38,8 +38,8 @@ const Contact = () => {
           <ContactLeft />
         </div>
 
-        {/* Center separator (desktop only) */}
-        <div className="hidden h-3/5 w-px shrink-0 self-center bg-(--paper)/6 lg:block" />
+        {/* Center separator */}
+        <div className="h-3/5 w-px shrink-0 self-center bg-(--paper)/6" />
 
         {/* Right panel (form only on mobile, full block on desktop) */}
         <div className="flex w-full items-center justify-center px-6 py-2 lg:h-full lg:flex-1 lg:px-12 lg:py-0">
