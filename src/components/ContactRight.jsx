@@ -24,7 +24,7 @@ const ContactRight = () => {
           </p>
           <h2 className="font-display mt-1.5 text-2xl text-(--paper)">Drop a Line</h2>
         </div>
-        <span className="h-1.5 w-1.5 rounded-full bg-(--paper) shadow-[0_0_14px_rgba(244,241,234,0.5)]" />
+        {/* <span className="h-1.5 w-1.5 rounded-full bg-(--paper) shadow-[0_0_14px_rgba(244,241,234,0.5)]" /> */}
       </div>
 
       {/* Form */}

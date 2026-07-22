@@ -60,15 +60,15 @@ const ContactLeft = () => {
         {/* <span className="h-1.5 w-1.5 rounded-full bg-(--paper) shadow-[0_0_14px_rgba(244,241,234,0.5)]" /> */}
       </div>
 
-      {/* Social links */}
-      <div className="flex flex-row lg:flex-col">
+      {/* Social links: icons-only row on mobile, full list with text on desktop */}
+      <div className="flex flex-row justify-center lg:justify-start lg:flex-col">
         {socials.map((s) => (
           <a
             key={s.name}
             href={s.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-3 border-b border-(--paper)/6 py-3.5 transition-all duration-300 hover:bg-(--paper)/2 hover:pl-1.5"
+            className="group flex items-center gap-3 border-b-0 px-2 py-2 transition-all duration-300 hover:bg-(--paper)/2 lg:border-b lg:border-(--paper)/6 lg:px-0 lg:py-3.5 lg:hover:pl-1.5"
           >
             {/* Icon */}
             <div className="flex h-8 w-8 shrink-0 items-center justify-center">
