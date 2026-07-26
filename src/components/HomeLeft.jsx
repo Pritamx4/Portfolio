@@ -1,9 +1,9 @@
 import Button from './Button';
 const Left = () => {
   return (
-    <div className="font-body lg:h-screen lg:w-1/2 h-1/2 w-full lg:px-20 lg:py-40 text-(--paper) px-12 py-28">
+    <div className="font-body lg:h-screen lg:w-1/2 h-1/2 w-full lg:px-20 lg:py-40 text-(--paper) px-8 py-16">
       <div className="flex flex-col items-center">
-        <div className="p-8">
+        <div className="p-8 text-center">
           <h6 className="font-ui uppercase tracking-[0.22em] text-sm font-extralight">
             [Stable Connection]
           </h6>
