@@ -11,8 +11,7 @@ const Contact = () => {
       <div
         className="pointer-events-none absolute inset-0"
         style={{
-          backgroundImage:
-            'radial-gradient(circle, rgba(244,241,234,0.04) 1px, transparent 1px)',
+          backgroundImage: 'radial-gradient(circle, rgba(244,241,234,0.04) 1px, transparent 1px)',
           backgroundSize: '24px 24px',
         }}
       />
