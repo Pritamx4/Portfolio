@@ -55,7 +55,7 @@ const MenuIcon = () => {
       </div>
       <div
         ref={navWhiteRef}
-        className="bg-white absolute transition-all top-0 h-0 w-full z-0"
+        className="lg:block hidden bg-white absolute transition-all top-0 h-0 w-full z-0"
       ></div>
     </div>
   );
