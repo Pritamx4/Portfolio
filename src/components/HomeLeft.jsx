@@ -9,8 +9,8 @@ const Left = () => {
           </h6>
           <h1 className="font-display lg:text-7xl text-5xl font-bold">Pritamx4</h1>
           <p className="text-lg mt-4">
-            Architechting high-performance digital ecosystems witha a focus on immersive UX and
-            hardware-level precision. Bridging ideas to life.
+            {/* a one line para */}
+            Architechting high performance digital ecosystems with a focus on immersive UX and hardware-level precision. Bridging ideas to life.
           </p>
         </div>
         <div className="flex h-20 w-full items-center justify-start gap-6 px-8 py-10">
