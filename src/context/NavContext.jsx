@@ -1,17 +1,18 @@
-import React, { createContext, useState } from 'react'
-export const  NavbarContext = createContext()
+import React, { createContext, useState } from 'react';
 
-const NavContext = ({children}) => {
+export const NavbarContext = createContext();
 
-    const [navOpen, setNavOpen] = useState(false)
+const NavContext = ({ children }) => {
+  const [navOpen, setNavOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   return (
-    <div>
-        <NavbarContext.Provider value={[navOpen, setNavOpen]}>
-            {children}
-        </NavbarContext.Provider>
-    </div>
-  )
-}
+    <NavbarContext.Provider
+      value={{ navOpen, setNavOpen, activeSection, setActiveSection }}
+    >
+      {children}
+    </NavbarContext.Provider>
+  );
+};
 
-export default NavContext
+export default NavContext;

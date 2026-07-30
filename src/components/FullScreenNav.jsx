@@ -1,14 +1,23 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { useContext, useRef, useEffect } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { NavbarContext } from '../context/NavContext';
 
+const navLinks = [
+  { label: 'Home', id: 'home' },
+  { label: 'About', id: 'about' },
+  { label: 'Projects', id: 'project' },
+  { label: 'Contact', id: 'contact' },
+  { label: 'Github', href: 'https://github.com/pritamx4', external: true },
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/pritamx4', external: true },
+  { label: 'Resume', href: '/resume.pdf', external: true },
+];
+
 const FullScreenNav = () => {
-  const [navOpen] = useContext(NavbarContext);
+  const { navOpen, setNavOpen, activeSection } = useContext(NavbarContext);
   const fullScreenRef = useRef(null);
   const tlRef = useRef(null);
 
-  // timeline sirf ek baar banega
   useGSAP(() => {
     gsap.set('.link', { opacity: 0, y: -120, filter: 'blur(10px)' });
 
@@ -22,14 +31,9 @@ const FullScreenNav = () => {
         ease: 'power4.out',
         stagger: 0.07,
       })
-      .to(
-        '.link',
-        { y: 0, duration: 0.35, ease: 'power4.out', stagger: 0.07 },
-        '-=0.35',
-      );
-  }, []); // <-- empty deps, sirf mount pe
+      .to('.link', { y: 0, duration: 0.35, ease: 'power4.out', stagger: 0.07 }, '-=0.35');
+  }, []);
 
-  // navOpen change hone pe usi timeline ko control karo
   useEffect(() => {
     const tl = tlRef.current;
     if (!tl) return;
@@ -45,63 +49,56 @@ const FullScreenNav = () => {
     }
   }, [navOpen]);
 
+  // scroll lock
+  useEffect(() => {
+    document.body.style.overflow = navOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [navOpen]);
+
+  const handleLinkClick = (id) => {
+    setNavOpen(false);
+    if (id) {
+      // thoda delay taaki close animation shuru ho jaaye phir scroll ho
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      }, 300);
+    }
+  };
+
   return (
     <div
       ref={fullScreenRef}
       id="fullscreennav"
-      className="z-100 h-screen w-full py-24 fixed bg-black"
-      style={{display: 'none'}}
+      className="z-100 h-screen w-full py-16 md:py-24 fixed inset-0 bg-black overflow-y-auto"
+      style={{ display: 'none' }}
     >
-      <div className="">
-        <div className="link origin-top border-t border-white">
-          <h1 className="font-bold text-[6vw] font-ui leading-none   text-center uppercase">
-            Home
-          </h1>
-          {/* <div>
-                    <div>
-                        <h2>Home Section</h2>
-                        <img src="" alt="" />
-                        <h2>Home Section</h2>
-                        <img src="" alt="" />
-                    </div>
-                    <div>
-                        <h2>Home Section</h2>
-                        <img src="" alt="" />
-                        <h2>Home Section</h2>
-                        <img src="" alt="" />
-                    </div>
-                </div> */}
-        </div>
-        <div className="link origin-top border-t border-white">
-          <h1 className="font-bold text-[6vw] font-ui leading-none   text-center uppercase">
-            About
-          </h1>
-        </div>
-        <div className="link origin-top border-t border-white">
-          <h1 className="font-bold text-[6vw] font-ui leading-none   text-center uppercase">
-            Projects
-          </h1>
-        </div>
-        <div className="link origin-top border-t border-white">
-          <h1 className="font-bold text-[6vw] font-ui leading-none   text-center uppercase">
-            Contact
-          </h1>
-        </div>
-        <div className="link origin-top border-t border-white">
-          <h1 className="font-bold text-[6vw] font-ui leading-none   text-center uppercase">
-            Github
-          </h1>
-        </div>
-        <div className="link origin-top border-t border-white">
-          <h1 className="font-bold text-[6vw] font-ui leading-none   text-center uppercase">
-            LinkedIn
-          </h1>
-        </div>
-        <div className="link origin-top border-t border-b border-white">
-          <h1 className="font-bold text-[6vw] font-ui leading-none text-center uppercase">
-            Resume
-          </h1>
-        </div>
+      <div className="flex flex-col justify-center h-full px-4">
+        {navLinks.map((link) => (
+          <div key={link.label} className="link origin-top border-t border-white last:border-b">
+            {link.external ? (
+              <a href={link.href} target="_blank" rel="noopener noreferrer">
+                <h1 className="font-bold text-4xl sm:text-5xl md:text-[6vw] font-ui leading-tight md:leading-none text-center uppercase py-2 md:py-0 text-white">
+                  {link.label}
+                </h1>
+              </a>
+            ) : (
+              <button
+                onClick={() => handleLinkClick(link.id)}
+                className="w-full"
+              >
+                <h1
+                  className={`font-bold text-4xl sm:text-5xl md:text-[6vw] font-ui leading-tight md:leading-none text-center uppercase py-2 md:py-0 transition-colors duration-300 ${
+                    activeSection === link.id ? 'text-yellow-400' : 'text-white'
+                  }`}
+                >
+                  {link.label}
+                </h1>
+              </button>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );
