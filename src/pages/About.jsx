@@ -3,11 +3,14 @@ import AboutRight from '../components/AboutRight';
 
 const About = () => {
   return (
-    <div id="about" className="relative h-screen w-full justify-center bg-(--ink)">
-      <h1 className="font-display absolute left-0 flex h-20 w-full items-center justify-center lg:text-7xl text-4xl text-(--paper) z-10">
+    <div
+      id="about"
+      className="relative min-h-screen lg:h-screen w-full flex flex-col gap-8 lg:gap-0 bg-(--ink)"
+    >
+      <h1 className="font-display flex h-20 w-full items-center justify-center lg:text-7xl text-4xl text-(--paper)">
         About Me
       </h1>
-      <div className="flex lg:flex-row flex-col">
+      <div className="flex flex-1 lg:flex-row flex-col">
         <AboutLeft />
         <AboutRight />
       </div>
