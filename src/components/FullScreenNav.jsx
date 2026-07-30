@@ -75,8 +75,11 @@ const FullScreenNav = () => {
       style={{ display: 'none' }}
     >
       <div className="flex flex-col justify-center h-full px-4">
-        {navLinks.map((link) => (
-          <div key={link.label} className="link origin-top border-t border-white last:border-b">
+        {navLinks.map((link, index) => (
+          <div key={link.label} className="link origin-top border-t border-white/10 last:border-b">
+            <span className="absolute left-6  translate-y-1/2 text-white/20 text-xl font-medium">
+              {String(index + 1).padStart(2, '0')}
+            </span>
             {link.external ? (
               <a href={link.href} target="_blank" rel="noopener noreferrer">
                 <h1 className="font-bold text-4xl sm:text-5xl md:text-[6vw] font-ui leading-tight md:leading-none text-center uppercase py-2 md:py-0 text-white">
@@ -84,10 +87,7 @@ const FullScreenNav = () => {
                 </h1>
               </a>
             ) : (
-              <button
-                onClick={() => handleLinkClick(link.id)}
-                className="w-full"
-              >
+              <button onClick={() => handleLinkClick(link.id)} className="w-full">
                 <h1
                   className={`font-bold text-4xl sm:text-5xl md:text-[6vw] font-ui leading-tight md:leading-none text-center uppercase py-2 md:py-0 transition-colors duration-300 ${
                     activeSection === link.id ? 'text-yellow-400' : 'text-white'

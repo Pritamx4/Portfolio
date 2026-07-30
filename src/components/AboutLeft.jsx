@@ -5,7 +5,7 @@ const AboutLeft = () => {
         <h6 className="font-ui uppercase tracking-[0.22em] text-xs lg:text-sm">
           [ Operator profile ]
         </h6>
-        <h1 className="font-display text-3xl lg:text-6xl mt-1">PRITAM</h1>
+        <h1 className="font-[ZeroMaster] text-3xl lg:text-6xl mt-1">PRITAM</h1>
         <h6 className="font-ui mt-3 lg:mt-4 uppercase tracking-[0.12em] text-xs lg:text-sm">
           Frontend Developer & UI Architect
         </h6>

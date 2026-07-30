@@ -22,7 +22,7 @@ const ContactRight = () => {
           <p className="font-ui text-[0.6rem] uppercase tracking-[0.35em] text-(--paper)/40">
             Start a Conversation
           </p>
-          <h2 className="font-display mt-1.5 text-2xl text-(--paper)">Drop a Line</h2>
+          <h2 className="font-[ZeroMaster] mt-1.5 text-2xl text-(--paper)">Drop a Line</h2>
         </div>
         {/* <span className="h-1.5 w-1.5 rounded-full bg-(--paper) shadow-[0_0_14px_rgba(244,241,234,0.5)]" /> */}
       </div>
@@ -35,7 +35,7 @@ const ContactRight = () => {
             key={f.name}
             className="group flex items-center gap-4 border-b border-(--paper)/6 py-3.5 transition-all duration-300 hover:bg-(--paper)/2 hover:pl-1.5"
           >
-            <p className="font-ui w-20 shrink-0 text-xs font-semibold uppercase tracking-[0.18em] text-(--paper)/45">
+            <p className="font-ui w-20 shrink-0 text-xs font-normal uppercase tracking-[0.18em] text-(--paper)/45">
               {f.label}
             </p>
             <input
@@ -50,7 +50,7 @@ const ContactRight = () => {
 
         {/* Message row */}
         <div className="group flex items-start gap-4 border-b border-(--paper)/6 py-3.5 transition-all duration-300 hover:bg-(--paper)/2 hover:pl-1.5">
-          <p className="font-ui w-20 shrink-0 pt-0.5 text-xs font-semibold uppercase tracking-[0.18em] text-(--paper)/45">
+          <p className="font-ui w-20 shrink-0 pt-0.5 text-xs font-normal uppercase tracking-[0.18em] text-(--paper)/45">
             Idea
           </p>
           <textarea
@@ -65,7 +65,7 @@ const ContactRight = () => {
         {/* Submit button */}
         <button
           type="submit"
-          className="font-ui group mt-6 flex w-fit items-center gap-3 border border-(--paper)/25 bg-transparent px-6 py-3 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-(--paper) transition-all duration-300 hover:border-(--paper) hover:bg-(--paper) hover:text-(--ink) hover:shadow-[0_0_30px_rgba(244,241,234,0.1)] active:scale-[0.97]"
+          className="font-ui group mt-6 flex w-fit items-center gap-3 border border-(--paper)/25 bg-transparent px-6 py-3 text-[0.65rem] font-normal uppercase tracking-[0.22em] text-(--paper) transition-all duration-300 hover:border-(--paper) hover:bg-(--paper) hover:text-(--ink) hover:shadow-[0_0_30px_rgba(244,241,234,0.1)] active:scale-[0.97]"
         >
           Send It
           <lord-icon

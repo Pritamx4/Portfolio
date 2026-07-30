@@ -55,7 +55,7 @@ const ContactLeft = () => {
           <p className="font-ui hidden lg:block text-[0.6rem] uppercase tracking-[0.35em] text-(--paper)/40">
             Elsewhere on the Internet
           </p>
-          <h2 className="font-display mt-1.5 text-2xl text-(--paper)">Where I Exist</h2>
+          <h2 className="font-[ZeroMaster] mt-1.5 text-2xl text-(--paper)">Where I Exist</h2>
         </div>
         {/* <span className="h-1.5 w-1.5 rounded-full bg-(--paper) shadow-[0_0_14px_rgba(244,241,234,0.5)]" /> */}
       </div>
@@ -83,7 +83,7 @@ const ContactLeft = () => {
 
             {/* Text */}
             <div className="flex-1 min-w-0">
-              <p className="font-ui hidden lg:block text-xs font-semibold uppercase tracking-[0.18em] text-(--paper)">
+              <p className="font-ui hidden lg:block text-xs font-normal uppercase tracking-[0.18em] text-(--paper)">
                 {s.name} <span className="text-(--paper)/30">// {s.tag}</span>
               </p>
               <p className="font-body lg:block hidden mt-0.5 text-[0.65rem] leading-relaxed text-(--paper)/35">

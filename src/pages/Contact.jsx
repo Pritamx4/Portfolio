@@ -21,7 +21,7 @@ const Contact = () => {
 
       {/* Heading: top-left on mobile, vertical sidebar on desktop */}
       <div className="relative z-10 flex w-full shrink-0 items-center justify-start px-6 pt-10 pb-6 lg:h-full lg:w-20 lg:flex-col lg:items-center lg:justify-center lg:px-0 lg:py-0">
-        <h1 className="font-display text-4xl text-(--paper) lg:text-5xl lg:[writing-mode:vertical-lr] lg:transform-[rotate(180deg)] xl:text-7xl">
+        <h1 className="font-[ZeroMaster] text-4xl text-(--paper) lg:text-5xl lg:[writing-mode:vertical-lr] lg:transform-[rotate(180deg)] xl:text-7xl">
           Let's Talk
         </h1>
         <div className="mt-4 h-12 w-px bg-(--paper)/15" />
