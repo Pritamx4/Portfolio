@@ -40,7 +40,7 @@ const MenuIcon = () => {
       }}
       className="group h-10 relative w-48 cursor-pointer"
     >
-      <div className="relative z-10 h-4 w-12 mx-28 my-3">
+      <div className="relative z-10 h-4 w-12 mx-32 my-3">
         <span
           ref={line1Ref}
           className="absolute right-0 top-0 h-0.5 w-12 bg-white transition-colors duration-300 group-hover:bg-black origin-center"
