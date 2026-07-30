@@ -9,5 +9,4 @@ const Right = () => {
     </div>
   );
 };
-// fix logo visi
 export default Right;
