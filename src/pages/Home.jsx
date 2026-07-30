@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div
       id="home"
-      className="flex h-screen lg:flex-row flex-col items-center justify-between bg-(--ink)"
+      className="flex min-h-dvh flex-col lg:flex-row  items-center justify-between bg-(--ink)"
     >
       <HomeLeft />
       <HomeRight />

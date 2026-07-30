@@ -9,7 +9,7 @@ const Button = (props) => {
           : null;
 
   return (
-    <button className="flex lg:h-12 lg:w-48 h-10 w-38 skew-x-[-20deg] items-center justify-center border border-(--paper) bg-(--paper) px-8 py-3 text-(--ink) transition duration-300 ease-in-out hover:bg-(--ink) hover:text-(--paper)">
+    <button onClick={props.onClick} className="flex lg:h-12 lg:w-48 h-10 w-38 skew-x-[-20deg] items-center justify-center border border-(--paper) bg-(--paper) px-8 py-3 text-(--ink) transition duration-300 ease-in-out hover:bg-(--ink) hover:text-(--paper)">
       <span className="font-ui flex items-center gap-3 skew-x-20 lg:text-sm text-xs font-semibold uppercase tracking-[0.16em] leading-none">
         {iconSrc ? (
           <lord-icon
