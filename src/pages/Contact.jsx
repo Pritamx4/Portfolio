@@ -24,7 +24,7 @@ const Contact = () => {
         <h1 className="font-[ZeroMaster] text-4xl text-(--paper) lg:text-5xl lg:[writing-mode:vertical-lr] lg:transform-[rotate(180deg)] xl:text-7xl">
           Let's Talk
         </h1>
-        <div className="mt-4 h-12 w-px bg-(--paper)/15" />
+        <div className="mt-4 lg:block hidden h-12 w-px bg-(--paper)/15" />
       </div>
 
       {/* Separator after heading */}
