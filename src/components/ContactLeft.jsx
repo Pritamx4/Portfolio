@@ -50,14 +50,13 @@ const ContactLeft = () => {
   return (
     <div className="flex w-full flex-col">
       {/* Header */}
-      <div className="mb-4 flex items-center justify-between pb-3">
+      <div className="lg:mb-4 flex items-center justify-between pb-3">
         <div>
           <p className="font-ui hidden lg:block text-[0.6rem] uppercase tracking-[0.35em] text-(--paper)/40">
             Elsewhere on the Internet
           </p>
-          <h2 className="font-[ZeroMaster] mt-1.5 text-2xl text-(--paper)">Where I Exist</h2>
+          <h2 className="font-[ZeroMaster] hidden lg:block mt-1.5 text-2xl text-(--paper)">Find Me Online</h2>
         </div>
-        {/* <span className="h-1.5 w-1.5 rounded-full bg-(--paper) shadow-[0_0_14px_rgba(244,241,234,0.5)]" /> */}
       </div>
 
       {/* Social links: icons-only row on mobile, full list with text on desktop */}
