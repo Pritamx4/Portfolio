@@ -26,7 +26,7 @@ const AboutLeft = () => {
           <div className="flex h-full w-1/3 flex-col items-center justify-center border border-[#00FFD1] bg-white/5">
             <p className="font-ui text-[10px] lg:text-xs uppercase tracking-[0.16em]">skills</p>
             <h1 className="font-bold text-xl lg:text-3xl">10+</h1>
-            <p className="font-ui mt-1 lg:mt-2 text-[10px] lg:text-xs uppercase tracking-[0.16em]">Technologies</p>
+            <p className="font-ui mt-1 lg:mt-2 text-[10px] lg:text-xs uppercase tracking-[0.16em]">Tech.</p>
           </div>
         </div>
       </div>
