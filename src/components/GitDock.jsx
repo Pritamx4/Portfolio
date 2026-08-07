@@ -119,9 +119,11 @@ function useDockStyles() {
     style.id = 'gh-dock-style';
     style.textContent = `
       @keyframes gh-dock-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(244,241,234,0.18); } 50% { box-shadow: 0 0 0 9px rgba(244,241,234,0); } }
+      @keyframes gh-dock-ping { 0% { transform: scale(1); opacity: 0.8; } 70%, 100% { transform: scale(2.2); opacity: 0; } }
       @keyframes gh-dock-shimmer { 0% { background-position: -300% 0; } 100% { background-position: 300% 0; } }
       @keyframes gh-dock-spin { to { transform: rotate(360deg); } }
       .gh-dock-orb { animation: gh-dock-pulse 2.8s ease-in-out infinite; }
+      .gh-dock-ping-node { animation: gh-dock-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite; transform-origin: center; }
       .gh-dock-skel {
         background: linear-gradient(90deg, rgba(244,241,234,0.03) 25%, rgba(244,241,234,0.09) 37%, rgba(244,241,234,0.03) 63%);
         background-size: 400% 100%;
@@ -250,55 +252,382 @@ function Divider() {
 }
 
 function Heatmap({ days }) {
+  const scrollRef = useRef(null);
+
   const weeks = [];
   for (let i = 0; i < days.length; i += 7) weeks.push(days.slice(i, i + 7));
-  const stops = ['rgba(255,255,255,0.055)', 'rgba(242,179,61,0.30)', 'rgba(242,179,61,0.55)', 'rgba(242,179,61,0.80)', C.accent];
+  const stops = [
+    'rgba(244,241,234,0.04)',
+    'rgba(242,179,61,0.25)',
+    'rgba(242,179,61,0.50)',
+    'rgba(242,179,61,0.75)',
+    '#F2B33D',
+  ];
   const levelColor = (l) => stops[Math.min(l, 4)];
 
+  // Scroll to far right (most recent weeks) on initial load/render
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
+    }
+  }, [days]);
+
+  // Convert mouse wheel vertical scroll to horizontal scroll
+  const handleWheel = (e) => {
+    if (scrollRef.current && e.deltaY !== 0) {
+      scrollRef.current.scrollLeft += e.deltaY;
+    }
+  };
+
+  // Generate Month headers for columns
+  const monthLabels = [];
+  let lastMonth = '';
+  weeks.forEach((w, wi) => {
+    if (w.length > 0 && w[0].date) {
+      const dateObj = new Date(w[0].date);
+      const monthName = dateObj.toLocaleString('en-US', { month: 'short' });
+      if (monthName !== lastMonth) {
+        monthLabels.push({ colIndex: wi, label: monthName });
+        lastMonth = monthName;
+      }
+    }
+  });
+
   return (
-    <div>
-      <div className="gh-dock-scroll" style={{ display: 'flex', gap: 3, overflowX: 'auto', paddingBottom: 4 }}>
-        {weeks.map((w, wi) => (
-          <div key={wi} style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-            {w.map((d, di) => (
-              <div
-                key={di}
-                className="gh-dock-cell"
-                title={`${d.date}: ${d.count} contribution${d.count === 1 ? '' : 's'}`}
-                style={{ width: 10, height: 10, borderRadius: 2.5, background: levelColor(d.level) }}
-              />
+    <div style={{ width: '100%' }}>
+      {/* Grid Container with Day Labels on Left */}
+      <div style={{ display: 'flex', width: '100%', alignItems: 'flex-start' }}>
+        {/* Day Labels Column with breathing space */}
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 2.5,
+            paddingTop: 15,
+            paddingRight: 6,
+            flexShrink: 0,
+            fontSize: 8.5,
+            color: C.faint,
+            fontFamily: 'var(--font-mono)',
+            lineHeight: '10px',
+            userSelect: 'none',
+          }}
+        >
+          <span style={{ height: 10, visibility: 'hidden' }}>Sun</span>
+          <span style={{ height: 10 }}>Mon</span>
+          <span style={{ height: 10, visibility: 'hidden' }}>Tue</span>
+          <span style={{ height: 10 }}>Wed</span>
+          <span style={{ height: 10, visibility: 'hidden' }}>Thu</span>
+          <span style={{ height: 10 }}>Fri</span>
+          <span style={{ height: 10, visibility: 'hidden' }}>Sat</span>
+        </div>
+
+        {/* Heatmap Grid Wrapper */}
+        <div
+          ref={scrollRef}
+          onWheel={handleWheel}
+          className="gh-dock-scroll"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            flex: 1,
+            minWidth: 0,
+            overflowX: 'auto',
+            paddingBottom: 4,
+            touchAction: 'pan-x',
+          }}
+        >
+          {/* Top Month Labels Row */}
+          <div
+            style={{
+              position: 'relative',
+              height: 12,
+              marginBottom: 3,
+              fontSize: 8.5,
+              color: C.faint,
+              fontFamily: 'var(--font-mono)',
+              width: 'max-content',
+            }}
+          >
+            {monthLabels.map((m, i) => (
+              <span
+                key={i}
+                style={{
+                  position: 'absolute',
+                  left: m.colIndex * 13.5,
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {m.label}
+              </span>
             ))}
           </div>
-        ))}
+
+          {/* 7-Row Weeks Grid */}
+          <div style={{ display: 'flex', gap: 3.5, width: 'max-content' }}>
+            {weeks.map((w, wi) => (
+              <div key={wi} style={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
+                {w.map((d, di) => (
+                  <div
+                    key={di}
+                    className="gh-dock-cell"
+                    title={`${d.date}: ${d.count} contribution${d.count === 1 ? '' : 's'}`}
+                    style={{
+                      width: 10,
+                      height: 10,
+                      borderRadius: 2,
+                      background: levelColor(d.level),
+                      boxShadow: d.level === 0 ? `inset 0 0 0 1px ${C.hairline}` : 'none',
+                    }}
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginTop: 8, justifyContent: 'flex-end' }}>
-        <span style={{ fontSize: 9, color: C.faint, fontFamily: 'var(--font-ui)' }}>Less</span>
+
+      {/* Legend Footer */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginTop: 8, justifyContent: 'flex-end' }}>
+        <span style={{ fontSize: 8.5, color: C.faint, fontFamily: 'var(--font-ui)' }}>Less</span>
         {stops.map((s, i) => (
-          <div key={i} style={{ width: 8, height: 8, borderRadius: 2, background: s }} />
+          <div
+            key={i}
+            style={{
+              width: 8,
+              height: 8,
+              borderRadius: 2,
+              background: s,
+              boxShadow: i === 0 ? `inset 0 0 0 1px ${C.hairline}` : 'none',
+            }}
+          />
         ))}
-        <span style={{ fontSize: 9, color: C.faint, fontFamily: 'var(--font-ui)' }}>More</span>
+        <span style={{ fontSize: 8.5, color: C.faint, fontFamily: 'var(--font-ui)' }}>More</span>
       </div>
     </div>
   );
 }
 
-function Sparkbars({ values }) {
-  const m = Math.max(1, ...values);
+function CommitSparklineChart({ values }) {
+  const [hoveredIdx, setHoveredIdx] = useState(null);
+
+  const data = values && values.length === 8 ? values : [0, 0, 0, 0, 0, 0, 0, 0];
+  const total = data.reduce((a, b) => a + b, 0);
+
+  const maxVal = Math.max(1, ...data);
+  const avgVal = Math.round(total / 8);
+
+  const width = 310;
+  const height = 95;
+  const padX = 14;
+  const padTop = 12;
+  const padBottom = 18;
+  const chartH = height - padTop - padBottom;
+
+  const points = data.map((v, i) => {
+    const x = padX + i * ((width - 2 * padX) / 7);
+    const y = padTop + chartH - (v / maxVal) * chartH;
+    return { x, y, v, label: `W${i + 1}` };
+  });
+
+  let linePath = '';
+  if (points.length > 0) {
+    linePath = `M ${points[0].x.toFixed(1)},${points[0].y.toFixed(1)}`;
+    for (let i = 0; i < points.length - 1; i++) {
+      const p0 = points[i === 0 ? i : i - 1];
+      const p1 = points[i];
+      const p2 = points[i + 1];
+      const p3 = points[i + 2 < points.length ? i + 2 : i + 1];
+
+      const cp1x = (p1.x + (p2.x - p0.x) / 6).toFixed(1);
+      const cp1y = Math.min(height - padBottom, Math.max(padTop, p1.y + (p2.y - p0.y) / 6)).toFixed(1);
+      const cp2x = (p2.x - (p3.x - p1.x) / 6).toFixed(1);
+      const cp2y = Math.min(height - padBottom, Math.max(padTop, p2.y - (p3.y - p1.y) / 6)).toFixed(1);
+
+      linePath += ` C ${cp1x},${cp1y} ${cp2x},${cp2y} ${p2.x.toFixed(1)},${p2.y.toFixed(1)}`;
+    }
+  }
+
+  const areaPath = linePath
+    ? `${linePath} L ${points[points.length - 1].x.toFixed(1)},${(height - padBottom).toFixed(1)} L ${points[0].x.toFixed(1)},${(height - padBottom).toFixed(1)} Z`
+    : '';
+
+  const activePoint = hoveredIdx !== null ? points[hoveredIdx] : null;
+
   return (
-    <div style={{ display: 'flex', alignItems: 'flex-end', gap: 6, height: 44, borderBottom: `1px solid ${C.hairline}`, paddingBottom: 2 }}>
-      {values.map((v, i) => (
-        <div
-          key={i}
-          className="gh-dock-bar"
-          title={`${v} commits`}
-          style={{
-            flex: 1,
-            height: `${Math.max(4, (v / m) * 40)}px`,
-            borderRadius: '4px 4px 2px 2px',
-            background: v > 0 ? `linear-gradient(180deg, ${C.accent2}, ${C.accent})` : 'rgba(244,241,234,0.08)',
-          }}
-        />
-      ))}
+    <div>
+      {/* Top Left Stats (Peak & Avg) below Heading */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
+        <span style={{ fontSize: 9.5, color: C.faint, fontFamily: 'var(--font-mono)' }}>
+          Peak: <strong style={{ color: C.text }}>{maxVal}</strong>
+        </span>
+        <span style={{ fontSize: 9.5, color: C.faint, fontFamily: 'var(--font-mono)' }}>
+          Avg: <strong style={{ color: C.text }}>{avgVal}</strong>/wk
+        </span>
+      </div>
+
+      {/* SVG Chart Area (No Outer Border / Card) */}
+      <div style={{ position: 'relative', width: '100%' }}>
+        {/* Floating Tooltip */}
+        {activePoint && (
+          <div
+            style={{
+              position: 'absolute',
+              top: -4,
+              left: `${(activePoint.x / width) * 100}%`,
+              transform: 'translate(-50%, -100%)',
+              pointerEvents: 'none',
+              zIndex: 10,
+              background: 'rgba(16, 16, 16, 0.94)',
+              border: '1px solid rgba(242,179,61,0.3)',
+              borderRadius: 6,
+              padding: '3px 7px',
+              fontSize: 9.5,
+              fontFamily: 'var(--font-mono)',
+              color: C.text,
+              whiteSpace: 'nowrap',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 4,
+            }}
+          >
+            <span style={{ color: '#F2B33D', fontWeight: 700 }}>{activePoint.label}:</span>
+            <span>{activePoint.v} commits</span>
+          </div>
+        )}
+
+        <svg viewBox={`0 0 ${width} ${height}`} style={{ width: '100%', height: 'auto', overflow: 'visible' }}>
+          <defs>
+            <linearGradient id="commitSparkGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#F2B33D" stopOpacity="0.28" />
+              <stop offset="100%" stopColor="#F2B33D" stopOpacity="0.0" />
+            </linearGradient>
+
+            <filter id="commitNodeGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="2" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
+          {/* Background Pillar Bars */}
+          {points.map((pt, i) => {
+            const isHovered = hoveredIdx === i;
+            const barW = 12;
+            const barH = height - padBottom - pt.y;
+            return (
+              <rect
+                key={`bar-${i}`}
+                x={pt.x - barW / 2}
+                y={pt.y}
+                width={barW}
+                height={Math.max(2, barH)}
+                rx="3"
+                fill={isHovered ? 'rgba(242,179,61,0.18)' : 'rgba(244,241,234,0.025)'}
+                style={{ transition: 'fill 0.15s ease' }}
+              />
+            );
+          })}
+
+          {/* Baseline */}
+          <line
+            x1={padX - 4}
+            y1={height - padBottom}
+            x2={width - padX + 4}
+            y2={height - padBottom}
+            stroke={C.hairline}
+            strokeWidth="0.8"
+            strokeDasharray="2 3"
+          />
+
+          {/* Vertical Scanline/Crosshair on Hover */}
+          {activePoint && (
+            <line
+              x1={activePoint.x}
+              y1={padTop - 4}
+              x2={activePoint.x}
+              y2={height - padBottom}
+              stroke="#F2B33D"
+              strokeWidth="0.8"
+              strokeDasharray="2 2"
+              opacity="0.6"
+            />
+          )}
+
+          {/* Area Path */}
+          {areaPath && <path d={areaPath} fill="url(#commitSparkGrad)" />}
+
+          {/* Bezier Line */}
+          {linePath && (
+            <path
+              d={linePath}
+              fill="none"
+              stroke="#F2B33D"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              filter="url(#commitNodeGlow)"
+            />
+          )}
+
+          {/* Data Points */}
+          {points.map((pt, i) => {
+            const isHovered = hoveredIdx === i;
+            return (
+              <g key={i}>
+                <circle
+                  cx={pt.x}
+                  cy={pt.y}
+                  r="12"
+                  fill="transparent"
+                  style={{ cursor: 'pointer' }}
+                  onMouseEnter={() => setHoveredIdx(i)}
+                  onMouseLeave={() => setHoveredIdx(null)}
+                />
+
+                {isHovered && (
+                  <circle
+                    cx={pt.x}
+                    cy={pt.y}
+                    r="6"
+                    fill="rgba(242,179,61,0.2)"
+                    stroke="#F2B33D"
+                    strokeWidth="1"
+                  />
+                )}
+
+                <circle
+                  cx={pt.x}
+                  cy={pt.y}
+                  r={isHovered ? 3.8 : 2.5}
+                  fill="#111111"
+                  stroke="#F2B33D"
+                  strokeWidth={isHovered ? 2 : 1.5}
+                  style={{ transition: 'all 0.15s ease', cursor: 'pointer' }}
+                  onMouseEnter={() => setHoveredIdx(i)}
+                  onMouseLeave={() => setHoveredIdx(null)}
+                />
+
+                <text
+                  x={pt.x}
+                  y={height - 5}
+                  textAnchor="middle"
+                  fill={isHovered ? '#F2B33D' : C.faint}
+                  fontSize="8.5"
+                  fontFamily="var(--font-mono)"
+                  fontWeight={isHovered ? '700' : '400'}
+                  style={{ transition: 'fill 0.15s ease' }}
+                >
+                  {pt.label}
+                </text>
+              </g>
+            );
+          })}
+        </svg>
+      </div>
     </div>
   );
 }
@@ -432,29 +761,42 @@ const GitDock = () => {
 
       let heatDays = [];
       let totalContributions = null;
+      let weeklyCommits = [0, 0, 0, 0, 0, 0, 0, 0];
+
       try {
         const contrib = await safeJson(`https://github-contributions-api.jogruber.de/v4/${USERNAME}?y=last`);
         const all = contrib.contributions || [];
-        heatDays = all.slice(-105);
-        totalContributions = all.slice(-365).reduce((s, d) => s + d.count, 0);
+        heatDays = all.slice(-182);
+        totalContributions = contrib.total?.lastYear ?? all.slice(-365).reduce((s, d) => s + d.count, 0);
+
+        if (all.length > 0) {
+          for (let i = 7; i >= 0; i--) {
+            const end = all.length - i * 7;
+            const start = Math.max(0, end - 7);
+            const weekSlice = all.slice(start, end);
+            weeklyCommits[7 - i] = weekSlice.reduce((sum, day) => sum + (day.count || 0), 0);
+          }
+        }
       } catch (e) {
         console.error('Error fetching contributions:', e);
       }
 
-      let weeklyCommits = [0, 0, 0, 0, 0, 0, 0, 0];
-      try {
-        const events = await safeJson(`https://api.github.com/users/${USERNAME}/events/public?per_page=100`);
-        const now = Date.now();
-        events
-          .filter((ev) => ev.type === 'PushEvent')
-          .forEach((ev) => {
-            const weeksAgo = Math.floor((now - new Date(ev.created_at).getTime()) / (7 * 24 * 3600 * 1000));
-            if (weeksAgo >= 0 && weeksAgo < 8) {
-              weeklyCommits[7 - weeksAgo] += (ev.payload && ev.payload.commits && ev.payload.commits.length) || 0;
-            }
-          });
-      } catch (e) {
-        console.error('Error fetching weekly commits:', e);
+      if (weeklyCommits.every((c) => c === 0)) {
+        try {
+          const events = await safeJson(`https://api.github.com/users/${USERNAME}/events/public?per_page=100`);
+          const now = Date.now();
+          events
+            .filter((ev) => ev.type === 'PushEvent')
+            .forEach((ev) => {
+              const weeksAgo = Math.floor((now - new Date(ev.created_at).getTime()) / (7 * 24 * 3600 * 1000));
+              if (weeksAgo >= 0 && weeksAgo < 8) {
+                const count = ev.payload?.commits?.length || ev.payload?.size || ev.payload?.distinct_size || 1;
+                weeklyCommits[7 - weeksAgo] += count;
+              }
+            });
+        } catch (e) {
+          console.error('Error fetching weekly commits:', e);
+        }
       }
 
       setData({ profile, totalRepos: profile.public_repos ?? repos.length, totalStars, totalSizeKb, lastUpdated, languages, heatDays, totalContributions, weeklyCommits });
@@ -671,7 +1013,7 @@ const GitDock = () => {
                       }}
                     >
                       {/* External GitHub profile Lordicon */}
-                     {/* <HoverLordicon icon={externalLink} size={10} colorize={C.text} ariaLabel="Open GitHub profile" />
+                    {/* <HoverLordicon icon={externalLink} size={10} colorize={C.text} ariaLabel="Open GitHub profile" />
                     </div> */}
                   </div>
                   <div style={{ flex: 1, minWidth: 0 }}>
@@ -721,13 +1063,10 @@ const GitDock = () => {
                 )}
 
                 <Divider />
-                <SectionLabel>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
-                    {/* Commit history Lordicon */}
-                    <HoverLordicon icon={repo} size={11} colorize={C.text} ariaLabel="Commit history" /> Commits · last 8 weeks
-                  </span>
+                <SectionLabel right={data.weeklyCommits ? `${formatNumber(data.weeklyCommits.reduce((a, b) => a + b, 0))} / 8 wks` : undefined}>
+                  Weekly Commits
                 </SectionLabel>
-                <Sparkbars values={data.weeklyCommits} />
+                <CommitSparklineChart values={data.weeklyCommits} />
               </>
             )}
           </div>
