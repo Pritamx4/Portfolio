@@ -17,7 +17,7 @@ const Button = (props) => {
             src={iconSrc}
             trigger="hover"
             style={{ width: '18px', height: '18px' }}
-          />
+          ></lord-icon>
         ) : null}
         {props.text}
       </span>
