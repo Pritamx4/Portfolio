@@ -408,14 +408,17 @@ function Heatmap({ days }) {
   );
 }
 
-function CommitSparklineChart({ values }) {
+function CommitSparklineChart({ days, values }) {
   const [hoveredIdx, setHoveredIdx] = useState(null);
 
-  const data = values && values.length === 8 ? values : [0, 0, 0, 0, 0, 0, 0, 0];
-  const total = data.reduce((a, b) => a + b, 0);
+  const dailyData = days && days.length >= 56 ? days.slice(-56) : (days || []);
+  const weeklyData = values && values.length === 8 ? values : [0, 0, 0, 0, 0, 0, 0, 0];
+  const weeklyTotal = weeklyData.reduce((a, b) => a + b, 0);
 
-  const maxVal = Math.max(1, ...data);
-  const avgVal = Math.round(total / 8);
+  const isDaily = dailyData.length > 0;
+  const maxDayVal = isDaily ? Math.max(1, ...dailyData.map((d) => d.count || 0)) : Math.max(1, ...weeklyData);
+  const maxWeekVal = Math.max(1, ...weeklyData);
+  const avgVal = Math.round(weeklyTotal / 8);
 
   const width = 310;
   const height = 95;
@@ -424,11 +427,22 @@ function CommitSparklineChart({ values }) {
   const padBottom = 18;
   const chartH = height - padTop - padBottom;
 
-  const points = data.map((v, i) => {
-    const x = padX + i * ((width - 2 * padX) / 7);
-    const y = padTop + chartH - (v / maxVal) * chartH;
-    return { x, y, v, label: `W${i + 1}` };
-  });
+  const points = isDaily
+    ? dailyData.map((d, i) => {
+        const count = d.count || 0;
+        const x = padX + i * ((width - 2 * padX) / (dailyData.length - 1 || 1));
+        const y = padTop + chartH - (count / maxDayVal) * chartH;
+        const weekNum = Math.floor(i / 7) + 1;
+        const dateFormatted = d.date
+          ? new Date(d.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+          : `Day ${i + 1}`;
+        return { x, y, v: count, label: `${dateFormatted} (W${weekNum})`, weekNum, isDaily: true };
+      })
+    : weeklyData.map((v, i) => {
+        const x = padX + i * ((width - 2 * padX) / 7);
+        const y = padTop + chartH - (v / maxWeekVal) * chartH;
+        return { x, y, v, label: `W${i + 1}`, weekNum: i + 1, isDaily: false };
+      });
 
   let linePath = '';
   if (points.length > 0) {
@@ -454,19 +468,32 @@ function CommitSparklineChart({ values }) {
 
   const activePoint = hoveredIdx !== null ? points[hoveredIdx] : null;
 
+  // Midpoints for 8 Week X-axis Labels
+  const weekLabels = [];
+  if (isDaily) {
+    for (let w = 0; w < 8; w++) {
+      const midDayIdx = Math.min(points.length - 1, w * 7 + 3);
+      if (points[midDayIdx]) {
+        weekLabels.push({ x: points[midDayIdx].x, label: `W${w + 1}` });
+      }
+    }
+  } else {
+    points.forEach((pt) => weekLabels.push({ x: pt.x, label: pt.label }));
+  }
+
   return (
     <div>
       {/* Top Left Stats (Peak & Avg) below Heading */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
         <span style={{ fontSize: 9.5, color: C.faint, fontFamily: 'var(--font-mono)' }}>
-          Peak: <strong style={{ color: C.text }}>{maxVal}</strong>
+          Peak: <strong style={{ color: C.text }}>{maxWeekVal}</strong>/wk
         </span>
         <span style={{ fontSize: 9.5, color: C.faint, fontFamily: 'var(--font-mono)' }}>
           Avg: <strong style={{ color: C.text }}>{avgVal}</strong>/wk
         </span>
       </div>
 
-      {/* SVG Chart Area (No Outer Border / Card) */}
+      {/* SVG Chart Area */}
       <div style={{ position: 'relative', width: '100%' }}>
         {/* Floating Tooltip */}
         {activePoint && (
@@ -493,14 +520,14 @@ function CommitSparklineChart({ values }) {
             }}
           >
             <span style={{ color: '#F2B33D', fontWeight: 700 }}>{activePoint.label}:</span>
-            <span>{activePoint.v} commits</span>
+            <span>{activePoint.v} {activePoint.v === 1 ? 'commit' : 'commits'}</span>
           </div>
         )}
 
         <svg viewBox={`0 0 ${width} ${height}`} style={{ width: '100%', height: 'auto', overflow: 'visible' }}>
           <defs>
             <linearGradient id="commitSparkGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#F2B33D" stopOpacity="0.28" />
+              <stop offset="0%" stopColor="#F2B33D" stopOpacity="0.3" />
               <stop offset="100%" stopColor="#F2B33D" stopOpacity="0.0" />
             </linearGradient>
 
@@ -516,7 +543,7 @@ function CommitSparklineChart({ values }) {
           {/* Background Pillar Bars */}
           {points.map((pt, i) => {
             const isHovered = hoveredIdx === i;
-            const barW = 12;
+            const barW = isDaily ? 3.5 : 12;
             const barH = height - padBottom - pt.y;
             return (
               <rect
@@ -525,8 +552,8 @@ function CommitSparklineChart({ values }) {
                 y={pt.y}
                 width={barW}
                 height={Math.max(2, barH)}
-                rx="3"
-                fill={isHovered ? 'rgba(242,179,61,0.18)' : 'rgba(244,241,234,0.025)'}
+                rx={isDaily ? 1.5 : 3}
+                fill={isHovered ? 'rgba(242,179,61,0.3)' : 'rgba(244,241,234,0.025)'}
                 style={{ transition: 'fill 0.15s ease' }}
               />
             );
@@ -543,7 +570,7 @@ function CommitSparklineChart({ values }) {
             strokeDasharray="2 3"
           />
 
-          {/* Vertical Scanline/Crosshair on Hover */}
+          {/* Vertical Crosshair Line on Hover */}
           {activePoint && (
             <line
               x1={activePoint.x}
@@ -573,15 +600,17 @@ function CommitSparklineChart({ values }) {
             />
           )}
 
-          {/* Data Points */}
+          {/* Data Nodes & Hit Targets */}
           {points.map((pt, i) => {
             const isHovered = hoveredIdx === i;
+            if (isDaily && pt.v === 0 && !isHovered) return null;
+
             return (
               <g key={i}>
                 <circle
                   cx={pt.x}
                   cy={pt.y}
-                  r="12"
+                  r={isDaily ? 8 : 12}
                   fill="transparent"
                   style={{ cursor: 'pointer' }}
                   onMouseEnter={() => setHoveredIdx(i)}
@@ -592,8 +621,8 @@ function CommitSparklineChart({ values }) {
                   <circle
                     cx={pt.x}
                     cy={pt.y}
-                    r="6"
-                    fill="rgba(242,179,61,0.2)"
+                    r="5.5"
+                    fill="rgba(242,179,61,0.25)"
                     stroke="#F2B33D"
                     strokeWidth="1"
                   />
@@ -602,30 +631,34 @@ function CommitSparklineChart({ values }) {
                 <circle
                   cx={pt.x}
                   cy={pt.y}
-                  r={isHovered ? 3.8 : 2.5}
+                  r={isHovered ? 3.5 : 2.2}
                   fill="#111111"
                   stroke="#F2B33D"
-                  strokeWidth={isHovered ? 2 : 1.5}
+                  strokeWidth={isHovered ? 2 : 1.4}
                   style={{ transition: 'all 0.15s ease', cursor: 'pointer' }}
                   onMouseEnter={() => setHoveredIdx(i)}
                   onMouseLeave={() => setHoveredIdx(null)}
                 />
-
-                <text
-                  x={pt.x}
-                  y={height - 5}
-                  textAnchor="middle"
-                  fill={isHovered ? '#F2B33D' : C.faint}
-                  fontSize="8.5"
-                  fontFamily="var(--font-mono)"
-                  fontWeight={isHovered ? '700' : '400'}
-                  style={{ transition: 'fill 0.15s ease' }}
-                >
-                  {pt.label}
-                </text>
               </g>
             );
           })}
+
+          {/* X Axis Week Labels (W1 to W8) */}
+          {weekLabels.map((wl, i) => (
+            <text
+              key={`wl-${i}`}
+              x={wl.x}
+              y={height - 5}
+              textAnchor="middle"
+              fill={activePoint && activePoint.weekNum === i + 1 ? '#F2B33D' : C.faint}
+              fontSize="8.5"
+              fontFamily="var(--font-mono)"
+              fontWeight={activePoint && activePoint.weekNum === i + 1 ? '700' : '400'}
+              style={{ transition: 'fill 0.15s ease' }}
+            >
+              {wl.label}
+            </text>
+          ))}
         </svg>
       </div>
     </div>
@@ -710,7 +743,6 @@ const GitDock = () => {
   );
 
   const onPointerDown = (e) => {
-    if (wantOpen) return;
     circleRef.current?.setPointerCapture?.(e.pointerId);
     dragInfo.current = { startX: e.clientX, startY: e.clientY, originX: pos.x, originY: pos.y, moved: false };
     setDragging(true);
@@ -732,7 +764,29 @@ const GitDock = () => {
     setPos((p) => {
       const center = p.x + CIRCLE / 2;
       const snapX = center < bounds.w / 2 ? EDGE_MARGIN : Math.max(EDGE_MARGIN, bounds.w - CIRCLE - EDGE_MARGIN);
-      return clamp(snapX, p.y);
+      let targetY = p.y;
+
+      if (wantOpen && panelRef.current && bounds.h > 0) {
+        const h = panelRef.current.getBoundingClientRect().height;
+        const spaceAbove = targetY;
+        const spaceBelow = bounds.h - targetY - CIRCLE;
+        const dir = spaceAbove >= h + GAP || spaceAbove >= spaceBelow ? 'up' : 'down';
+        setExpandDir(dir);
+
+        if (dir === 'up') {
+          const panelTop = targetY - GAP - h;
+          if (panelTop < EDGE_MARGIN) {
+            targetY = Math.min(bounds.h - CIRCLE - EDGE_MARGIN, h + GAP + EDGE_MARGIN);
+          }
+        } else {
+          const panelBottom = targetY + CIRCLE + GAP + h;
+          if (panelBottom > bounds.h - EDGE_MARGIN) {
+            targetY = Math.max(EDGE_MARGIN, bounds.h - CIRCLE - GAP - h - EDGE_MARGIN);
+          }
+        }
+      }
+
+      return clamp(snapX, targetY);
     });
   };
 
@@ -825,18 +879,35 @@ const GitDock = () => {
   }, [wantOpen]);
 
   useLayoutEffect(() => {
-    if (!rendered || !panelRef.current) return;
+    if (!rendered || !panelRef.current || bounds.h <= 0) return;
     const measure = () => {
       const h = panelRef.current.getBoundingClientRect().height;
-      const spaceAbove = pos.y;
-      const spaceBelow = bounds.h - pos.y - CIRCLE;
-      setExpandDir(spaceAbove >= h + GAP || spaceAbove >= spaceBelow ? 'up' : 'down');
+      setPos((p) => {
+        const spaceAbove = p.y;
+        const spaceBelow = bounds.h - p.y - CIRCLE;
+        const dir = spaceAbove >= h + GAP || spaceAbove >= spaceBelow ? 'up' : 'down';
+        setExpandDir(dir);
+
+        let targetY = p.y;
+        if (dir === 'up') {
+          const panelTop = p.y - GAP - h;
+          if (panelTop < EDGE_MARGIN) {
+            targetY = Math.min(bounds.h - CIRCLE - EDGE_MARGIN, h + GAP + EDGE_MARGIN);
+          }
+        } else {
+          const panelBottom = p.y + CIRCLE + GAP + h;
+          if (panelBottom > bounds.h - EDGE_MARGIN) {
+            targetY = Math.max(EDGE_MARGIN, bounds.h - CIRCLE - GAP - h - EDGE_MARGIN);
+          }
+        }
+        return clamp(p.x, targetY);
+      });
     };
     measure();
     const ro = new ResizeObserver(measure);
     ro.observe(panelRef.current);
     return () => ro.disconnect();
-  }, [rendered, pos, bounds]);
+  }, [rendered, bounds.h, clamp]);
 
   useEffect(() => {
     if (!wantOpen) return;
@@ -1107,7 +1178,7 @@ const GitDock = () => {
                 <SectionLabel right={data.weeklyCommits ? `${formatNumber(data.weeklyCommits.reduce((a, b) => a + b, 0))} / 8 wks` : undefined}>
                   Weekly Commits
                 </SectionLabel>
-                <CommitSparklineChart values={data.weeklyCommits} />
+                <CommitSparklineChart days={data.heatDays} values={data.weeklyCommits} />
               </>
             )}
           </div>
