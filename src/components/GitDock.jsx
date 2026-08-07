@@ -1523,7 +1523,7 @@ const GitDock = () => {
                     <svg width="13" height="13" viewBox="0 0 16 16" fill={activeTab === 'prs' ? '#F2B33D' : C.faint}>
                       <path fillRule="evenodd" d="M7.177 3.073L9.573.677A.25.25 0 0110 .854v4.792a.25.25 0 01-.427.177L7.177 3.427a.25.25 0 010-.354zM3.75 2.5a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5zm-2.75 1.25a2.75 2.75 0 115 1.587v5.326a2.75 2.75 0 11-1.5 0V5.337A2.741 2.741 0 011 3.75zM3.75 11a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5zm9.5-8.5a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5zm-2.75 1.25a2.75 2.75 0 115 1.587v5.326a2.75 2.75 0 11-1.5 0V5.337A2.741 2.741 0 0110.5 3.75z" />
                     </svg>
-                    PRs {data.pullRequests?.length > 0 && <span style={{ fontSize: 9.5, opacity: 0.7, padding: '1px 5px', borderRadius: 10, background: 'rgba(244,241,234,0.08)' }}>{data.pullRequests.length}</span>}
+                    PR's {data.pullRequests?.length > 0 && <span style={{ fontSize: 9.5, opacity: 0.7, padding: '1px 5px', borderRadius: 10, background: 'rgba(244,241,234,0.08)' }}>{data.pullRequests.length}</span>}
                   </button>
                 </div>
 
