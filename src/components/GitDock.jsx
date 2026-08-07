@@ -1086,7 +1086,9 @@ const GitDock = () => {
                 {data.languages.length > 0 && (
                   <>
                     <Divider />
-                    <SectionLabel>Languages</SectionLabel>
+                    <SectionLabel right={data.languages[0] ? `Top: ${data.languages[0].name}` : undefined}>
+                      Languages
+                    </SectionLabel>
                     <LanguageBar languages={data.languages} />
                   </>
                 )}
