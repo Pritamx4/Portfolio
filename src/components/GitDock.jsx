@@ -658,7 +658,7 @@ function LanguageBar({ languages }) {
 
 const CIRCLE = 56;
 const PANEL_W = 352;
-const EDGE_MARGIN = 10;
+const EDGE_MARGIN = 24;
 const GAP = 14;
 
 /**
@@ -681,6 +681,7 @@ const GitDock = () => {
   const [rendered, setRendered] = useState(false);
   const [visible, setVisible] = useState(false);
   const [expandDir, setExpandDir] = useState('up');
+  const [isBubbleHovered, setIsBubbleHovered] = useState(false);
 
   const [status, setStatus] = useState('idle');
   const [errorMsg, setErrorMsg] = useState('');
@@ -692,7 +693,7 @@ const GitDock = () => {
     const update = () => {
       const r = el.getBoundingClientRect();
       setBounds({ w: r.width, h: r.height });
-      setPos((p) => (p.x === 0 && p.y === 0 ? { x: r.width - CIRCLE - 24, y: r.height - CIRCLE - 24 } : p));
+      setPos((p) => (p.x === 0 && p.y === 0 ? { x: r.width - CIRCLE - EDGE_MARGIN, y: r.height - CIRCLE - EDGE_MARGIN } : p));
     };
     update();
     const ro = new ResizeObserver(update);
@@ -851,7 +852,10 @@ const GitDock = () => {
   const starCount = useCountUp(status === 'ready' ? data.totalStars : null);
   const contribCount = useCountUp(status === 'ready' ? data.totalContributions ?? null : null);
 
-  const panelLeft = Math.min(Math.max(pos.x + CIRCLE / 2 - PANEL_W / 2, EDGE_MARGIN), Math.max(EDGE_MARGIN, bounds.w - PANEL_W - EDGE_MARGIN));
+  const isRightSide = pos.x + CIRCLE / 2 > bounds.w / 2;
+  const panelLeft = isRightSide
+    ? Math.min(pos.x + CIRCLE - PANEL_W, bounds.w - PANEL_W - EDGE_MARGIN)
+    : Math.max(pos.x, EDGE_MARGIN);
 
   return (
     <div ref={wrapperRef} style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 40, fontFamily: 'var(--font-body)' }}>
@@ -861,6 +865,8 @@ const GitDock = () => {
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
+        onMouseEnter={() => setIsBubbleHovered(true)}
+        onMouseLeave={() => setIsBubbleHovered(false)}
         className={!wantOpen && !dragging ? 'gh-cap-orb' : ''}
         style={{
           position: 'absolute',
@@ -897,6 +903,39 @@ const GitDock = () => {
           {/* Primary GitHub launcher Lordicon */}
           <HoverLordicon icon={analytics} size={28} colorize={C.text} ariaLabel="GitHub stats launcher" />
         </div>
+      </div>
+
+      {/* Bubble Launcher Hover Tooltip Badge */}
+      <div
+        style={{
+          position: 'absolute',
+          top: pos.y + CIRCLE / 2 - 14,
+          ...(pos.x > bounds.w / 2
+            ? { right: bounds.w - pos.x + 10 }
+            : { left: pos.x + CIRCLE + 10 }),
+          pointerEvents: 'none',
+          zIndex: 45,
+          opacity: isBubbleHovered && !wantOpen && !dragging ? 1 : 0,
+          transform: isBubbleHovered && !wantOpen && !dragging ? 'scale(1) translateY(0)' : 'scale(0.92) translateY(2px)',
+          transition: 'opacity 0.2s ease, transform 0.2s ease',
+          background: 'rgba(14, 14, 14, 0.88)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          border: `1px solid ${C.hairline}`,
+          borderRadius: 20,
+          padding: '5px 11px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 6,
+          boxShadow: '0 8px 24px rgba(0,0,0,0.5), 0 0 12px rgba(242,179,61,0.12)',
+          whiteSpace: 'nowrap',
+          userSelect: 'none',
+        }}
+      >
+        <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#F2B33D', boxShadow: '0 0 6px #F2B33D' }} />
+        <span style={{ fontSize: 11, fontWeight: 600, color: C.text, fontFamily: 'var(--font-mono)' }}>
+          @{USERNAME} <span style={{ color: C.faint, fontWeight: 400 }}>· GitHub Activity</span>
+        </span>
       </div>
 
       {/* panel */}
