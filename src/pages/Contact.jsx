@@ -1,5 +1,6 @@
 import ContactLeft from '../components/ContactLeft';
 import ContactRight from '../components/ContactRight';
+import BottomCapsule from '../components/BottomCapsule';
 
 const Contact = () => {
   return (
@@ -57,6 +58,8 @@ const Contact = () => {
           <ContactRight />
         </div>
       </div>
+        <BottomCapsule />
+
     </div>
   );
 };
