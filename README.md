@@ -12,7 +12,7 @@
 
 <br /><br />
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-Live_Site-F2B33D?style=for-the-badge&logo=vercel&logoColor=black)](https://github.com/Pritamx4/react)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Live_Site-F2B33D?style=for-the-badge&logo=vercel&logoColor=black)](https://react-sable-eta.vercel.app/)
 [![GitHub API](https://img.shields.io/badge/GitHub_API-Live_Telemetry-181717?style=for-the-badge&logo=github&logoColor=white)](https://docs.github.com/en/rest)
 
 <br />
