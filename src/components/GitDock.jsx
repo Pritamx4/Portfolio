@@ -5,8 +5,8 @@ import externalLink from '../assets/lottie/externalLink.json';
 import repo from '../assets/lottie/repo.json';
 import clock from '../assets/lottie/clock.json';
 import star from '../assets/lottie/star.json';
-import github from '../assets/lottie/github.json';
 import retry from '../assets/lottie/retry.json';
+import analytics from '../assets/lottie/analytics.json';
 
 /**
  * use lordicon animated icons everywhere
@@ -15,6 +15,7 @@ import retry from '../assets/lottie/retry.json';
  * time
  * star
  * repos
+ * analytics
  */
 
 // ---- config ----
@@ -111,30 +112,30 @@ function useCountUp(target, duration = 800) {
 }
 
 // ---------- inject fonts / keyframes once ----------
-function useCapsuleStyles() {
+function useDockStyles() {
   useEffect(() => {
-    if (document.getElementById('gh-capsule-style')) return;
+    if (document.getElementById('gh-dock-style')) return;
     const style = document.createElement('style');
-    style.id = 'gh-capsule-style';
+    style.id = 'gh-dock-style';
     style.textContent = `
-      @keyframes gh-cap-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(244,241,234,0.18); } 50% { box-shadow: 0 0 0 9px rgba(244,241,234,0); } }
-      @keyframes gh-cap-shimmer { 0% { background-position: -300% 0; } 100% { background-position: 300% 0; } }
-      @keyframes gh-cap-spin { to { transform: rotate(360deg); } }
-      .gh-cap-orb { animation: gh-cap-pulse 2.8s ease-in-out infinite; }
-      .gh-cap-skel {
+      @keyframes gh-dock-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(244,241,234,0.18); } 50% { box-shadow: 0 0 0 9px rgba(244,241,234,0); } }
+      @keyframes gh-dock-shimmer { 0% { background-position: -300% 0; } 100% { background-position: 300% 0; } }
+      @keyframes gh-dock-spin { to { transform: rotate(360deg); } }
+      .gh-dock-orb { animation: gh-dock-pulse 2.8s ease-in-out infinite; }
+      .gh-dock-skel {
         background: linear-gradient(90deg, rgba(244,241,234,0.03) 25%, rgba(244,241,234,0.09) 37%, rgba(244,241,234,0.03) 63%);
         background-size: 400% 100%;
-        animation: gh-cap-shimmer 1.5s ease infinite;
+        animation: gh-dock-shimmer 1.5s ease infinite;
         border-radius: 8px;
       }
-      .gh-cap-bar { transition: filter 0.15s ease, transform 0.15s ease; transform-origin: bottom; }
-      .gh-cap-bar:hover { filter: brightness(1.35); transform: scaleY(1.04); }
-      .gh-cap-cell { transition: transform 0.12s ease, filter 0.12s ease; }
-      .gh-cap-cell:hover { transform: scale(1.35); filter: brightness(1.3); }
-      .gh-cap-retry:hover { filter: brightness(1.15); }
-      .gh-cap-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
-      .gh-cap-scroll::-webkit-scrollbar-thumb { background: rgba(244,241,234,0.30); border-radius: 4px; }
-      .gh-cap-scroll::-webkit-scrollbar-track { background: transparent; }
+      .gh-dock-bar { transition: filter 0.15s ease, transform 0.15s ease; transform-origin: bottom; }
+      .gh-dock-bar:hover { filter: brightness(1.35); transform: scaleY(1.04); }
+      .gh-dock-cell { transition: transform 0.12s ease, filter 0.12s ease; }
+      .gh-dock-cell:hover { transform: scale(1.35); filter: brightness(1.3); }
+      .gh-dock-retry:hover { filter: brightness(1.15); }
+      .gh-dock-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+      .gh-dock-scroll::-webkit-scrollbar-thumb { background: rgba(244,241,234,0.30); border-radius: 4px; }
+      .gh-dock-scroll::-webkit-scrollbar-track { background: transparent; }
     `;
     document.head.appendChild(style);
   }, []);
@@ -179,7 +180,7 @@ function HoverLordicon({ icon, size = 16, colorize = C.text, style, ariaLabel })
 }
 
 function Skel({ w, h, r = 8 }) {
-  return <div className="gh-cap-skel" style={{ width: w, height: h, borderRadius: r }} />;
+  return <div className="gh-dock-skel" style={{ width: w, height: h, borderRadius: r }} />;
 }
 
 function StatTile({ icon, label, value, sub }) {
@@ -256,13 +257,13 @@ function Heatmap({ days }) {
 
   return (
     <div>
-      <div className="gh-cap-scroll" style={{ display: 'flex', gap: 3, overflowX: 'auto', paddingBottom: 4 }}>
+      <div className="gh-dock-scroll" style={{ display: 'flex', gap: 3, overflowX: 'auto', paddingBottom: 4 }}>
         {weeks.map((w, wi) => (
           <div key={wi} style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
             {w.map((d, di) => (
               <div
                 key={di}
-                className="gh-cap-cell"
+                className="gh-dock-cell"
                 title={`${d.date}: ${d.count} contribution${d.count === 1 ? '' : 's'}`}
                 style={{ width: 10, height: 10, borderRadius: 2.5, background: levelColor(d.level) }}
               />
@@ -288,7 +289,7 @@ function Sparkbars({ values }) {
       {values.map((v, i) => (
         <div
           key={i}
-          className="gh-cap-bar"
+          className="gh-dock-bar"
           title={`${v} commits`}
           style={{
             flex: 1,
@@ -336,8 +337,8 @@ const GAP = 14;
  * needs position:relative). Fills it with an absolutely-positioned,
  * pointer-events-none layer so it never affects layout elsewhere.
  */
-const GithubStatsCapsule = () => {
-  useCapsuleStyles();
+const GitDock = () => {
+  useDockStyles();
 
   const wrapperRef = useRef(null);
   const circleRef = useRef(null);
@@ -548,7 +549,7 @@ const GithubStatsCapsule = () => {
           }}
         >
           {/* Primary GitHub launcher Lordicon */}
-          <HoverLordicon icon={github} size={28} colorize={C.text} ariaLabel="GitHub stats launcher" />
+          <HoverLordicon icon={analytics} size={28} colorize={C.text} ariaLabel="GitHub stats launcher" />
         </div>
       </div>
 
@@ -732,4 +733,4 @@ const GithubStatsCapsule = () => {
   );
 };
 
-export default GithubStatsCapsule;
+export default GitDock;

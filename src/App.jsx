@@ -1,4 +1,4 @@
-import BottomCapsule from './components/BottomCapsule';
+import BottomCapsule from './components/GitDock';
 import FullScreenNav from './components/FullScreenNav';
 import Navbar from './components/Navbar';
 import NavContext from './context/NavContext';

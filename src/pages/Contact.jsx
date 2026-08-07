@@ -1,6 +1,6 @@
 import ContactLeft from '../components/ContactLeft';
 import ContactRight from '../components/ContactRight';
-import BottomCapsule from '../components/BottomCapsule';
+import GitDock from '../components/GitDock';
 
 const Contact = () => {
   return (
@@ -58,7 +58,7 @@ const Contact = () => {
           <ContactRight />
         </div>
       </div>
-        <BottomCapsule />
+        <GitDock />
 
     </div>
   );
