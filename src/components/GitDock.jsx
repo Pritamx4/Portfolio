@@ -437,7 +437,9 @@ const GitDock = () => {
         const all = contrib.contributions || [];
         heatDays = all.slice(-105);
         totalContributions = all.slice(-365).reduce((s, d) => s + d.count, 0);
-      } catch (e) {}
+      } catch (e) {
+        console.error('Error fetching contributions:', e);
+      }
 
       let weeklyCommits = [0, 0, 0, 0, 0, 0, 0, 0];
       try {
@@ -451,7 +453,9 @@ const GitDock = () => {
               weeklyCommits[7 - weeksAgo] += (ev.payload && ev.payload.commits && ev.payload.commits.length) || 0;
             }
           });
-      } catch (e) {}
+      } catch (e) {
+        console.error('Error fetching weekly commits:', e);
+      }
 
       setData({ profile, totalRepos: profile.public_repos ?? repos.length, totalStars, totalSizeKb, lastUpdated, languages, heatDays, totalContributions, weeklyCommits });
       setStatus('ready');
