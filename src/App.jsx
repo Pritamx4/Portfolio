@@ -20,7 +20,6 @@ const AppContent = () => {
         <About />
         <Project />
         <Contact />
-        {/*<BottomCapsule />*/}
       </div>
     </>
   );
