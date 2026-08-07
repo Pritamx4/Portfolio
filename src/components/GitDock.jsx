@@ -408,14 +408,17 @@ function Heatmap({ days }) {
   );
 }
 
-function CommitSparklineChart({ values }) {
+function CommitSparklineChart({ days, values }) {
   const [hoveredIdx, setHoveredIdx] = useState(null);
 
-  const data = values && values.length === 8 ? values : [0, 0, 0, 0, 0, 0, 0, 0];
-  const total = data.reduce((a, b) => a + b, 0);
+  const dailyData = days && days.length >= 56 ? days.slice(-56) : (days || []);
+  const weeklyData = values && values.length === 8 ? values : [0, 0, 0, 0, 0, 0, 0, 0];
+  const weeklyTotal = weeklyData.reduce((a, b) => a + b, 0);
 
-  const maxVal = Math.max(1, ...data);
-  const avgVal = Math.round(total / 8);
+  const isDaily = dailyData.length > 0;
+  const maxDayVal = isDaily ? Math.max(1, ...dailyData.map((d) => d.count || 0)) : Math.max(1, ...weeklyData);
+  const maxWeekVal = Math.max(1, ...weeklyData);
+  const avgVal = Math.round(weeklyTotal / 8);
 
   const width = 310;
   const height = 95;
@@ -424,11 +427,22 @@ function CommitSparklineChart({ values }) {
   const padBottom = 18;
   const chartH = height - padTop - padBottom;
 
-  const points = data.map((v, i) => {
-    const x = padX + i * ((width - 2 * padX) / 7);
-    const y = padTop + chartH - (v / maxVal) * chartH;
-    return { x, y, v, label: `W${i + 1}` };
-  });
+  const points = isDaily
+    ? dailyData.map((d, i) => {
+      const count = d.count || 0;
+      const x = padX + i * ((width - 2 * padX) / (dailyData.length - 1 || 1));
+      const y = padTop + chartH - (count / maxDayVal) * chartH;
+      const weekNum = Math.floor(i / 7) + 1;
+      const dateFormatted = d.date
+        ? new Date(d.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+        : `Day ${i + 1}`;
+      return { x, y, v: count, label: `${dateFormatted} (W${weekNum})`, weekNum, isDaily: true };
+    })
+    : weeklyData.map((v, i) => {
+      const x = padX + i * ((width - 2 * padX) / 7);
+      const y = padTop + chartH - (v / maxWeekVal) * chartH;
+      return { x, y, v, label: `W${i + 1}`, weekNum: i + 1, isDaily: false };
+    });
 
   let linePath = '';
   if (points.length > 0) {
@@ -454,19 +468,32 @@ function CommitSparklineChart({ values }) {
 
   const activePoint = hoveredIdx !== null ? points[hoveredIdx] : null;
 
+  // Midpoints for 8 Week X-axis Labels
+  const weekLabels = [];
+  if (isDaily) {
+    for (let w = 0; w < 8; w++) {
+      const midDayIdx = Math.min(points.length - 1, w * 7 + 3);
+      if (points[midDayIdx]) {
+        weekLabels.push({ x: points[midDayIdx].x, label: `W${w + 1}` });
+      }
+    }
+  } else {
+    points.forEach((pt) => weekLabels.push({ x: pt.x, label: pt.label }));
+  }
+
   return (
     <div>
       {/* Top Left Stats (Peak & Avg) below Heading */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
         <span style={{ fontSize: 9.5, color: C.faint, fontFamily: 'var(--font-mono)' }}>
-          Peak: <strong style={{ color: C.text }}>{maxVal}</strong>
+          Peak: <strong style={{ color: C.text }}>{maxWeekVal}</strong>/wk
         </span>
         <span style={{ fontSize: 9.5, color: C.faint, fontFamily: 'var(--font-mono)' }}>
           Avg: <strong style={{ color: C.text }}>{avgVal}</strong>/wk
         </span>
       </div>
 
-      {/* SVG Chart Area (No Outer Border / Card) */}
+      {/* SVG Chart Area */}
       <div style={{ position: 'relative', width: '100%' }}>
         {/* Floating Tooltip */}
         {activePoint && (
@@ -493,14 +520,14 @@ function CommitSparklineChart({ values }) {
             }}
           >
             <span style={{ color: '#F2B33D', fontWeight: 700 }}>{activePoint.label}:</span>
-            <span>{activePoint.v} commits</span>
+            <span>{activePoint.v} {activePoint.v === 1 ? 'commit' : 'commits'}</span>
           </div>
         )}
 
         <svg viewBox={`0 0 ${width} ${height}`} style={{ width: '100%', height: 'auto', overflow: 'visible' }}>
           <defs>
             <linearGradient id="commitSparkGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#F2B33D" stopOpacity="0.28" />
+              <stop offset="0%" stopColor="#F2B33D" stopOpacity="0.3" />
               <stop offset="100%" stopColor="#F2B33D" stopOpacity="0.0" />
             </linearGradient>
 
@@ -516,7 +543,7 @@ function CommitSparklineChart({ values }) {
           {/* Background Pillar Bars */}
           {points.map((pt, i) => {
             const isHovered = hoveredIdx === i;
-            const barW = 12;
+            const barW = isDaily ? 3.5 : 12;
             const barH = height - padBottom - pt.y;
             return (
               <rect
@@ -525,8 +552,8 @@ function CommitSparklineChart({ values }) {
                 y={pt.y}
                 width={barW}
                 height={Math.max(2, barH)}
-                rx="3"
-                fill={isHovered ? 'rgba(242,179,61,0.18)' : 'rgba(244,241,234,0.025)'}
+                rx={isDaily ? 1.5 : 3}
+                fill={isHovered ? 'rgba(242,179,61,0.3)' : 'rgba(244,241,234,0.025)'}
                 style={{ transition: 'fill 0.15s ease' }}
               />
             );
@@ -543,7 +570,7 @@ function CommitSparklineChart({ values }) {
             strokeDasharray="2 3"
           />
 
-          {/* Vertical Scanline/Crosshair on Hover */}
+          {/* Vertical Crosshair Line on Hover */}
           {activePoint && (
             <line
               x1={activePoint.x}
@@ -573,15 +600,17 @@ function CommitSparklineChart({ values }) {
             />
           )}
 
-          {/* Data Points */}
+          {/* Data Nodes & Hit Targets */}
           {points.map((pt, i) => {
             const isHovered = hoveredIdx === i;
+            if (isDaily && pt.v === 0 && !isHovered) return null;
+
             return (
               <g key={i}>
                 <circle
                   cx={pt.x}
                   cy={pt.y}
-                  r="12"
+                  r={isDaily ? 8 : 12}
                   fill="transparent"
                   style={{ cursor: 'pointer' }}
                   onMouseEnter={() => setHoveredIdx(i)}
@@ -592,8 +621,8 @@ function CommitSparklineChart({ values }) {
                   <circle
                     cx={pt.x}
                     cy={pt.y}
-                    r="6"
-                    fill="rgba(242,179,61,0.2)"
+                    r="5.5"
+                    fill="rgba(242,179,61,0.25)"
                     stroke="#F2B33D"
                     strokeWidth="1"
                   />
@@ -602,30 +631,34 @@ function CommitSparklineChart({ values }) {
                 <circle
                   cx={pt.x}
                   cy={pt.y}
-                  r={isHovered ? 3.8 : 2.5}
+                  r={isHovered ? 3.5 : 2.2}
                   fill="#111111"
                   stroke="#F2B33D"
-                  strokeWidth={isHovered ? 2 : 1.5}
+                  strokeWidth={isHovered ? 2 : 1.4}
                   style={{ transition: 'all 0.15s ease', cursor: 'pointer' }}
                   onMouseEnter={() => setHoveredIdx(i)}
                   onMouseLeave={() => setHoveredIdx(null)}
                 />
-
-                <text
-                  x={pt.x}
-                  y={height - 5}
-                  textAnchor="middle"
-                  fill={isHovered ? '#F2B33D' : C.faint}
-                  fontSize="8.5"
-                  fontFamily="var(--font-mono)"
-                  fontWeight={isHovered ? '700' : '400'}
-                  style={{ transition: 'fill 0.15s ease' }}
-                >
-                  {pt.label}
-                </text>
               </g>
             );
           })}
+
+          {/* X Axis Week Labels (W1 to W8) */}
+          {weekLabels.map((wl, i) => (
+            <text
+              key={`wl-${i}`}
+              x={wl.x}
+              y={height - 5}
+              textAnchor="middle"
+              fill={activePoint && activePoint.weekNum === i + 1 ? '#F2B33D' : C.faint}
+              fontSize="8.5"
+              fontFamily="var(--font-mono)"
+              fontWeight={activePoint && activePoint.weekNum === i + 1 ? '700' : '400'}
+              style={{ transition: 'fill 0.15s ease' }}
+            >
+              {wl.label}
+            </text>
+          ))}
         </svg>
       </div>
     </div>
@@ -651,6 +684,194 @@ function LanguageBar({ languages }) {
             </span>
           </div>
         ))}
+      </div>
+    </div>
+  );
+}
+
+function LiveFeedTab({ events }) {
+  if (!events || events.length === 0) {
+    return (
+      <div style={{ padding: '24px 0', textAlign: 'center', color: C.faint, fontSize: 11.5, fontFamily: 'var(--font-mono)' }}>
+        No recent public activity found.
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: '4px 0' }}>
+      {events.map((ev) => (
+        <a
+          key={ev.id}
+          href={ev.url}
+          target="_blank"
+          rel="noreferrer"
+          style={{
+            display: 'flex',
+            alignItems: 'flex-start',
+            gap: 10,
+            padding: '10px 12px',
+            borderRadius: 12,
+            background: 'rgba(244,241,234,0.025)',
+            border: `1px solid ${C.hairline}`,
+            textDecoration: 'none',
+            color: C.text,
+            transition: 'all 0.15s ease',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = 'rgba(242,179,61,0.06)';
+            e.currentTarget.style.borderColor = 'rgba(242,179,61,0.25)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = 'rgba(244,241,234,0.025)';
+            e.currentTarget.style.borderColor = C.hairline;
+          }}
+        >
+          <div
+            style={{
+              width: 26,
+              height: 26,
+              borderRadius: 8,
+              background: 'rgba(242,179,61,0.12)',
+              border: '1px solid rgba(242,179,61,0.25)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0,
+              fontSize: 12,
+            }}
+          >
+            {ev.icon === 'push' ? '🚀' : ev.icon === 'star' ? '⭐' : ev.icon === 'create' ? '🌿' : ev.icon === 'pr' ? '🔀' : '⚡'}
+          </div>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 2 }}>
+              <span style={{ fontSize: 11.5, fontWeight: 600, color: C.text, fontFamily: 'var(--font-body)' }}>
+                {ev.typeLabel}
+              </span>
+              <span style={{ fontSize: 9.5, color: C.faint, fontFamily: 'var(--font-mono)' }}>{timeAgo(ev.createdAt)}</span>
+            </div>
+            <div style={{ fontSize: 10.5, color: C.muted, fontFamily: 'var(--font-mono)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              {ev.detail}
+            </div>
+            <div style={{ fontSize: 9.5, color: C.faint, fontFamily: 'var(--font-mono)', marginTop: 2 }}>
+              {ev.repoName}
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  );
+}
+
+function PullRequestsTab({ prs }) {
+  const [filter, setFilter] = useState('all');
+
+  if (!prs || prs.length === 0) {
+    return (
+      <div style={{ padding: '24px 0', textAlign: 'center', color: C.faint, fontSize: 11.5, fontFamily: 'var(--font-mono)' }}>
+        No pull requests found.
+      </div>
+    );
+  }
+
+  const filtered = prs.filter((p) => {
+    if (filter === 'all') return true;
+    return p.state === filter;
+  });
+
+  return (
+    <div>
+      {/* Sub Filters */}
+      <div style={{ display: 'flex', gap: 6, marginBottom: 12 }}>
+        {['all', 'open', 'merged', 'closed'].map((f) => (
+          <button
+            key={f}
+            onClick={() => setFilter(f)}
+            style={{
+              padding: '3px 9px',
+              borderRadius: 8,
+              border: `1px solid ${filter === f ? 'rgba(242,179,61,0.4)' : C.hairline}`,
+              background: filter === f ? 'rgba(242,179,61,0.12)' : 'transparent',
+              color: filter === f ? '#F2B33D' : C.faint,
+              fontSize: 10,
+              fontFamily: 'var(--font-mono)',
+              cursor: 'pointer',
+              textTransform: 'capitalize',
+              transition: 'all 0.15s ease',
+            }}
+          >
+            {f}
+          </button>
+        ))}
+      </div>
+
+      {/* PR Cards */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+        {filtered.map((pr) => {
+          const badgeBg =
+            pr.state === 'merged'
+              ? 'rgba(163, 113, 247, 0.15)'
+              : pr.state === 'open'
+                ? 'rgba(63, 185, 80, 0.15)'
+                : 'rgba(248, 81, 73, 0.15)';
+          const badgeColor =
+            pr.state === 'merged' ? '#A371F7' : pr.state === 'open' ? '#3FB950' : '#F85149';
+
+          return (
+            <a
+              key={pr.id}
+              href={pr.url}
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 6,
+                padding: '10px 12px',
+                borderRadius: 12,
+                background: 'rgba(244,241,234,0.025)',
+                border: `1px solid ${C.hairline}`,
+                textDecoration: 'none',
+                color: C.text,
+                transition: 'all 0.15s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(242,179,61,0.06)';
+                e.currentTarget.style.borderColor = 'rgba(242,179,61,0.25)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(244,241,234,0.025)';
+                e.currentTarget.style.borderColor = C.hairline;
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+                <span
+                  style={{
+                    fontSize: 9.5,
+                    fontWeight: 700,
+                    padding: '2px 7px',
+                    borderRadius: 10,
+                    background: badgeBg,
+                    color: badgeColor,
+                    fontFamily: 'var(--font-mono)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.4px',
+                  }}
+                >
+                  {pr.state}
+                </span>
+                <span style={{ fontSize: 9.5, color: C.faint, fontFamily: 'var(--font-mono)' }}>{timeAgo(pr.createdAt)}</span>
+              </div>
+              <div style={{ fontSize: 11.5, fontWeight: 600, color: C.text, lineHeight: 1.35, fontFamily: 'var(--font-body)' }}>
+                {pr.title}
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: 10, color: C.faint, fontFamily: 'var(--font-mono)' }}>
+                <span>{pr.repoName}</span>
+                <span>#{pr.number}</span>
+              </div>
+            </a>
+          );
+        })}
       </div>
     </div>
   );
@@ -682,6 +903,7 @@ const GitDock = () => {
   const [visible, setVisible] = useState(false);
   const [expandDir, setExpandDir] = useState('up');
   const [isBubbleHovered, setIsBubbleHovered] = useState(false);
+  const [activeTab, setActiveTab] = useState('overview');
 
   const [status, setStatus] = useState('idle');
   const [errorMsg, setErrorMsg] = useState('');
@@ -710,7 +932,6 @@ const GitDock = () => {
   );
 
   const onPointerDown = (e) => {
-    if (wantOpen) return;
     circleRef.current?.setPointerCapture?.(e.pointerId);
     dragInfo.current = { startX: e.clientX, startY: e.clientY, originX: pos.x, originY: pos.y, moved: false };
     setDragging(true);
@@ -732,7 +953,29 @@ const GitDock = () => {
     setPos((p) => {
       const center = p.x + CIRCLE / 2;
       const snapX = center < bounds.w / 2 ? EDGE_MARGIN : Math.max(EDGE_MARGIN, bounds.w - CIRCLE - EDGE_MARGIN);
-      return clamp(snapX, p.y);
+      let targetY = p.y;
+
+      if (wantOpen && panelRef.current && bounds.h > 0) {
+        const h = panelRef.current.getBoundingClientRect().height;
+        const spaceAbove = targetY;
+        const spaceBelow = bounds.h - targetY - CIRCLE;
+        const dir = spaceAbove >= h + GAP || spaceAbove >= spaceBelow ? 'up' : 'down';
+        setExpandDir(dir);
+
+        if (dir === 'up') {
+          const panelTop = targetY - GAP - h;
+          if (panelTop < EDGE_MARGIN) {
+            targetY = Math.min(bounds.h - CIRCLE - EDGE_MARGIN, h + GAP + EDGE_MARGIN);
+          }
+        } else {
+          const panelBottom = targetY + CIRCLE + GAP + h;
+          if (panelBottom > bounds.h - EDGE_MARGIN) {
+            targetY = Math.max(EDGE_MARGIN, bounds.h - CIRCLE - GAP - h - EDGE_MARGIN);
+          }
+        }
+      }
+
+      return clamp(snapX, targetY);
     });
   };
 
@@ -800,7 +1043,136 @@ const GitDock = () => {
         }
       }
 
-      setData({ profile, totalRepos: profile.public_repos ?? repos.length, totalStars, totalSizeKb, lastUpdated, languages, heatDays, totalContributions, weeklyCommits });
+      // Fetch Live Feed Events & Pull Requests
+      let eventsFeed = [];
+      let pullRequests = [];
+
+      try {
+        const events = await safeJson(`https://api.github.com/users/${USERNAME}/events/public?per_page=100`);
+        if (Array.isArray(events)) {
+          eventsFeed = events.map((ev) => {
+            const repoName = ev.repo?.name || 'repo';
+            let typeLabel = 'Activity';
+            let detail = '';
+            let icon = 'commit';
+
+            if (ev.type === 'PushEvent') {
+              const commitCount = ev.payload?.commits?.length || ev.payload?.size || 1;
+              const msg = ev.payload?.commits?.[0]?.message || '';
+              typeLabel = `Pushed ${commitCount} ${commitCount === 1 ? 'commit' : 'commits'}`;
+              detail = msg ? `"${msg.split('\n')[0]}"` : `Pushed to ${ev.payload?.ref?.replace('refs/heads/', '') || 'main'}`;
+              icon = 'push';
+            } else if (ev.type === 'CreateEvent') {
+              typeLabel = `Created ${ev.payload?.ref_type || 'branch'}`;
+              detail = ev.payload?.ref ? `${ev.payload.ref_type}: ${ev.payload.ref}` : repoName;
+              icon = 'create';
+            } else if (ev.type === 'DeleteEvent') {
+              typeLabel = `Deleted ${ev.payload?.ref_type || 'branch'}`;
+              detail = ev.payload?.ref || repoName;
+              icon = 'create';
+            } else if (ev.type === 'WatchEvent') {
+              typeLabel = 'Starred repository';
+              detail = repoName;
+              icon = 'star';
+            } else if (ev.type === 'ForkEvent') {
+              typeLabel = 'Forked repository';
+              detail = repoName;
+              icon = 'fork';
+            } else if (ev.type === 'PullRequestEvent') {
+              const action = ev.payload?.action || 'opened';
+              typeLabel = `${action.charAt(0).toUpperCase() + action.slice(1)} pull request`;
+              detail = ev.payload?.pull_request?.title || `PR #${ev.payload?.number || ''}`;
+              icon = 'pr';
+            } else if (ev.type === 'IssuesEvent') {
+              typeLabel = `${ev.payload?.action || 'Opened'} issue`;
+              detail = ev.payload?.issue?.title || repoName;
+              icon = 'issue';
+            } else {
+              typeLabel = ev.type.replace('Event', '');
+              detail = repoName;
+            }
+
+            return {
+              id: ev.id,
+              type: ev.type,
+              typeLabel,
+              detail,
+              repoName,
+              createdAt: ev.created_at,
+              url: ev.payload?.pull_request?.html_url || `https://github.com/${repoName}`,
+              icon,
+            };
+          });
+
+          // Extract PR events directly from public events stream
+          events
+            .filter((ev) => ev.type === 'PullRequestEvent')
+            .forEach((ev) => {
+              const action = ev.payload?.action || 'opened';
+              const isMerged = action === 'closed' && (ev.payload?.pull_request?.merged || ev.payload?.pull_request?.merged_at || action === 'merged');
+              const prState = isMerged ? 'merged' : action === 'closed' ? 'closed' : 'open';
+
+              pullRequests.push({
+                id: ev.id,
+                number: ev.payload?.number || ev.payload?.pull_request?.number || 1,
+                title: ev.payload?.pull_request?.title || `Pull Request in ${ev.repo?.name || 'repository'}`,
+                state: prState,
+                repoName: ev.repo?.name || 'repository',
+                createdAt: ev.created_at,
+                url: ev.payload?.pull_request?.html_url || `https://github.com/${ev.repo?.name}/pulls`,
+              });
+            });
+        }
+      } catch (e) {
+        console.error('Error fetching live events:', e);
+      }
+
+      // Supplementary search API for PRs
+      try {
+        const prRes = await safeJson(`https://api.github.com/search/issues?q=author:${USERNAME}+type:pr&sort=created&order=desc&per_page=30`);
+        if (prRes && Array.isArray(prRes.items)) {
+          const searchPrs = prRes.items.map((item) => {
+            const repoParts = (item.repository_url || '').split('/');
+            const repoName = repoParts.length >= 2 ? `${repoParts[repoParts.length - 2]}/${repoParts[repoParts.length - 1]}` : 'repository';
+
+            let prState = 'open';
+            if (item.state === 'closed') {
+              prState = item.pull_request?.merged_at ? 'merged' : 'closed';
+            }
+
+            return {
+              id: item.id,
+              number: item.number,
+              title: item.title,
+              state: prState,
+              repoName,
+              createdAt: item.created_at,
+              url: item.html_url,
+            };
+          });
+
+          const existingIds = new Set(pullRequests.map((p) => p.id));
+          searchPrs.forEach((p) => {
+            if (!existingIds.has(p.id)) pullRequests.push(p);
+          });
+        }
+      } catch (e) {
+        console.error('Error fetching PR Search API:', e);
+      }
+
+      setData({
+        profile,
+        totalRepos: profile.public_repos ?? repos.length,
+        totalStars,
+        totalSizeKb,
+        lastUpdated,
+        languages,
+        heatDays,
+        totalContributions,
+        weeklyCommits,
+        eventsFeed,
+        pullRequests,
+      });
       setStatus('ready');
     } catch (err) {
       setStatus('error');
@@ -825,18 +1197,35 @@ const GitDock = () => {
   }, [wantOpen]);
 
   useLayoutEffect(() => {
-    if (!rendered || !panelRef.current) return;
+    if (!rendered || !panelRef.current || bounds.h <= 0) return;
     const measure = () => {
       const h = panelRef.current.getBoundingClientRect().height;
-      const spaceAbove = pos.y;
-      const spaceBelow = bounds.h - pos.y - CIRCLE;
-      setExpandDir(spaceAbove >= h + GAP || spaceAbove >= spaceBelow ? 'up' : 'down');
+      setPos((p) => {
+        const spaceAbove = p.y;
+        const spaceBelow = bounds.h - p.y - CIRCLE;
+        const dir = spaceAbove >= h + GAP || spaceAbove >= spaceBelow ? 'up' : 'down';
+        setExpandDir(dir);
+
+        let targetY = p.y;
+        if (dir === 'up') {
+          const panelTop = p.y - GAP - h;
+          if (panelTop < EDGE_MARGIN) {
+            targetY = Math.min(bounds.h - CIRCLE - EDGE_MARGIN, h + GAP + EDGE_MARGIN);
+          }
+        } else {
+          const panelBottom = p.y + CIRCLE + GAP + h;
+          if (panelBottom > bounds.h - EDGE_MARGIN) {
+            targetY = Math.max(EDGE_MARGIN, bounds.h - CIRCLE - GAP - h - EDGE_MARGIN);
+          }
+        }
+        return clamp(p.x, targetY);
+      });
     };
     measure();
     const ro = new ResizeObserver(measure);
     ro.observe(panelRef.current);
     return () => ro.disconnect();
-  }, [rendered, pos, bounds]);
+  }, [rendered, bounds.h, clamp]);
 
   useEffect(() => {
     if (!wantOpen) return;
@@ -1027,7 +1416,8 @@ const GitDock = () => {
 
             {status === 'ready' && data && (
               <>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 18 }}>
+                {/* Profile Header */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
                   <div style={{ position: 'relative' }}>
                     <GradientRing radius={999} thickness={2}>
                       {data.profile.avatar_url ? (
@@ -1036,24 +1426,6 @@ const GitDock = () => {
                         <div style={{ width: 40, height: 40, borderRadius: '50%', background: C.bg }} />
                       )}
                     </GradientRing>
-                    {/* <div
-                      style={{
-                        position: 'absolute',
-                        right: -2,
-                        bottom: -2,
-                        width: 18,
-                        height: 18,
-                        borderRadius: '50%',
-                        background: C.bg,
-                        border: `2px solid ${C.glass}`,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                    >
-                      {/* External GitHub profile Lordicon */}
-                    {/* <HoverLordicon icon={externalLink} size={10} colorize={C.text} ariaLabel="Open GitHub profile" />
-                    </div> */}
                   </div>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ fontSize: 14.5, fontWeight: 700, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
@@ -1072,42 +1444,136 @@ const GitDock = () => {
                   </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px 10px' }}>
-                  {/* Repository count Lordicon */}
-                  <StatTile icon={<HoverLordicon icon={repo} size={15} colorize={C.text} ariaLabel="Repositories" />} label="Repos" value={formatNumber(repoCount)} />
-                  {/* Star count Lordicon */}
-                  <StatTile icon={<HoverLordicon icon={star} size={15} colorize={C.text} ariaLabel="Stars" />} label="Stars" value={formatNumber(starCount)} />
-                  {/* Storage size Lordicon */}
-                  <StatTile icon={<HoverLordicon icon={server} size={15} colorize={C.text} ariaLabel="Disk size" />} label="Disk size" value={formatSize(data.totalSizeKb)} />
-                  {/* Last updated Lordicon */}
-                  <StatTile icon={<HoverLordicon icon={clock} size={15} colorize={C.text} ariaLabel="Last updated" />} label="Last updated" value={timeAgo(data.lastUpdated)} />
+                {/* Authentic GitHub-Style Tab Bar */}
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 16,
+                    marginBottom: 16,
+                    borderBottom: `1px solid ${C.hairline}`,
+                    paddingBottom: 0,
+                  }}
+                >
+                  <button
+                    onClick={() => setActiveTab('overview')}
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 6,
+                      padding: '6px 2px 10px',
+                      background: 'transparent',
+                      border: 'none',
+                      borderBottom: activeTab === 'overview' ? '2px solid #F2B33D' : '2px solid transparent',
+                      color: activeTab === 'overview' ? C.text : C.faint,
+                      fontSize: 11.5,
+                      fontFamily: 'var(--font-mono)',
+                      fontWeight: activeTab === 'overview' ? 600 : 400,
+                      cursor: 'pointer',
+                      marginBottom: -1,
+                      transition: 'all 0.15s ease',
+                    }}
+                  >
+                    <HoverLordicon icon={analytics} size={14} colorize={activeTab === 'overview' ? '#F2B33D' : C.faint} ariaLabel="Overview" />
+                    Overview
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab('feed')}
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 6,
+                      padding: '6px 2px 10px',
+                      background: 'transparent',
+                      border: 'none',
+                      borderBottom: activeTab === 'feed' ? '2px solid #F2B33D' : '2px solid transparent',
+                      color: activeTab === 'feed' ? C.text : C.faint,
+                      fontSize: 11.5,
+                      fontFamily: 'var(--font-mono)',
+                      fontWeight: activeTab === 'feed' ? 600 : 400,
+                      cursor: 'pointer',
+                      marginBottom: -1,
+                      transition: 'all 0.15s ease',
+                    }}
+                  >
+                    <HoverLordicon icon={clock} size={14} colorize={activeTab === 'feed' ? '#F2B33D' : C.faint} ariaLabel="Activity Feed" />
+                    Activity
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab('prs')}
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 6,
+                      padding: '6px 2px 10px',
+                      background: 'transparent',
+                      border: 'none',
+                      borderBottom: activeTab === 'prs' ? '2px solid #F2B33D' : '2px solid transparent',
+                      color: activeTab === 'prs' ? C.text : C.faint,
+                      fontSize: 11.5,
+                      fontFamily: 'var(--font-mono)',
+                      fontWeight: activeTab === 'prs' ? 600 : 400,
+                      cursor: 'pointer',
+                      marginBottom: -1,
+                      transition: 'all 0.15s ease',
+                    }}
+                  >
+                    <svg width="13" height="13" viewBox="0 0 16 16" fill={activeTab === 'prs' ? '#F2B33D' : C.faint}>
+                      <path fillRule="evenodd" d="M7.177 3.073L9.573.677A.25.25 0 0110 .854v4.792a.25.25 0 01-.427.177L7.177 3.427a.25.25 0 010-.354zM3.75 2.5a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5zm-2.75 1.25a2.75 2.75 0 115 1.587v5.326a2.75 2.75 0 11-1.5 0V5.337A2.741 2.741 0 011 3.75zM3.75 11a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5zm9.5-8.5a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5zm-2.75 1.25a2.75 2.75 0 115 1.587v5.326a2.75 2.75 0 11-1.5 0V5.337A2.741 2.741 0 0110.5 3.75z" />
+                    </svg>
+                    PR's {data.pullRequests?.length > 0 && <span style={{ fontSize: 9.5, opacity: 0.7, padding: '1px 5px', borderRadius: 10, background: 'rgba(244,241,234,0.08)' }}>{data.pullRequests.length}</span>}
+                  </button>
                 </div>
 
-                {data.languages.length > 0 && (
+                {/* Tab 1: Overview */}
+                {activeTab === 'overview' && (
                   <>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px 10px' }}>
+                      {/* Repository count Lordicon */}
+                      <StatTile icon={<HoverLordicon icon={repo} size={15} colorize={C.text} ariaLabel="Repositories" />} label="Repos" value={formatNumber(repoCount)} />
+                      {/* Star count Lordicon */}
+                      <StatTile icon={<HoverLordicon icon={star} size={15} colorize={C.text} ariaLabel="Stars" />} label="Stars" value={formatNumber(starCount)} />
+                      {/* Storage size Lordicon */}
+                      <StatTile icon={<HoverLordicon icon={server} size={15} colorize={C.text} ariaLabel="Disk size" />} label="Disk size" value={formatSize(data.totalSizeKb)} />
+                      {/* Last updated Lordicon */}
+                      <StatTile icon={<HoverLordicon icon={clock} size={15} colorize={C.text} ariaLabel="Last updated" />} label="Last updated" value={timeAgo(data.lastUpdated)} />
+                    </div>
+
+                    {data.languages.length > 0 && (
+                      <>
+                        <Divider />
+                        <SectionLabel right={data.languages[0] ? `Top: ${data.languages[0].name}` : undefined}>
+                          Languages
+                        </SectionLabel>
+                        <LanguageBar languages={data.languages} />
+                      </>
+                    )}
+
+                    {data.heatDays.length > 0 && (
+                      <>
+                        <Divider />
+                        <SectionLabel right={data.totalContributions != null ? `${formatNumber(contribCount)} / yr` : undefined}>
+                          Contributions
+                        </SectionLabel>
+                        <Heatmap days={data.heatDays} />
+                      </>
+                    )}
+
                     <Divider />
-                    <SectionLabel right={data.languages[0] ? `Top: ${data.languages[0].name}` : undefined}>
-                      Languages
+                    <SectionLabel right={data.weeklyCommits ? `${formatNumber(data.weeklyCommits.reduce((a, b) => a + b, 0))} / 8 wks` : undefined}>
+                      Weekly Commits
                     </SectionLabel>
-                    <LanguageBar languages={data.languages} />
+                    <CommitSparklineChart days={data.heatDays} values={data.weeklyCommits} />
                   </>
                 )}
 
-                {data.heatDays.length > 0 && (
-                  <>
-                    <Divider />
-                    <SectionLabel right={data.totalContributions != null ? `${formatNumber(contribCount)} / yr` : undefined}>
-                      Contributions
-                    </SectionLabel>
-                    <Heatmap days={data.heatDays} />
-                  </>
-                )}
+                {/* Tab 2: Live Feed */}
+                {activeTab === 'feed' && <LiveFeedTab events={data.eventsFeed} />}
 
-                <Divider />
-                <SectionLabel right={data.weeklyCommits ? `${formatNumber(data.weeklyCommits.reduce((a, b) => a + b, 0))} / 8 wks` : undefined}>
-                  Weekly Commits
-                </SectionLabel>
-                <CommitSparklineChart values={data.weeklyCommits} />
+                {/* Tab 3: Pull Requests */}
+                {activeTab === 'prs' && <PullRequestsTab prs={data.pullRequests} />}
               </>
             )}
           </div>
