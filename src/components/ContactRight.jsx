@@ -23,7 +23,7 @@ const ContactRight = () => {
             Start a Conversation
           </p>
           <h2 className="font-[zeroMaster] hidden lg:block mt-1.5 text-2xl text-(--paper)">Drop a Line</h2>
-          <h2 className="font-ui lg:hidden mt-1.5 uppercase tracking-wider text-xl text-(--paper)">Send a Message</h2>
+          <h2 className="font-ui lg:hidden mt-1.5 uppercase font-medium tracking-[0.16em] leading-none text-xl text-(--paper)">Send a Message</h2>
         </div>
       </div>
 
@@ -76,7 +76,7 @@ const ContactRight = () => {
             state="hover-flying"
             colors="primary:#f4f1ea"
             style={{ width: '28px', height: '28px' }}
-          />
+          ></lord-icon>
         </button>
       </form>
     </div>
