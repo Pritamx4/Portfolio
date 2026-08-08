@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⚡ PRITAM SINGH · DEVELOPER PORTFOLIO
+# ⚡ PRITAM SINGH
 
 ### *“Turning Code into Craftsmanship: Live Telemetry. Glassmorphism Design. Infinite Momentum.”*
 
