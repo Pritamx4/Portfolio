@@ -2,7 +2,7 @@ import Button from './Button';
 
 const HomeLeft = () => {
   return (
-    <div className="font-body relative z-10 flex w-full flex-1 flex-col justify-center px-8 py-16 text-(--paper) lg:w-1/2 lg:px-[6vw] lg:py-40">
+    <div className="font-body relative z-10 flex w-full flex-1 flex-col justify-center px-6 pt-20 pb-6 sm:px-8 sm:py-16 text-(--paper) lg:w-1/2 lg:px-[6vw] lg:py-40">
       <div className="mx-auto w-full max-w-lg text-center lg:mx-0 lg:text-left">
         <span className="font-ui text-[11px] uppercase tracking-[0.4em] text-(--paper)/35">
           Frontend Developer
