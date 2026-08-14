@@ -1,6 +1,8 @@
+import React, { useState } from 'react';
 import CustomCursor from './components/CustomCursor';
 import FullScreenNav from './components/FullScreenNav';
 import Navbar from './components/Navbar';
+import Preloader from './components/Preloader';
 import NavContext from './context/NavContext';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -9,10 +11,14 @@ import Project from './pages/Project';
 import useActiveSection from './hooks/useActiveSection';
 
 const AppContent = () => {
+  const [loadingComplete, setLoadingComplete] = useState(false);
   useActiveSection();
 
   return (
     <>
+      {!loadingComplete && (
+        <Preloader onComplete={() => setLoadingComplete(true)} />
+      )}
       <CustomCursor />
       <Navbar />
       <FullScreenNav />
