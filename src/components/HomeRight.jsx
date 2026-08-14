@@ -1,11 +1,21 @@
 import Logo from '../assets/px4 main logo.svg';
-const Right = () => {
+
+const HomeRight = () => {
   return (
-    <div className="flex-1 lg:w-1/2 lg:p-40 h-1/2 w-full p-20 text-(--paper)">
-      {/* <div className="lg:h-90 lg:w-full border border-(--paper)/10 p-12">
-        <img src={Logo} alt="" className="max-w-md mx-auto object-contain w-full " />
-      </div> */}
+    <div className="relative z-10 flex w-full flex-1 items-center justify-center px-8 py-12 lg:w-1/2 lg:px-[6vw] lg:py-0">
+      <div className="relative flex h-56 w-56 items-center justify-center border border-(--paper)/12 bg-(--paper)/[0.03] lg:h-80 lg:w-80">
+        <img
+          src={Logo}
+          alt="PX4 logo"
+          className="h-1/2 w-1/2 object-contain opacity-90"
+        />
+
+        {/* Corner marks — same editorial framing detail used on Projects images */}
+        <span className="absolute left-3 top-3 h-3 w-3 border-l border-t border-(--paper)/30" />
+        <span className="absolute bottom-3 right-3 h-3 w-3 border-b border-r border-(--paper)/30" />
+      </div>
     </div>
   );
 };
-export default Right;
+
+export default HomeRight;

@@ -1,22 +1,24 @@
 import Button from './Button';
-const Left = () => {
+
+const HomeLeft = () => {
   return (
-    <div className="font-body flex-1 lg:w-1/2 h-1/2 w-full lg:px-20 lg:py-40 text-(--paper) px-8 py-16">
-      <div className="flex flex-col justify-center items-center">
-        <div className="p-8 text-center">
-          <h1 className="font-name  lg:text-5xl text-3xl uppercase">
-            Pritam Singh
-          </h1>
-          <h6 className="font-ui uppercase tracking-[0.22em] text-sm font-extralight mt-4">
-            Frontend Developer
-          </h6>
-          <p className="text-base  lg:text-lg max-w-xl mx-auto font-extralight leading-relaxed mt-4">
-            I build responsive web
-            applications using React, Next.js, and Tailwind CSS.
-            Currently learning backend development and DSA while building projects that solve real-world problems.
-          </p>
-        </div>
-        <div className="flex h-20 w-full items-center justify-center lg:justify-start gap-6 px-8 py-10">
+    <div className="font-body relative z-10 flex w-full flex-1 flex-col justify-center px-8 py-16 text-(--paper) lg:w-1/2 lg:px-[6vw] lg:py-40">
+      <div className="mx-auto w-full max-w-lg text-center lg:mx-0 lg:text-left">
+        <span className="font-ui text-[11px] uppercase tracking-[0.4em] text-(--paper)/35">
+          Frontend Developer
+        </span>
+
+        <h1 className="font-[ZeroMaster] mt-4 text-4xl uppercase leading-[0.95] text-(--paper) lg:text-6xl">
+          Pritam Singh
+        </h1>
+
+        <p className="mt-6 max-w-md text-[15px] leading-relaxed text-(--paper)/60 lg:text-base">
+          I build responsive web applications using React, Next.js, and
+          Tailwind CSS. Currently learning backend development and DSA while
+          building projects that solve real-world problems.
+        </p>
+
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
           <Button
             text="Projects"
             onClick={() => {
@@ -35,8 +37,16 @@ const Left = () => {
           />
         </div>
       </div>
+
+      {/* Quiet scroll cue — static, no animation */}
+      <div className="mt-16 hidden items-center gap-3 lg:flex">
+        <div className="h-10 w-px bg-(--paper)/25" />
+        <span className="font-ui text-[10px] uppercase tracking-[0.3em] text-(--paper)/35">
+          Scroll
+        </span>
+      </div>
     </div>
   );
 };
 
-export default Left;
+export default HomeLeft;
