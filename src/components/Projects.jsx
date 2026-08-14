@@ -30,7 +30,6 @@ const PROJECTS = [
     num: "03",
     title: "Project 3",
     role: "UX / Data Viz",
-    role: "UX / Data Viz",
     year: "2024",
     type: "Web App",
     desc: "An analytics dashboard for field researchers, rebuilt around one principle: no chart without a decision attached to it.",
