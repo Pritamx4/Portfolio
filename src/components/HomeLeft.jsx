@@ -8,7 +8,7 @@ const HomeLeft = () => {
           Frontend Developer
         </span>
 
-        <h1 className="font-[ZeroMaster] mt-4 text-4xl uppercase leading-[0.95] text-(--paper) lg:text-6xl">
+        <h1 className="font-name uppercase mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-4xl lg:text-[2.4rem] xl:text-[2.8rem] whitespace-nowrap text-(--paper) tracking-wide leading-tight">
           Pritam Singh
         </h1>
 

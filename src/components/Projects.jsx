@@ -105,7 +105,7 @@ const Projects = ({ title }) => {
                     N&deg;{p.num}
                   </span>
                   <span className="hidden h-3 w-px bg-(--paper)/15 sm:block" />
-                  <h3 className="font-ui text-xs uppercase tracking-[0.2em] text-(--paper)/80 lg:text-sm">
+                  <h3 className="font-heading text-[10px] uppercase tracking-[0.16em] text-(--paper)/80 sm:text-xs">
                     {p.title}
                   </h3>
                 </div>
@@ -152,13 +152,13 @@ const Projects = ({ title }) => {
                       {p.role} &mdash; {p.year}
                     </span>
 
-                    {/* Prominent Title */}
-                    <h2 className="font-[ZeroMaster] mt-4 sm:mt-5 text-[clamp(2.4rem,5.5vw,5.5rem)] leading-[0.92] text-(--paper) tracking-tight">
+                    {/* Prominent Title in font-heading */}
+                    <h2 className="font-heading mt-4 sm:mt-5 text-[clamp(1.25rem,2.4vw,2.4rem)] uppercase leading-[1.2] text-(--paper) tracking-wide">
                       {p.title}
                     </h2>
 
                     {/* Micro divider + Type */}
-                    <div className="mt-6 sm:mt-8 flex items-center gap-6">
+                    <div className="mt-5 sm:mt-6 flex items-center gap-6">
                       <div className="h-px w-10 bg-(--paper)/25" />
                       <span className="font-ui text-[11px] uppercase tracking-[0.25em] text-(--paper)/45">
                         {p.type}

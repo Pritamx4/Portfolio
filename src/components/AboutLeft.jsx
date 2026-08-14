@@ -6,7 +6,7 @@ const AboutLeft = () => {
           Operator Profile
         </span>
 
-        <h1 className="font-[ZeroMaster] mt-4 text-5xl text-(--paper) lg:text-6xl">
+        <h1 className="font-name uppercase mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-4xl lg:text-[2.4rem] xl:text-[2.8rem] whitespace-nowrap text-(--paper) tracking-wide">
           Pritam Singh
         </h1>
 
@@ -21,29 +21,29 @@ const AboutLeft = () => {
           design and code.
         </p>
 
-        {/* Stats — hairline-divided, matching the quiet numbering used in Projects */}
+        {/* Stats — hairline-divided */}
         <div className="mt-10 grid grid-cols-3 border-t border-(--paper)/10 pt-6">
           <div className="flex flex-col items-start border-r border-(--paper)/10 pr-4">
-            <span className="font-[ZeroMaster] text-3xl text-(--paper) lg:text-4xl">
+            <span className="font-[Michroma] text-2xl sm:text-3xl text-(--paper) tracking-tight">
               2024
             </span>
-            <span className="font-ui mt-1 text-[10px] uppercase tracking-[0.2em] text-(--paper)/40">
+            <span className="font-ui mt-1.5 text-[10px] uppercase tracking-[0.2em] text-(--paper)/40">
               Since
             </span>
           </div>
           <div className="flex flex-col items-start border-r border-(--paper)/10 px-4">
-            <span className="font-[ZeroMaster] text-3xl text-(--paper) lg:text-4xl">
-              3+
+            <span className="font-[Michroma] text-2xl sm:text-3xl text-(--paper) tracking-tight">
+              3<span className="text-base sm:text-lg text-(--paper)/60 ml-0.5 font-mono">+</span>
             </span>
-            <span className="font-ui mt-1 text-[10px] uppercase tracking-[0.2em] text-(--paper)/40">
+            <span className="font-ui mt-1.5 text-[10px] uppercase tracking-[0.2em] text-(--paper)/40">
               Projects
             </span>
           </div>
           <div className="flex flex-col items-start pl-4">
-            <span className="font-[ZeroMaster] text-3xl text-(--paper) lg:text-4xl">
-              10+
+            <span className="font-[Michroma] text-2xl sm:text-3xl text-(--paper) tracking-tight">
+              10<span className="text-base sm:text-lg text-(--paper)/60 ml-0.5 font-mono">+</span>
             </span>
-            <span className="font-ui mt-1 text-[10px] uppercase tracking-[0.2em] text-(--paper)/40">
+            <span className="font-ui mt-1.5 text-[10px] uppercase tracking-[0.2em] text-(--paper)/40">
               Tools
             </span>
           </div>
