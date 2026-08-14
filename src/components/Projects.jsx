@@ -6,7 +6,7 @@ const HEADER_H = 76;
 const PROJECTS = [
   {
     num: "01",
-    title: "Nimbus Banking App",
+    title: "Project 1",
     role: "Product Design",
     year: "2025",
     type: "Mobile UI/UX",
@@ -17,7 +17,7 @@ const PROJECTS = [
   },
   {
     num: "02",
-    title: "Kioku Brand System",
+    title: "Project 2",
     role: "Brand Identity",
     year: "2024",
     type: "Visual Identity",
@@ -28,7 +28,8 @@ const PROJECTS = [
   },
   {
     num: "03",
-    title: "Fieldnote Dashboard",
+    title: "Project 3",
+    role: "UX / Data Viz",
     role: "UX / Data Viz",
     year: "2024",
     type: "Web App",
@@ -39,7 +40,7 @@ const PROJECTS = [
   },
   {
     num: "04",
-    title: "Passage Type Specimen",
+    title: "Project 4",
     role: "Personal Project",
     year: "2026",
     type: "Experimental",
