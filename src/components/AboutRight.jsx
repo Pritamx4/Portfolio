@@ -17,7 +17,7 @@ const AboutRight = () => {
               className="font-ui flex items-center justify-between py-3 text-sm uppercase tracking-[0.14em] text-(--paper)/70"
             >
               <span>{skill}</span>
-              <span className="text-(--paper)/30">
+              <span className="font-heading text-xs text-(--paper)/35 tracking-wider">
                 N&deg;{String(i + 1).padStart(2, '0')}
               </span>
             </li>

@@ -101,7 +101,7 @@ const Projects = ({ title }) => {
                 style={{ height: HEADER_H }}
               >
                 <div className="flex items-center gap-4 sm:gap-8">
-                  <span className="font-[ZeroMaster] text-sm text-(--paper)/45 lg:text-base">
+                  <span className="font-heading text-xs sm:text-sm text-(--paper)/50 tracking-wider">
                     N&deg;{p.num}
                   </span>
                   <span className="hidden h-3 w-px bg-(--paper)/15 sm:block" />

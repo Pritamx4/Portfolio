@@ -22,8 +22,8 @@ const ContactRight = () => {
           <p className="font-ui text-[0.6rem] hidden lg:block uppercase tracking-[0.35em] text-(--paper)/40">
             Start a Conversation
           </p>
-          <h2 className="font-[zeroMaster] hidden lg:block mt-1.5 text-2xl text-(--paper)">Drop a Line</h2>
-          <h2 className="font-ui lg:hidden mt-1.5 uppercase font-medium tracking-[0.16em] leading-none text-xl text-(--paper)">Send a Message</h2>
+          <h2 className="font-[ZeroMaster] hidden lg:block mt-1.5 text-2xl text-(--paper)">Drop a Line</h2>
+          <h2 className="font-[ZeroMaster] lg:hidden mt-1.5 text-2xl text-(--paper)">Send a Message</h2>
         </div>
       </div>
 
