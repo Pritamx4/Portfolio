@@ -16,9 +16,9 @@ const AppContent = () => {
 
   return (
     <>
-      {!loadingComplete && (
+      {/* {!loadingComplete && (
         <Preloader onComplete={() => setLoadingComplete(true)} />
-      )}
+      )} */}
       <CustomCursor />
       <Navbar />
       <FullScreenNav />
