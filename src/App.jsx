@@ -1,3 +1,4 @@
+import CustomCursor from './components/CustomCursor';
 import FullScreenNav from './components/FullScreenNav';
 import Navbar from './components/Navbar';
 import NavContext from './context/NavContext';
@@ -12,6 +13,7 @@ const AppContent = () => {
 
   return (
     <>
+      <CustomCursor />
       <Navbar />
       <FullScreenNav />
       <div className="min-h-screen w-full bg-(--ink) text-(--paper)">

@@ -58,7 +58,7 @@ const Contact = () => {
           <ContactRight />
         </div>
       </div>
-        <GitDock />
+      <GitDock />
 
     </div>
   );

@@ -139,7 +139,7 @@ const Projects = ({ title }) => {
                 )}
               </div>
 
-              {/* ── Card Main Content Area (Spacious, airy layout) ── */}
+              {/* ── Card Main Content Area ── */}
               <div
                 className="relative z-10 w-full overflow-y-auto px-6 py-8 sm:px-10 lg:overflow-visible lg:px-[6vw] lg:py-0"
                 style={{ height: `calc(100% - ${HEADER_H}px)` }}
@@ -170,7 +170,7 @@ const Projects = ({ title }) => {
                       {p.desc}
                     </p>
 
-                    {/* Stack tags with clean spacing and subtle pills */}
+                    {/* Stack tags */}
                     {p.tags && (
                       <div className="mt-5 sm:mt-6 flex flex-wrap items-center gap-2">
                         {p.tags.map((tag) => (
