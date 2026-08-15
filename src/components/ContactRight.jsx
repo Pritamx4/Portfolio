@@ -77,12 +77,12 @@ const ContactRight = () => {
           >
             <RollingText text="Send Message" />
             <lord-icon
-              className="current-color"
+              className="current-color text-(--paper) group-hover:text-(--ink)"
               src="https://cdn.lordicon.com/vpbspaec.json"
               trigger="hover"
               delay="1500"
               state="hover-flying"
-              colors="primary:#f4f1ea"
+              colors="primary:currentColor"
               style={{ width: '24px', height: '24px' }}
             ></lord-icon>
           </button>

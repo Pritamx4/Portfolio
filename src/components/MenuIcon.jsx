@@ -38,21 +38,21 @@ const MenuIcon = () => {
       onMouseLeave={() => {
         if (isHoverCapable()) navWhiteRef.current.style.height = '0';
       }}
-      className="group h-10 relative w-48 cursor-pointer"
+      className="group relative top-0 right-0 h-12 w-40 sm:w-48 cursor-pointer flex items-center justify-end pr-6 sm:pr-8 select-none"
     >
-      <div className="relative z-10 h-4 w-12 mx-32 my-3">
+      <div className="relative z-10 h-4 w-10 sm:w-12">
         <span
           ref={line1Ref}
-          className="absolute right-0 top-0 h-0.5 w-12 bg-white transition-colors duration-300 group-hover:bg-black origin-center"
+          className="absolute right-0 top-0 h-0.5 w-10 sm:w-12 bg-(--paper) transition-colors duration-300 group-hover:bg-(--ink) origin-center"
         ></span>
         <span
           ref={line2Ref}
-          className="absolute right-0 top-3.5 h-0.5 w-8 bg-white transition-colors duration-300 group-hover:bg-black origin-center"
+          className="absolute right-0 top-3.5 h-0.5 w-7 sm:w-8 bg-(--paper) transition-colors duration-300 group-hover:bg-(--ink) origin-center"
         ></span>
       </div>
       <div
         ref={navWhiteRef}
-        className="bg-white absolute transition-all top-0 h-0 w-full z-0"
+        className="bg-(--paper) absolute top-0 right-0 h-0 w-full z-0 transition-all duration-300 ease-in-out"
       ></div>
     </div>
   );

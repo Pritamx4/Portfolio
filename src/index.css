@@ -24,19 +24,9 @@
 }
 
 :root {
-  /* Core Color Tokens */
   --ink: #050505;
   --paper: #f4f1ea;
   --paper-muted: #ddd7cc;
-
-  /* World-Class Typographic System */
-  --font-zeromaster: 'ZeroMaster', sans-serif;
-  --font-display: 'ZeroMaster', sans-serif;
-  --font-heading: 'Michroma', sans-serif;
-  --font-name: 'Michroma', sans-serif;
-  --font-ui: 'Syncopate', sans-serif;
-  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Space Mono', monospace;
 }
 
 html {
