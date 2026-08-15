@@ -1,21 +1,24 @@
 <div align="center">
 
-# ⚡ PRITAM SINGH
-
-### *“Turning Code into Craftsmanship: Live Telemetry. Glassmorphism Design. Infinite Momentum.”*
+<!-- HERO BANNER -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=050505&height=220&section=header&text=PRITAM%20SINGH&fontSize=42&fontColor=F4F1EA&fontAlignY=40&desc=PORTFOLIO%20//%20KINETIC%20UI%20ARCHITECT%20&descSize=14&descColor=F2B33D&descAlignY=62" width="100%" alt="Pritam Singh Banner" />
 
 <br />
 
-<a href="https://skillicons.dev">
-  <img src="https://skillicons.dev/icons?i=react,vite,js,tailwind,github,vscode&theme=dark" alt="Pritam's Tech Stack" />
-</a>
+<!-- QUICK BADGES -->
+[![Live Portfolio](https://img.shields.io/badge/LIVE_SITE-pritamx4.vercel.app-F2B33D?style=for-the-badge&logo=vercel&logoColor=black)](https://pritamx4.vercel.app/)
+[![GitHub Profile](https://img.shields.io/badge/GITHUB-@pritamx4-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/pritamx4)
+[![LinkedIn](https://img.shields.io/badge/LINKEDIN-pritamx4-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/pritamx4)
+[![X (Twitter)](https://img.shields.io/badge/X-@pritamx4__-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/pritamx4_)
 
 <br /><br />
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-Live_Site-F2B33D?style=for-the-badge&logo=vercel&logoColor=black)](https://react-sable-eta.vercel.app/)
-[![GitHub API](https://img.shields.io/badge/GitHub_API-Live_Telemetry-181717?style=for-the-badge&logo=github&logoColor=white)](https://docs.github.com/en/rest)
+<!-- TECH ICONS MATRIX -->
+<a href="https://skillicons.dev">
+  <img src="https://skillicons.dev/icons?i=react,nextjs,js,ts,tailwind,nodejs,express,mongodb,threejs,git,vite,vercel&theme=dark" alt="Pritam's Tech Matrix" />
+</a>
 
-<br />
+<br /><br />
 
 ---
 
@@ -23,70 +26,86 @@
 
 <br />
 
-## 🛸 Spotlight: GitDock Command Center
+## 🏛️ Architectural Overview
 
-> [!IMPORTANT]
-> **GitDock** is a custom-engineered, floating launcher orb and interactive glassmorphism telemetry panel built for developer portfolios. It connects directly to live GitHub APIs to deliver real-time contribution heatmaps, daily spline metrics, and event activity streams.
+> **“Crafting interfaces where brutalist editorial typography meets fluid kinetic physics and live telemetry.”**
+
+This repository houses the source code for the official digital portfolio of **Pritam Singh ([@pritamx4](https://github.com/pritamx4))**. Built with a zero-compromise architectural mindset, focusing on 60 FPS motion fidelity, interactive typography, real-time GitHub telemetry, and responsive layout geometry.
 
 <br />
 
+```
+╔═══════════════════════════════════════════════════════════════════════════════════════════╗
+║                                 PRITAMX4 SYSTEM TOPOLOGY                                  ║
+╠═══════════════════════╦═══════════════════════════╦═══════════════════════════════════════╣
+║  🎨 KINETIC LAYER     ║  ⚡ HARDWARE MARQUEE      ║  🛸 TELEMETRY DOCK (GITDOCK)          ║
+║  • RepelText Physics  ║  • Infinite Looping Track ║  • Live GitHub REST Engine            ║
+║  • ScrambleText Matrix║  • Official Brand SVGs    ║  • 26-Week Interactive Contribution   ║
+║  • Magnetic Cursor    ║  • Dynamic Pause on Hover ║  • 56-Point Bezier Spline Velocity    ║
+╚═══════════════════════╩═══════════════════════════╩═══════════════════════════════════════╝
+```
+
+<br />
+
+---
+
+## ⚡ Featured Engineering Projects
+
 <div align="center">
+
+| Project | Domain / Stack | Key Engineering Highlights | Status |
+| :--- | :--- | :--- | :---: |
+| **🚗 [DriveMate](https://drivemate-jet.vercel.app/)** | `React` `Tailwind` `Lucide` | Next-gen luxury vehicle rental engine with instant parametric filters, fleet availability matrix & booking workflows. | `🟢 PRODUCTION` |
+| **⚡ [PostApp](https://post-app-3xg1.onrender.com/)** | `React` `Node.js` `MongoDB` | Full-stack social discovery platform with real-time engagement telemetry, secure JWT authentication & dynamic feeds. | `🟡 LIVE BETA` |
+| **🕹️ [CyberDeck Px4](https://pritamx4.github.io/CYBERDECK_Px4/)** | `Three.js` `WebGL` `Canvas` | 3D cybernetic terminal console with retro-futuristic shader passes, CRT scanline effects & spatial synthesizer. | `🟢 PRODUCTION` |
+| **📋 [TaskFlow](https://to-do-list-delta-amber-46.vercel.app/)** | `Next.js` `React` `Tailwind` | Ultra-fast productivity suite with optimistic UI state dispatching and clean minimalist keyboard navigation. | `🟢 PRODUCTION` |
+| **☁️ [Cloud Notes](https://github.com/Pritamx4/backend)** | `Node.js` `Express` `MongoDB` | High-throughput REST API backend architected with schema-level validation, rate limiting & token authorization. | `🟣 CODEBASE` |
+
+</div>
+
+<br />
+
+---
+
+## 🛸 Core Engine: GitDock Live GitHub Telemetry
+
+**GitDock** is a custom floating launcher and developer telemetry HUD built directly into the portfolio application:
 
 ```
  ╭───────────────────────────────────────────────────────────────────────────╮
- │  🛸 GITDOCK FLOATING LAUNCHER ORB                                         │
- │  • Draggable & Snappable  • Screen-Aware Auto-Nudge  • Hover Glass Badge  │
+ │  🛸 GITDOCK LAUNCHER & HUD TELEMETRY                                      │
+ │  • Smooth Clamped Physics  • Viewport Auto-Nudge  • Glassmorphism HUD     │
  ╰─────────────────────────────────────┬─────────────────────────────────────╯
                                        │
             ┌──────────────────────────┴──────────────────────────┐
             ▼                                                     ▼
  ┌─────────────────────────────┐                       ┌─────────────────────────────┐
- │ 📊 TAB 1: OVERVIEW          │                       │ ⚡ TAB 2: ACTIVITY STREAM   │
- │ • Repos, Stars, Disk Size   │                       │ • Real-time Push Events     │
- │ • Top Languages Bar         │                       │ • Branch Creation / Delete  │
- │ • 26-Week Contribution Grid │                       │ • Star & Fork Activity      │
- │ • 56-Point Daily Spline     │                       │ • Relative Timestamps       │
+ │ 📊 OVERVIEW METRICS         │                       │ ⚡ REAL-TIME EVENT STREAM    │
+ │ • Public Repos & Stars Count│                       │ • PushEvents & Commit Logs  │
+ │ • Language Distribution Bar │                       │ • Branch Creation / Deletes │
+ │ • 26-Week Matrix Heatmap    │                       │ • Star & Fork Telemetry     │
+ │ • 56-Point Velocity Spline  │                       │ • Relative Timestamps       │
  └─────────────────────────────┘                       └─────────────────────────────┘
-                                       │
-                                       ▼
-                       ┌──────────────────────────────┐
-                       │ 🔀 TAB 3: PULL REQUESTS      │
-                       │ • Live PR Status Badges      │
-                       │ • Merged 🟣 / Open 🟢 / Close│
-                       │ • Sub-filter Pills           │
-                       └──────────────────────────────┘
 ```
 
-</div>
-
-<br />
-
-<div align="center">
-
-| Feature Module | Architecture Highlights | Live Telemetry |
-| :--- | :--- | :---: |
-| **🛸 Floating Launcher Orb** | Physics-based drag & snap, Screen-aware auto-nudge (Zero clipping) | `ACTIVE` |
-| **📊 Contribution Heatmap** | 26 Weeks / 182 Days matrix, Horizontal mouse wheel scroll, Mon/Wed/Fri labels | `ACTIVE` |
-| **📈 Daily Bezier Spline** | 56-Point high-density curve, `W1`–`W8` X-axis markers, Floating glass tooltip | `ACTIVE` |
-| **⚡ Live Activity Stream** | Real-time timeline of `PushEvents`, branch creations, stars & forks | `ACTIVE` |
-| **🔀 Pull Requests Tracker** | Live PR status badges (`Merged` 🟣, `Open` 🟢, `Closed` 🔴) with sub-filters | `ACTIVE` |
-
-</div>
+* **26-Week Contribution Matrix:** 182-day interactive contribution grid with horizontal wheel scrolling and day-level tooltip inspection.
+* **56-Point Cubic Bezier Spline:** Smooth mathematical curve graphing daily commit momentum across weeks.
+* **Live GitHub Event Stream:** Fetches and normalizes live public push events, repository creations, and PR actions directly from `api.github.com`.
 
 <br />
 
 ---
 
-## 📊 Live GitHub Telemetry & Stats
+## 📊 Live Developer Statistics
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=Pritamx4&show_icons=true&theme=dark&bg_color=050505&title_color=F2B33D&text_color=F4F1EA&icon_color=F2B33D&border_color=242424&hide_border=false" width="48%" alt="Pritam's GitHub Stats" />
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Pritamx4&layout=compact&theme=dark&bg_color=050505&title_color=F2B33D&text_color=F4F1EA&border_color=242424&hide_border=false" width="48%" alt="Top Languages" />
+<img src="https://github-readme-stats.vercel.app/api?username=Pritamx4&show_icons=true&theme=dark&bg_color=050505&title_color=F2B33D&text_color=F4F1EA&icon_color=F2B33D&border_color=242424&hide_border=false" width="48.5%" alt="Pritam's GitHub Stats" />
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Pritamx4&layout=compact&theme=dark&bg_color=050505&title_color=F2B33D&text_color=F4F1EA&border_color=242424&hide_border=false" width="48.5%" alt="Top Languages" />
 
 <br /><br />
 
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=Pritamx4&theme=dark&background=050505&ring=F2B33D&fire=F2B33D&currStreakNum=F4F1EA&border=242424" width="97%" alt="GitHub Streak" />
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=Pritamx4&theme=dark&background=050505&ring=F2B33D&fire=F2B33D&currStreakNum=F4F1EA&border=242424" width="98%" alt="GitHub Streak" />
 
 </div>
 
@@ -94,58 +113,56 @@
 
 ---
 
-## 🛠️ Architecture & Core Stack
+## 🛠️ Stack & Technologies
 
-```
-Pritamx4 Portfolio & GitDock Engine
-│
-├── 🎨 UI Framework & Styling
-│   ├── React 19 (Hooks, Suspense, Concurrent Rendering)
-│   ├── Vite 8 (Lightning-fast HMR & Bundle Optimization)
-│   └── Vanilla Glassmorphism CSS (Dynamic blur, Hairline borders)
-│
-├── 🛸 GitDock Telemetry Core
-│   ├── Draggable Launcher (Pointer Capture, Clamped Snapping)
-│   ├── Viewport Fitting Engine (Auto-Nudge vertical Y position)
-│   ├── 26-Week Heatmap Engine (Horizontal Wheel Scroll, Month Labels)
-│   └── 56-Point Daily Bezier Spline (Cubic Bezier Interpolation)
-│
-└── 📡 Live GitHub API Layer
-    ├── REST API (`/users/Pritamx4`, `/repos`, `/events/public`)
-    └── Contributions API (`/v4/Pritamx4?y=last`)
+```yaml
+Frontend Architecture:
+  - React 19 (Hooks, Suspense, Concurrent State)
+  - Next.js (App Router, Server Components)
+  - JavaScript / TypeScript (Modern ES6+, Strict Typing)
+  - Tailwind CSS (Custom Design Tokens, Micro-utilities)
+
+Creative & Interaction:
+  - GSAP (GreenSock Animation Platform)
+  - Three.js & HTML5 Canvas (3D Viewports & WebGL Shaders)
+  - Custom Physics (Cursor Repulsion & Magnetic Pull)
+
+Backend & Persistence:
+  - Node.js & Express.js (RESTful Routing, Middleware)
+  - MongoDB (Mongoose ODM, Aggregations)
+  - JWT (JSON Web Tokens & Secure Auth)
+
+Tooling & Infrastructure:
+  - Vite 8 (Lightning HMR & Bundle Optimization)
+  - Git & GitHub (Branching & Version Control)
+  - Vercel (Edge Deploys & CI/CD)
 ```
 
 <br />
 
 ---
 
-## 🚀 Quick Start & Installation
+## 🚀 Local Setup & Development
 
-> [!TIP]
-> Run the project locally with Vite's lightning-fast development server in under **10 seconds**.
-
-### 1. Clone Repository
+Run the portfolio on your local workstation in under **15 seconds**:
 
 ```bash
-git clone https://github.com/Pritamx4/react.git
-cd react
-```
+# 1. Clone the repository
+git clone https://github.com/Pritamx4/Pritamx4.git
 
-### 2. Install Dependencies
+# 2. Enter project directory
+cd Pritamx4
 
-```bash
+# 3. Install dependencies
 npm install
-```
 
-### 3. Launch Dev Server
-
-```bash
+# 4. Start local development server
 npm run dev
 ```
 
-Visit `http://localhost:5173` to explore the live interactive application.
+The application will be live at `http://localhost:5173`.
 
-### 4. Production Build & Preview
+### Production Build & Preview
 
 ```bash
 npm run build
@@ -156,15 +173,21 @@ npm run preview
 
 ---
 
-## 🤝 Connect & Socials
+## 📬 Connect & Collaborate
 
 <div align="center">
 
-[![GitHub](https://img.shields.io/badge/GitHub-Pritamx4-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Pritamx4)
-[![Email](https://img.shields.io/badge/Email-Contact_Me-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:pritam@example.com)
+[![Portfolio](https://img.shields.io/badge/Portfolio-pritamx4.vercel.app-F2B33D?style=for-the-badge&logo=vercel&logoColor=black)](https://pritamx4.vercel.app/)
+[![GitHub](https://img.shields.io/badge/GitHub-pritamx4-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/pritamx4)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-pritamx4-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/pritamx4)
+[![YouTube](https://img.shields.io/badge/YouTube-@pritamx4-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@pritamx4)
+[![Instagram](https://img.shields.io/badge/Instagram-@pritamx4-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/pritamx4/)
+[![X / Twitter](https://img.shields.io/badge/X-@pritamx4__-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/pritamx4_)
 
 <br />
 
-*Crafted with precision, passion, and modern web tech by **Pritam Singh ([@Pritamx4](https://github.com/Pritamx4))***
+<img src="https://capsule-render.vercel.app/api?type=waving&color=050505&height=120&section=footer" width="100%" alt="Footer" />
+
+**Designed & Architected with precision by Pritam Singh ([@pritamx4](https://github.com/pritamx4))**
 
 </div>

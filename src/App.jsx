@@ -23,6 +23,8 @@ const AppContent = () => {
       <CustomCursor />
       <Navbar />
       <FullScreenNav />
+      {/* Ambient Film Grain Layer */}
+      <div className="pointer-events-none fixed inset-0 z-50 bg-grain" />
       <div className="min-h-screen w-full bg-(--ink) text-(--paper)">
         <Home />
         <About />
