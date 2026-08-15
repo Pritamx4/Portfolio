@@ -24,8 +24,9 @@ const PROJECTS = [
     type: "Social Feed Platform",
     desc: "A full-stack CRUD social application for creating, reading, updating, and managing community posts with responsive feeds and RESTful endpoints.",
     link: "https://post-app-3xg1.onrender.com/",
+    linkLabel: "Live Beta",
     image: "",
-    tags: ["React", "Node.js", "Express", "MongoDB", "REST API", "JWT"],
+    tags: ["In Progress", "React", "Node.js", "Express", "MongoDB", "REST API", "JWT"],
   },
   {
     num: "03",
@@ -48,6 +49,17 @@ const PROJECTS = [
     link: "https://to-do-list-delta-amber-46.vercel.app/",
     image: "",
     tags: ["Next.js", "React", "Tailwind CSS", "Vercel"],
+  },
+  {
+    num: "05",
+    title: "Cloud Notes",
+    role: "MERN Productivity",
+    year: "2026",
+    type: "Productivity Suite",
+    desc: "A modern MERN Notes application featuring real-time search indexing, REST APIs, schema validation, and MongoDB integration with responsive UI.",
+    link: "https://github.com/Pritamx4/backend",
+    image: "",
+    tags: ["React", "Node.js", "Express", "MongoDB", "Mongoose"],
   },
 ];
 
@@ -120,7 +132,7 @@ const Projects = ({ title }) => {
                     className="font-ui group flex items-center gap-2.5 text-[11px] font-medium uppercase tracking-[0.22em] text-(--paper)/60 transition-colors duration-300 hover:text-(--paper)"
                   >
                     <span className="relative">
-                      <ScrambleText text="Visit Live" />
+                      <ScrambleText text={p.linkLabel || "Visit Live"} />
                       <span className="absolute -bottom-1 left-0 h-px w-0 bg-(--paper) transition-all duration-300 group-hover:w-full" />
                     </span>
                     <svg
