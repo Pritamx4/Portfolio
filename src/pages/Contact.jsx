@@ -6,7 +6,7 @@ const Contact = () => {
   return (
     <div
       id="contact"
-      className="relative flex min-h-screen w-full flex-col items-stretch overflow-visible bg-(--ink) lg:h-screen lg:flex-row lg:items-center lg:overflow-hidden"
+      className="relative flex min-h-screen w-full flex-col items-stretch overflow-visible bg-(--ink) lg:flex-row lg:items-center py-12 lg:py-16"
     >
       {/* Dot pattern background */}
       <div

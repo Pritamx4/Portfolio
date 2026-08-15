@@ -5,7 +5,7 @@ const About = () => {
   return (
     <div
       id="about"
-      className="relative flex min-h-screen w-full flex-col overflow-hidden bg-(--ink) lg:h-screen"
+      className="relative flex min-h-screen w-full flex-col overflow-hidden bg-(--ink) py-12 lg:py-16"
     >
       {/* Fine grain texture, matching Projects and Contact */}
       <div
