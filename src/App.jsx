@@ -3,6 +3,7 @@ import CustomCursor from './components/CustomCursor';
 import FullScreenNav from './components/FullScreenNav';
 import Navbar from './components/Navbar';
 import Preloader from './components/Preloader';
+import TechMarquee from './components/TechMarquee';
 import NavContext from './context/NavContext';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -25,6 +26,7 @@ const AppContent = () => {
       <div className="min-h-screen w-full bg-(--ink) text-(--paper)">
         <Home />
         <About />
+        <TechMarquee />
         <Project />
         <Contact />
       </div>
