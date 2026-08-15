@@ -40,14 +40,14 @@ const PROJECTS = [
   },
   {
     num: "04",
-    title: "Cloud Notes",
-    role: "MERN Productivity",
+    title: "TaskFlow",
+    role: "Frontend Engineering",
     year: "2026",
-    type: "Productivity Suite",
-    desc: "A modern MERN Notes application featuring real-time search indexing, REST APIs, schema validation, and MongoDB integration with responsive UI.",
-    link: "https://github.com/Pritamx4/backend",
+    type: "Next.js Web App",
+    desc: "A fast, minimalist task management application built with Next.js App Router and Tailwind CSS, featuring streamlined task organization and responsive UI.",
+    link: "https://to-do-list-delta-amber-46.vercel.app/",
     image: "",
-    tags: ["React", "Node.js", "Express", "MongoDB", "Mongoose"],
+    tags: ["Next.js", "React", "Tailwind CSS", "Vercel"],
   },
 ];
 
