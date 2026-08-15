@@ -1,4 +1,5 @@
 import Button from './Button';
+import RepelText from './RepelText';
 
 const HomeLeft = () => {
   return (
@@ -8,8 +9,8 @@ const HomeLeft = () => {
           Frontend Developer
         </span>
 
-        <h1 className="font-name uppercase mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-4xl lg:text-[2.4rem] xl:text-[2.8rem] whitespace-nowrap text-(--paper) tracking-[0.06em] leading-[1.15]">
-          Pritam Singh
+        <h1 className="font-name uppercase mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-4xl lg:text-[2.4rem] xl:text-[2.8rem] whitespace-nowrap text-(--paper) tracking-[0.06em] leading-[1.15] cursor-default inline-block">
+          <RepelText text="Pritam Singh" radius={80} force={30} />
         </h1>
 
         <p className="mt-6 max-w-md text-[15px] sm:text-base leading-[1.75] text-(--paper)/75">

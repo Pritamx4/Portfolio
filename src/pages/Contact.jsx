@@ -1,6 +1,7 @@
 import ContactLeft from '../components/ContactLeft';
 import ContactRight from '../components/ContactRight';
 import GitDock from '../components/GitDock';
+import RepelText from '../components/RepelText';
 
 const Contact = () => {
   return (
@@ -24,13 +25,15 @@ const Contact = () => {
       <div className="relative z-10 flex w-full shrink-0 flex-col items-start justify-center px-6 pt-14 pb-8 lg:h-full lg:w-20 lg:items-center lg:px-0 lg:py-0">
         {/* Mobile heading */}
         <div className="flex flex-col lg:hidden">
-          <h1 className="font-display mt-1.5 text-4xl text-(--paper)">Let's Talk</h1>
+          <h1 className="font-display mt-1.5 text-4xl text-(--paper) cursor-default">
+            <RepelText text="Let's Talk" radius={80} force={25} />
+          </h1>
           <div className="mt-5 h-px w-16 bg-(--paper)/20 translate-x-44 -translate-y-9" />
         </div>
 
         {/* Desktop vertical heading */}
-        <h1 className="font-display hidden text-5xl text-(--paper) lg:block lg:[writing-mode:vertical-lr] lg:transform-[rotate(180deg)] xl:text-6xl tracking-wider">
-          Let's Talk
+        <h1 className="font-display hidden text-5xl text-(--paper) lg:block lg:[writing-mode:vertical-lr] lg:transform-[rotate(180deg)] xl:text-6xl tracking-wider cursor-default">
+          <RepelText text="Let's Talk" radius={80} force={25} />
         </h1>
         <div className="mt-4 hidden h-12 w-px bg-(--paper)/15 lg:block" />
       </div>

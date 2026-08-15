@@ -1,5 +1,6 @@
 import AboutLeft from '../components/AboutLeft';
 import AboutRight from '../components/AboutRight';
+import RepelText from '../components/RepelText';
 
 const About = () => {
   return (
@@ -18,12 +19,12 @@ const About = () => {
       />
 
       {/* Heading */}
-      <div className="relative z-10 flex flex-col items-center gap-3 pt-16 pb-10 lg:pt-20 lg:pb-12">
+      <div className="relative z-10 flex flex-col items-center gap-3 pt-16 pb-10 lg:pt-20 lg:pb-12 text-center">
         <span className="font-ui text-[11px] font-medium uppercase tracking-[0.35em] text-(--paper)/60">
           Who&rsquo;s Behind This
         </span>
-        <h1 className="font-[ZeroMaster] text-4xl sm:text-5xl lg:text-7xl text-(--paper) tracking-wide leading-none">
-          About Me
+        <h1 className="font-[ZeroMaster] text-4xl sm:text-5xl lg:text-7xl text-(--paper) tracking-wide leading-none cursor-default">
+          <RepelText text="About Me" radius={100} force={35} />
         </h1>
       </div>
 

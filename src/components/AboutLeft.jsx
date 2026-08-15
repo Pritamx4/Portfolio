@@ -1,3 +1,5 @@
+import RepelText from './RepelText';
+
 const AboutLeft = () => {
   return (
     <div className="font-body flex w-full flex-col justify-center px-6 py-12 lg:w-1/2 lg:px-[6vw] lg:py-0">
@@ -6,8 +8,8 @@ const AboutLeft = () => {
           Operator Profile
         </span>
 
-        <h1 className="font-name uppercase mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-4xl lg:text-[2.4rem] xl:text-[2.8rem] whitespace-nowrap text-(--paper) tracking-[0.06em] leading-[1.15]">
-          Pritam Singh
+        <h1 className="font-name uppercase mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-4xl lg:text-[2.4rem] xl:text-[2.8rem] whitespace-nowrap text-(--paper) tracking-[0.06em] leading-[1.15] cursor-default inline-block">
+          <RepelText text="Pritam Singh" radius={80} force={30} />
         </h1>
 
         <h6 className="font-ui mt-3 text-[11px] sm:text-xs uppercase tracking-[0.22em] text-(--paper)/70 font-medium">

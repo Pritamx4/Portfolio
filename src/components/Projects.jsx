@@ -1,3 +1,4 @@
+import RepelText from './RepelText';
 import ScrambleText from './ScrambleText';
 
 // Header strip height (px) visible when cards stack on top of each other
@@ -59,8 +60,8 @@ const Projects = ({ title }) => {
           <span className="font-ui text-[11px] font-medium uppercase tracking-[0.35em] text-(--paper)/60">
             Selected Work
           </span>
-          <h1 className="font-[ZeroMaster] text-4xl sm:text-6xl lg:text-7xl text-(--paper) tracking-wide leading-none">
-            {title}
+          <h1 className="font-[ZeroMaster] text-4xl sm:text-6xl lg:text-7xl text-(--paper) tracking-wide leading-none cursor-default">
+            <RepelText text={title} radius={100} force={35} />
           </h1>
         </div>
       )}
