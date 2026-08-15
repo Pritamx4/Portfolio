@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Host
+Host: https://pritamx4.vercel.app
+
+# Sitemaps
+Sitemap: https://pritamx4.vercel.app/sitemap.xml

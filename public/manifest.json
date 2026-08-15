@@ -1,0 +1,17 @@
+{
+  "name": "Pritam Singh (pritamx4) — Portfolio",
+  "short_name": "pritamx4",
+  "description": "Official portfolio of Pritam Singh (@pritamx4). Full-Stack & Creative Developer.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "icons": [
+    {
+      "src": "/src/assets/px4 main logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
