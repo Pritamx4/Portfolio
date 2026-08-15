@@ -1,5 +1,3 @@
-import React from "react";
-
 // Header strip height (px) visible when cards stack on top of each other
 const HEADER_H = 76;
 
@@ -56,10 +54,10 @@ const Projects = ({ title }) => {
       {/* ── Section Title Header ── */}
       {title && (
         <div className="flex flex-col items-center justify-center gap-3 px-6 py-20 lg:py-28 text-center">
-          <span className="font-ui text-[11px] uppercase tracking-[0.4em] text-(--paper)/35">
+          <span className="font-ui text-[11px] font-medium uppercase tracking-[0.35em] text-(--paper)/60">
             Selected Work
           </span>
-          <h1 className="font-[ZeroMaster] text-4xl sm:text-6xl lg:text-7xl text-(--paper)">
+          <h1 className="font-[ZeroMaster] text-4xl sm:text-6xl lg:text-7xl text-(--paper) tracking-wide leading-none">
             {title}
           </h1>
         </div>
@@ -101,11 +99,11 @@ const Projects = ({ title }) => {
                 style={{ height: HEADER_H }}
               >
                 <div className="flex items-center gap-4 sm:gap-8">
-                  <span className="font-heading text-xs sm:text-sm text-(--paper)/50 tracking-wider">
+                  <span className="font-heading text-xs sm:text-sm text-(--paper)/70 tracking-wider font-medium">
                     N&deg;{p.num}
                   </span>
                   <span className="hidden h-3 w-px bg-(--paper)/15 sm:block" />
-                  <h3 className="font-heading text-[10px] uppercase tracking-[0.16em] text-(--paper)/80 sm:text-xs">
+                  <h3 className="font-heading text-[11px] uppercase tracking-[0.14em] text-(--paper)/90 sm:text-xs font-medium">
                     {p.title}
                   </h3>
                 </div>
@@ -116,7 +114,7 @@ const Projects = ({ title }) => {
                     href={p.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-ui group flex items-center gap-2.5 text-[11px] uppercase tracking-[0.2em] text-(--paper)/50 transition-colors duration-300 hover:text-(--paper)"
+                    className="font-ui group flex items-center gap-2.5 text-[11px] font-medium uppercase tracking-[0.22em] text-(--paper)/60 transition-colors duration-300 hover:text-(--paper)"
                   >
                     <span className="relative">
                       Visit Live
@@ -148,25 +146,25 @@ const Projects = ({ title }) => {
                   {/* ── Left Column: Clean Editorial Typography ── */}
                   <div className="flex flex-col justify-center order-1 py-4 lg:py-0">
                     {/* Role & Year kicker */}
-                    <span className="font-ui text-[11px] uppercase tracking-[0.3em] text-(--paper)/35">
+                    <span className="font-ui text-[11px] font-medium uppercase tracking-[0.32em] text-(--paper)/60">
                       {p.role} &mdash; {p.year}
                     </span>
 
                     {/* Prominent Title in font-heading */}
-                    <h2 className="font-heading mt-4 sm:mt-5 text-[clamp(1.25rem,2.4vw,2.4rem)] uppercase leading-[1.2] text-(--paper) tracking-wide">
+                    <h2 className="font-heading mt-4 sm:mt-5 text-[clamp(1.35rem,2.5vw,2.5rem)] uppercase leading-[1.15] text-(--paper) tracking-[0.04em] font-medium">
                       {p.title}
                     </h2>
 
                     {/* Micro divider + Type */}
                     <div className="mt-5 sm:mt-6 flex items-center gap-6">
-                      <div className="h-px w-10 bg-(--paper)/25" />
-                      <span className="font-ui text-[11px] uppercase tracking-[0.25em] text-(--paper)/45">
+                      <div className="h-px w-10 bg-(--paper)/30" />
+                      <span className="font-ui text-[11px] font-medium uppercase tracking-[0.25em] text-(--paper)/65">
                         {p.type}
                       </span>
                     </div>
 
                     {/* Description with generous line-height */}
-                    <p className="font-body mt-5 sm:mt-6 max-w-[460px] text-[14px] sm:text-[15px] leading-[1.75] text-(--paper)/60">
+                    <p className="font-body mt-5 sm:mt-6 max-w-[480px] text-[14px] sm:text-[15px] leading-[1.8] text-(--paper)/75">
                       {p.desc}
                     </p>
 
@@ -176,7 +174,7 @@ const Projects = ({ title }) => {
                         {p.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="font-mono text-[10px] tracking-wider text-(--paper)/40 border border-(--paper)/10 bg-(--paper)/[0.02] px-2.5 py-0.5 rounded-sm"
+                            className="font-mono text-[11px] tracking-wider text-(--paper)/70 border border-(--paper)/15 bg-(--paper)/[0.03] px-2.5 py-1 rounded-sm"
                           >
                             {tag}
                           </span>
@@ -205,7 +203,7 @@ const Projects = ({ title }) => {
 
                       {/* Centered stylized project number watermark */}
                       <span
-                        className="font-[ZeroMaster] absolute inset-0 flex items-center justify-center text-(--paper)/15 select-none text-7xl sm:text-8xl lg:text-9xl"
+                        className="font-[ZeroMaster] absolute inset-0 flex items-center justify-center text-(--paper)/20 select-none text-7xl sm:text-8xl lg:text-9xl"
                         style={{ display: p.image ? "none" : "flex" }}
                       >
                         {p.num}

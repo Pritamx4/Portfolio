@@ -84,7 +84,7 @@ const FullScreenNav = () => {
         }}
       />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col divide-y divide-(--paper)/10 border-y border-(--paper)/10 my-auto">
+      <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col divide-y divide-(--paper)/12 border-y border-(--paper)/12 my-auto">
         {navLinks.map((link, index) => {
           const isActive = activeSection === link.id;
 
@@ -94,7 +94,7 @@ const FullScreenNav = () => {
               className="nav-row group relative flex items-center justify-between py-3.5 sm:py-5 transition-all duration-300 hover:bg-(--paper)/[0.02] px-2 sm:px-4"
             >
               {/* Index Number */}
-              <span className="font-heading text-[10px] sm:text-xs text-(--paper)/30 tracking-wider transition-colors duration-300 group-hover:text-(--paper)/60">
+              <span className="font-mono text-xs text-(--paper)/45 tracking-wider transition-colors duration-300 group-hover:text-(--paper)/70">
                 N&deg;{String(index + 1).padStart(2, '0')}
               </span>
 
@@ -106,11 +106,11 @@ const FullScreenNav = () => {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2"
                 >
-                  <span className="font-heading text-xl sm:text-3xl md:text-4xl uppercase tracking-[0.14em] text-(--paper)/70 transition-all duration-300 group-hover:text-(--paper) group-hover:tracking-[0.18em]">
+                  <span className="font-heading text-xl sm:text-3xl md:text-4xl uppercase tracking-[0.12em] text-(--paper)/80 transition-all duration-300 group-hover:text-(--paper) group-hover:tracking-[0.16em]">
                     {link.label}
                   </span>
                   <svg
-                    className="h-3.5 w-3.5 text-(--paper)/30 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-(--paper)"
+                    className="h-3.5 w-3.5 text-(--paper)/40 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-(--paper)"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -132,10 +132,10 @@ const FullScreenNav = () => {
                     <span className="h-1.5 w-1.5 rounded-full bg-(--paper) animate-ping" />
                   )}
                   <span
-                    className={`font-heading text-2xl sm:text-3xl md:text-4xl uppercase tracking-[0.14em] transition-all duration-300 group-hover:tracking-[0.18em] ${
+                    className={`font-heading text-2xl sm:text-3xl md:text-4xl uppercase tracking-[0.12em] transition-all duration-300 group-hover:tracking-[0.16em] ${
                       isActive
                         ? 'text-(--paper) font-bold'
-                        : 'text-(--paper)/75 group-hover:text-(--paper)'
+                        : 'text-(--paper)/80 group-hover:text-(--paper)'
                     }`}
                   >
                     {link.label}
@@ -144,7 +144,7 @@ const FullScreenNav = () => {
               )}
 
               {/* Sub-label kicker */}
-              <span className="hidden sm:block font-ui text-[9px] uppercase tracking-[0.25em] text-(--paper)/25 group-hover:text-(--paper)/45">
+              <span className="hidden sm:block font-ui text-[10px] uppercase tracking-[0.25em] text-(--paper)/45 group-hover:text-(--paper)/75 font-medium">
                 {link.external ? 'External' : 'Section'}
               </span>
             </div>
@@ -153,7 +153,7 @@ const FullScreenNav = () => {
       </div>
 
       {/* Bottom Nav Metadata Footer */}
-      <div className="relative z-10 mx-auto mt-8 flex w-full max-w-4xl items-center justify-between font-ui text-[9px] uppercase tracking-[0.3em] text-(--paper)/30">
+      <div className="relative z-10 mx-auto mt-8 flex w-full max-w-4xl items-center justify-between font-ui text-[10px] uppercase tracking-[0.3em] text-(--paper)/45 font-medium">
         <span>PX4 // System Nav</span>
         <span>Navigation Hub</span>
       </div>

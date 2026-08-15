@@ -19,10 +19,10 @@ const About = () => {
 
       {/* Heading */}
       <div className="relative z-10 flex flex-col items-center gap-3 pt-16 pb-10 lg:pt-20 lg:pb-12">
-        <span className="font-ui text-[11px] uppercase tracking-[0.4em] text-(--paper)/35">
+        <span className="font-ui text-[11px] font-medium uppercase tracking-[0.35em] text-(--paper)/60">
           Who&rsquo;s Behind This
         </span>
-        <h1 className="font-[ZeroMaster] text-4xl text-(--paper) lg:text-7xl">
+        <h1 className="font-[ZeroMaster] text-4xl sm:text-5xl lg:text-7xl text-(--paper) tracking-wide leading-none">
           About Me
         </h1>
       </div>

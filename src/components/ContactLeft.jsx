@@ -52,10 +52,12 @@ const ContactLeft = () => {
       {/* Header */}
       <div className="lg:mb-4 flex items-center justify-between pb-3">
         <div>
-          <p className="font-ui hidden lg:block text-[0.6rem] uppercase tracking-[0.35em] text-(--paper)/40">
+          <p className="font-ui hidden lg:block text-[11px] font-medium uppercase tracking-[0.35em] text-(--paper)/60">
             Elsewhere on the Internet
           </p>
-          <h2 className="font-[ZeroMaster] hidden lg:block mt-1.5 text-2xl text-(--paper)">Find Me Online</h2>
+          <h2 className="font-[ZeroMaster] hidden lg:block mt-1.5 text-2xl sm:text-3xl text-(--paper) tracking-wide">
+            Find Me Online
+          </h2>
         </div>
       </div>
 
@@ -67,7 +69,7 @@ const ContactLeft = () => {
             href={s.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-3 border-b-0 px-2 py-2 transition-all duration-300 hover:bg-(--paper)/2 lg:border-b lg:border-(--paper)/6 lg:px-0 lg:py-3.5 lg:hover:pl-1.5"
+            className="group flex items-center gap-3 border-b-0 px-2 py-2 transition-all duration-300 hover:bg-(--paper)/[0.02] lg:border-b lg:border-(--paper)/10 lg:px-0 lg:py-3.5 lg:hover:pl-2"
           >
             {/* Icon */}
             <div className="flex h-8 w-8 shrink-0 items-center justify-center">
@@ -82,17 +84,17 @@ const ContactLeft = () => {
 
             {/* Text */}
             <div className="flex-1 min-w-0">
-              <p className="font-ui hidden lg:block text-xs font-normal uppercase tracking-[0.18em] text-(--paper)">
-                {s.name} <span className="text-(--paper)/30">// {s.tag}</span>
+              <p className="font-heading hidden lg:block text-xs uppercase tracking-[0.14em] text-(--paper) font-medium">
+                {s.name} <span className="font-mono text-[10px] text-(--paper)/50 tracking-wider">// {s.tag}</span>
               </p>
-              <p className="font-body lg:block hidden mt-0.5 text-[0.65rem] leading-relaxed text-(--paper)/35">
+              <p className="font-body lg:block hidden mt-0.5 text-xs leading-relaxed text-(--paper)/65">
                 {s.desc}
               </p>
             </div>
 
             {/* Arrow */}
             <svg
-              className="h-3.5 w-3.5 hidden lg:block shrink-0 text-(--paper)/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-(--paper)/50"
+              className="h-3.5 w-3.5 hidden lg:block shrink-0 text-(--paper)/30 transition-all duration-300 group-hover:translate-x-1 group-hover:text-(--paper)"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
