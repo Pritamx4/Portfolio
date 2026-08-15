@@ -79,8 +79,7 @@ const ContactLeft = () => {
                 src={s.icon}
                 trigger={s.trigger}
                 state={s.state}
-                className="text-(--paper)"
-                colors="primary:currentColor,secondary:currentColor"
+                colors="primary:#f4f1ea,secondary:#ddd7cc"
                 style={{ width: '28px', height: '28px' }}
               />
             </div>
