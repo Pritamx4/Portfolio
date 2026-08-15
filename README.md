@@ -180,8 +180,8 @@ npm run preview
 [![Portfolio](https://img.shields.io/badge/Portfolio-pritamx4.vercel.app-F2B33D?style=for-the-badge&logo=vercel&logoColor=black)](https://pritamx4.vercel.app/)
 [![GitHub](https://img.shields.io/badge/GitHub-pritamx4-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/pritamx4)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-pritamx4-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/pritamx4)
-[![YouTube](https://img.shields.io/badge/YouTube-@pritamx4-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@pritamx4)
-[![Instagram](https://img.shields.io/badge/Instagram-@pritamx4-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/pritamx4/)
+[![YouTube](https://img.shields.io/badge/YouTube-@pritamx4-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@pritamx4-studio)
+[![Instagram](https://img.shields.io/badge/Instagram-@pritamx4-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/pritamx4_/)
 [![X / Twitter](https://img.shields.io/badge/X-@pritamx4__-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/pritamx4_)
 
 <br />
