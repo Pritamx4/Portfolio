@@ -2,6 +2,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { useContext, useEffect, useRef } from 'react';
 import { NavbarContext } from '../context/NavContext';
+import ScrambleText from './ScrambleText';
 
 const navLinks = [
   { label: 'Home', id: 'home' },
@@ -106,9 +107,10 @@ const FullScreenNav = () => {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2"
                 >
-                  <span className="font-heading text-xl sm:text-3xl md:text-4xl uppercase tracking-[0.12em] text-(--paper)/80 transition-all duration-300 group-hover:text-(--paper) group-hover:tracking-[0.16em]">
-                    {link.label}
-                  </span>
+                  <ScrambleText
+                    text={link.label}
+                    className="font-heading text-xl sm:text-3xl md:text-4xl uppercase tracking-[0.12em] text-(--paper)/80 transition-all duration-300 group-hover:text-(--paper) group-hover:tracking-[0.16em]"
+                  />
                   <svg
                     className="h-3.5 w-3.5 text-(--paper)/40 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-(--paper)"
                     fill="none"
@@ -131,15 +133,14 @@ const FullScreenNav = () => {
                   {isActive && (
                     <span className="h-1.5 w-1.5 rounded-full bg-(--paper) animate-ping" />
                   )}
-                  <span
+                  <ScrambleText
+                    text={link.label}
                     className={`font-heading text-2xl sm:text-3xl md:text-4xl uppercase tracking-[0.12em] transition-all duration-300 group-hover:tracking-[0.16em] ${
                       isActive
                         ? 'text-(--paper) font-bold'
                         : 'text-(--paper)/80 group-hover:text-(--paper)'
                     }`}
-                  >
-                    {link.label}
-                  </span>
+                  />
                 </button>
               )}
 

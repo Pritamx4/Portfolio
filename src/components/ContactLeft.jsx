@@ -1,3 +1,5 @@
+import ScrambleText from './ScrambleText';
+
 const socials = [
   {
     name: 'LINKEDIN',
@@ -53,10 +55,10 @@ const ContactLeft = () => {
       <div className="lg:mb-4 flex items-center justify-between pb-3">
         <div>
           <p className="font-ui hidden lg:block text-[11px] font-medium uppercase tracking-[0.35em] text-(--paper)/60">
-            Elsewhere on the Internet
+            Public Feeds
           </p>
-          <h2 className="font-[ZeroMaster] hidden lg:block mt-1.5 text-2xl sm:text-3xl text-(--paper) tracking-wide">
-            Find Me Online
+          <h2 className="font-heading hidden lg:block mt-2 text-lg sm:text-xl font-semibold uppercase tracking-[0.15em] text-(--paper)">
+            Follow Along
           </h2>
         </div>
       </div>
@@ -85,7 +87,7 @@ const ContactLeft = () => {
             {/* Text */}
             <div className="flex-1 min-w-0">
               <p className="font-heading hidden lg:block text-xs uppercase tracking-[0.14em] text-(--paper) font-medium">
-                {s.name} <span className="font-mono text-[10px] text-(--paper)/50 tracking-wider">// {s.tag}</span>
+                <ScrambleText text={s.name} /> <span className="font-mono text-[10px] text-(--paper)/50 tracking-wider">// {s.tag}</span>
               </p>
               <p className="font-body lg:block hidden mt-0.5 text-xs leading-relaxed text-(--paper)/65">
                 {s.desc}

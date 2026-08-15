@@ -1,3 +1,5 @@
+import ScrambleText from './ScrambleText';
+
 // Header strip height (px) visible when cards stack on top of each other
 const HEADER_H = 76;
 
@@ -117,7 +119,7 @@ const Projects = ({ title }) => {
                     className="font-ui group flex items-center gap-2.5 text-[11px] font-medium uppercase tracking-[0.22em] text-(--paper)/60 transition-colors duration-300 hover:text-(--paper)"
                   >
                     <span className="relative">
-                      Visit Live
+                      <ScrambleText text="Visit Live" />
                       <span className="absolute -bottom-1 left-0 h-px w-0 bg-(--paper) transition-all duration-300 group-hover:w-full" />
                     </span>
                     <svg
@@ -203,7 +205,7 @@ const Projects = ({ title }) => {
 
                       {/* Centered stylized project number watermark */}
                       <span
-                        className="font-[ZeroMaster] absolute inset-0 flex items-center justify-center text-(--paper)/20 select-none text-7xl sm:text-8xl lg:text-9xl"
+                        className="font-display absolute inset-0 flex items-center justify-center text-(--paper)/20 select-none text-7xl sm:text-8xl lg:text-9xl"
                         style={{ display: p.image ? "none" : "flex" }}
                       >
                         {p.num}

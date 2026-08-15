@@ -24,12 +24,12 @@ const Contact = () => {
       <div className="relative z-10 flex w-full shrink-0 flex-col items-start justify-center px-6 pt-14 pb-8 lg:h-full lg:w-20 lg:items-center lg:px-0 lg:py-0">
         {/* Mobile heading */}
         <div className="flex flex-col lg:hidden">
-          <h1 className="font-[ZeroMaster] mt-1.5 text-4xl text-(--paper)">Let's Talk</h1>
+          <h1 className="font-display mt-1.5 text-4xl text-(--paper)">Let's Talk</h1>
           <div className="mt-5 h-px w-16 bg-(--paper)/20 translate-x-44 -translate-y-9" />
         </div>
 
         {/* Desktop vertical heading */}
-        <h1 className="font-[ZeroMaster] hidden text-5xl text-(--paper) lg:block lg:[writing-mode:vertical-lr] lg:transform-[rotate(180deg)] xl:text-6xl tracking-wider">
+        <h1 className="font-display hidden text-5xl text-(--paper) lg:block lg:[writing-mode:vertical-lr] lg:transform-[rotate(180deg)] xl:text-6xl tracking-wider">
           Let's Talk
         </h1>
         <div className="mt-4 hidden h-12 w-px bg-(--paper)/15 lg:block" />
@@ -48,7 +48,7 @@ const Contact = () => {
         {/* Center separator: horizontal on mobile, vertical on desktop */}
         <div className="flex w-full items-center justify-center gap-3 px-6 py-4 lg:h-full lg:w-auto lg:flex-col lg:gap-0 lg:px-0 lg:py-0">
           <div className="h-px w-36 shrink-0 bg-(--paper)/20 lg:h-1/5 lg:w-px lg:translate-y-52" />
-          <h6 className="font-[ZeroMaster] text-2xl text-(--paper)/45 lg:[writing-mode:vertical-lr] lg:transform-[rotate(180deg)] lg:-translate-x-1.5 xl:text-4xl">
+          <h6 className="font-display text-2xl text-(--paper)/45 lg:[writing-mode:vertical-lr] lg:transform-[rotate(180deg)] lg:-translate-x-1.5 xl:text-4xl">
             OR
           </h6>
           <div className="h-px w-36 shrink-0 bg-(--paper)/20 lg:h-1/5 lg:w-px lg:-translate-y-52 lg:-translate-x" />

@@ -1,4 +1,5 @@
 import Button from './Button';
+import ScrambleText from './ScrambleText';
 
 const SKILLS = ['React', 'Next.js', 'Tailwind CSS', 'GSAP', 'Node.js', 'Git'];
 
@@ -14,9 +15,12 @@ const AboutRight = () => {
           {SKILLS.map((skill, i) => (
             <li
               key={skill}
-              className="group flex items-center justify-between py-3 text-xs sm:text-[13px] uppercase tracking-[0.12em] text-(--paper)/80 transition-colors hover:text-(--paper)"
+              className="group flex items-center justify-between py-3 text-xs sm:text-[13px] uppercase tracking-[0.12em] text-(--paper)/80 transition-colors hover:text-(--paper) cursor-default"
             >
-              <span className="font-heading font-medium">{skill}</span>
+              <ScrambleText
+                text={skill}
+                className="font-heading font-medium"
+              />
               <span className="font-mono text-xs text-(--paper)/45 tracking-widest transition-colors group-hover:text-(--paper)/70">
                 N&deg;{String(i + 1).padStart(2, '0')}
               </span>

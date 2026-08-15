@@ -1,3 +1,6 @@
+import Magnetic from './Magnetic';
+import RollingText from './RollingText';
+
 const fields = [
   {
     name: 'username',
@@ -20,13 +23,13 @@ const ContactRight = () => {
       <div className="mb-5 flex items-center justify-between pb-3">
         <div>
           <p className="font-ui text-[11px] font-medium hidden lg:block uppercase tracking-[0.35em] text-(--paper)/60">
-            Start a Conversation
+            Reach Out
           </p>
-          <h2 className="font-[ZeroMaster] hidden lg:block mt-1.5 text-2xl sm:text-3xl text-(--paper) tracking-wide">
-            Drop a Line
+          <h2 className="font-heading hidden lg:block mt-2 text-lg sm:text-xl font-semibold uppercase tracking-[0.15em] text-(--paper)">
+            Say Hello
           </h2>
-          <h2 className="font-[ZeroMaster] lg:hidden mt-1.5 text-2xl sm:text-3xl text-(--paper) tracking-wide">
-            Send a Message
+          <h2 className="font-heading lg:hidden mt-2 text-lg sm:text-xl font-semibold uppercase tracking-[0.15em] text-(--paper)">
+            Say Hello
           </h2>
         </div>
       </div>
@@ -66,22 +69,24 @@ const ContactRight = () => {
           />
         </div>
 
-        {/* Submit button */}
-        <button
-          type="submit"
-          className="font-ui group mt-6 flex w-full items-center justify-center gap-3 border border-(--paper)/30 bg-transparent px-7 py-3 text-xs uppercase tracking-[0.2em] font-medium text-(--paper) transition-all duration-300 hover:border-(--paper) hover:bg-(--paper) hover:text-(--ink) hover:shadow-[0_0_30px_rgba(244,241,234,0.15)] active:scale-[0.97] lg:w-fit lg:justify-start"
-        >
-          Send Message
-          <lord-icon
-            className="current-color"
-            src="https://cdn.lordicon.com/vpbspaec.json"
-            trigger="hover"
-            delay="1500"
-            state="hover-flying"
-            colors="primary:#f4f1ea"
-            style={{ width: '24px', height: '24px' }}
-          ></lord-icon>
-        </button>
+        {/* Submit button with Magnetic pull and RollingText flip */}
+        <Magnetic strength={0.25} className="mt-6 w-full lg:w-fit">
+          <button
+            type="submit"
+            className="font-ui group flex w-full items-center justify-center gap-3 border border-(--paper)/30 bg-transparent px-7 py-3 text-xs uppercase tracking-[0.2em] font-medium text-(--paper) transition-all duration-300 hover:border-(--paper) hover:bg-(--paper) hover:text-(--ink) hover:shadow-[0_0_30px_rgba(244,241,234,0.15)] active:scale-[0.97] cursor-pointer lg:w-fit lg:justify-start"
+          >
+            <RollingText text="Send Message" />
+            <lord-icon
+              className="current-color"
+              src="https://cdn.lordicon.com/vpbspaec.json"
+              trigger="hover"
+              delay="1500"
+              state="hover-flying"
+              colors="primary:#f4f1ea"
+              style={{ width: '24px', height: '24px' }}
+            ></lord-icon>
+          </button>
+        </Magnetic>
       </form>
     </div>
   );
