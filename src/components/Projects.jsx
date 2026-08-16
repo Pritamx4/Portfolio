@@ -168,7 +168,7 @@ const Projects = ({ title }) => {
                     </div>
 
                     {/* Description with generous line-height */}
-                    <p className="font-body mt-4 sm:mt-5 max-w-[480px] text-[14px] sm:text-[15px] leading-[1.75] text-(--paper)/75">
+                    <p className="font-body mt-4 sm:mt-5 max-w-120 text-[14px] sm:text-[15px] leading-[1.75] text-(--paper)/75">
                       {p.desc}
                     </p>
 
@@ -178,7 +178,7 @@ const Projects = ({ title }) => {
                         {p.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="font-mono text-[11px] tracking-wider text-(--paper)/70 border border-(--paper)/15 bg-(--paper)/[0.03] px-2.5 py-1 rounded-sm"
+                            className="font-mono text-[11px] tracking-wider text-(--paper)/70 border border-(--paper)/15 bg-(--paper)/3 px-2.5 py-1 rounded-sm"
                           >
                             {tag}
                           </span>
@@ -189,7 +189,7 @@ const Projects = ({ title }) => {
 
                   {/* ── Right Column: Showcase Preview Frame (16:10 Laptop Widescreen) ── */}
                   <div className="flex items-center justify-center order-2 w-full pb-6 lg:pb-0">
-                    <div className="group/frame relative w-full max-w-sm sm:max-w-lg lg:max-w-none aspect-[16/10] border border-(--paper)/15 bg-(--paper)/[0.02] shadow-[0_20px_50px_rgba(0,0,0,0.6)] overflow-hidden flex items-center justify-center transition-all duration-300 hover:border-(--paper)/35">
+                    <div className="group/frame relative w-full max-w-sm sm:max-w-lg lg:max-w-none aspect-16/10 border border-(--paper)/15 bg-(--paper)/2 shadow-[0_20px_50px_rgba(0,0,0,0.6)] overflow-hidden flex items-center justify-center transition-all duration-300 hover:border-(--paper)/35">
                       {/* Image render if available */}
                       {p.image && (
                         <img
