@@ -1,0 +1,6 @@
+# Allow all web search crawlers (Google, Bing, Yahoo, DuckDuckGo, Yandex)
+User-agent: *
+Allow: /
+
+# Direct Sitemap URL for Googlebot & Bingbot
+Sitemap: https://react-sable-eta.vercel.app/sitemap.xml
