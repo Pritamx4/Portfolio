@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Direct Sitemap URL for Googlebot & Bingbot
-Sitemap: https://react-sable-eta.vercel.app/sitemap.xml
+Sitemap: https://pritamx4.vercel.app/sitemap.xml

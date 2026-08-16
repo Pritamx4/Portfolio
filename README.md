@@ -6,7 +6,7 @@
 <br />
 
 <!-- QUICK BADGES -->
-[![Live Portfolio](https://img.shields.io/badge/LIVE_SITE-react--sable--eta.vercel.app-F2B33D?style=for-the-badge&logo=vercel&logoColor=black)](https://react-sable-eta.vercel.app/)
+[![Live Portfolio](https://img.shields.io/badge/LIVE_SITE-pritamx4.vercel.app-F2B33D?style=for-the-badge&logo=vercel&logoColor=black)](https://pritamx4.vercel.app/)
 [![GitHub Profile](https://img.shields.io/badge/GITHUB-@pritamx4-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/pritamx4)
 [![LinkedIn](https://img.shields.io/badge/LINKEDIN-pritamx4-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/pritamx4)
 [![X (Twitter)](https://img.shields.io/badge/X-@pritamx4__-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/pritamx4_)
@@ -176,7 +176,7 @@ npm run preview
 
 <div align="center">
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-react--sable--eta.vercel.app-F2B33D?style=for-the-badge&logo=vercel&logoColor=black)](https://react-sable-eta.vercel.app/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-pritamx4.vercel.app-F2B33D?style=for-the-badge&logo=vercel&logoColor=black)](https://pritamx4.vercel.app/)
 [![GitHub](https://img.shields.io/badge/GitHub-pritamx4-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/pritamx4)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-pritamx4-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/pritamx4)
 [![YouTube](https://img.shields.io/badge/YouTube-@pritamx4-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@pritamx4-studio)
