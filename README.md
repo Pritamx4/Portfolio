@@ -147,10 +147,10 @@ Run the portfolio on your local workstation in under **15 seconds**:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/Pritamx4/Pritamx4.git
+git clone https://github.com/Pritamx4/Portfolio.git
 
 # 2. Enter project directory
-cd Pritamx4
+cd Portfolio
 
 # 3. Install dependencies
 npm install
