@@ -57,7 +57,6 @@ This repository houses the source code for the official digital portfolio of **P
 | :--- | :--- | :--- | :---: |
 | **🚗 [DriveMate](https://drivemate-jet.vercel.app/)** | `React` `Tailwind` `Lucide` | Next-gen luxury vehicle rental engine with instant parametric filters, fleet availability matrix & booking workflows. | `🟢 PRODUCTION` |
 | **⚡ [PostApp](https://post-app-3xg1.onrender.com/)** | `React` `Node.js` `MongoDB` | Full-stack social discovery platform with real-time engagement telemetry, secure JWT authentication & dynamic feeds. | `🟡 LIVE BETA` |
-| **🕹️ [CyberDeck Px4](https://pritamx4.github.io/CYBERDECK_Px4/)** | `Three.js` `WebGL` `Canvas` | 3D cybernetic terminal console with retro-futuristic shader passes, CRT scanline effects & spatial synthesizer. | `🟢 PRODUCTION` |
 | **📋 [TaskFlow](https://to-do-list-delta-amber-46.vercel.app/)** | `Next.js` `React` `Tailwind` | Ultra-fast productivity suite with optimistic UI state dispatching and clean minimalist keyboard navigation. | `🟢 PRODUCTION` |
 | **☁️ [Cloud Notes](https://github.com/Pritamx4/backend)** | `Node.js` `Express` `MongoDB` | High-throughput REST API backend architected with schema-level validation, rate limiting & token authorization. | `🟣 CODEBASE` |
 

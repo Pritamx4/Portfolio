@@ -35,7 +35,7 @@ const AboutLeft = () => {
           </div>
           <div className="flex flex-col items-start border-r border-(--paper)/12 px-4">
             <span className="font-heading text-2xl sm:text-3xl text-(--paper) tracking-normal">
-              5<span className="text-base sm:text-lg text-(--paper)/75 ml-0.5 font-mono">+</span>
+              4<span className="text-base sm:text-lg text-(--paper)/75 ml-0.5 font-mono">+</span>
             </span>
             <span className="font-ui mt-1.5 text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-(--paper)/55 font-medium">
               Projects
