@@ -141,7 +141,19 @@
     <script src="https://cdn.lordicon.com/lordicon.js" defer></script>
   </head>
   <body class="bg-(--ink) text-(--paper) selection:bg-(--paper) selection:text-(--ink)">
-    <div id="root"></div>
+    <!-- Static semantic fallback for Search Engine Crawlers (Bingbot / Googlebot) -->
+    <div id="root">
+      <main style="display:none;" aria-hidden="true">
+        <h1>Pritam Singh (pritamx4) — UI &amp; Frontend Architect</h1>
+        <p>Official portfolio of Pritam Singh (@pritamx4). Full-Stack Developer building modern web applications with React &amp; Next.js.</p>
+      </main>
+    </div>
+    <noscript>
+      <div style="padding: 24px; text-align: center; color: #f4f1ea; background: #050505;">
+        <h1>Pritam Singh (pritamx4) — UI &amp; Frontend Architect</h1>
+        <p>Official portfolio of Pritam Singh. Please enable JavaScript to experience the full interactive portfolio.</p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
