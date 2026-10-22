@@ -17,7 +17,7 @@ const useActiveSection = () => {
         });
       },
       {
-        threshold: 0.5, // 50% section screen pe dikhe tab active maano
+        threshold: 0.5,
       },
     );
 
