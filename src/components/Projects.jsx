@@ -31,7 +31,7 @@ const PROJECTS = [
     desc: "A full-stack CRUD social application for creating, reading, updating, and managing community posts with responsive feeds and RESTful endpoints.",
     link: "https://post-app-3xg1.onrender.com/",
     linkLabel: "Live Beta",
-    image: "",
+    image: "/projects/postapp.png",
     tags: ["In Progress", "React", "Node.js", "Express", "MongoDB", "REST API", "JWT"],
   },
   {
